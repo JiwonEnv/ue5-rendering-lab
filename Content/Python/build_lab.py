@@ -57,7 +57,8 @@ def get_instance(name, color, roughness, metallic=0.0):
 
 
 def spawn(cls, name, location, rotation=(0, 0, 0), folder='Environment'):
-    actor = actors.spawn_actor_from_class(cls, unreal.Vector(*location), unreal.Rotator(*rotation))
+    orientation = unreal.Rotator(pitch=rotation[0], yaw=rotation[1], roll=rotation[2])
+    actor = actors.spawn_actor_from_class(cls, unreal.Vector(*location), orientation)
     if actor is None:
         raise RuntimeError(f'Cannot spawn {name}')
     actor.set_actor_label(name)
