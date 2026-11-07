@@ -1,0 +1,262 @@
+[
+  {
+    "id": "CH01",
+    "slug": "RenderingPipeline",
+    "title": "렌더링 파이프라인",
+    "part": "Part01_RenderingBasics",
+    "folder": "CH01_RenderingPipeline",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part01_RenderingBasics/CH01_RenderingPipeline/Maps/L_CH01_RenderingPipeline",
+    "notes": "Docs/Chapters/CH01_RenderingPipeline.md"
+  },
+  {
+    "id": "CH02",
+    "slug": "ForwardDeferred",
+    "title": "Forward와 Deferred",
+    "part": "Part01_RenderingBasics",
+    "folder": "CH02_ForwardDeferred",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part01_RenderingBasics/CH02_ForwardDeferred/Maps/L_CH02_ForwardDeferred",
+    "notes": "Docs/Chapters/CH02_ForwardDeferred.md"
+  },
+  {
+    "id": "CH03",
+    "slug": "GBuffer",
+    "title": "GBuffer와 표면 정보",
+    "part": "Part01_RenderingBasics",
+    "folder": "CH03_GBuffer",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part01_RenderingBasics/CH03_GBuffer/Maps/L_CH03_GBuffer",
+    "notes": "Docs/Chapters/CH03_GBuffer.md"
+  },
+  {
+    "id": "CH04",
+    "slug": "DBufferDecals",
+    "title": "DBuffer와 데칼",
+    "part": "Part01_RenderingBasics",
+    "folder": "CH04_DBufferDecals",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part01_RenderingBasics/CH04_DBufferDecals/Maps/L_CH04_DBufferDecals",
+    "notes": "Docs/Chapters/CH04_DBufferDecals.md"
+  },
+  {
+    "id": "CH05",
+    "slug": "DepthEarlyZ",
+    "title": "Depth와 Early Z",
+    "part": "Part01_RenderingBasics",
+    "folder": "CH05_DepthEarlyZ",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part01_RenderingBasics/CH05_DepthEarlyZ/Maps/L_CH05_DepthEarlyZ",
+    "notes": "Docs/Chapters/CH05_DepthEarlyZ.md"
+  },
+  {
+    "id": "CH06",
+    "slug": "Overdraw",
+    "title": "Overdraw와 화면 겹침",
+    "part": "Part01_RenderingBasics",
+    "folder": "CH06_Overdraw",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part01_RenderingBasics/CH06_Overdraw/Maps/L_CH06_Overdraw",
+    "notes": "Docs/Chapters/CH06_Overdraw.md"
+  },
+  {
+    "id": "CH07",
+    "slug": "PBR",
+    "title": "PBR과 재질 입력",
+    "part": "Part02_MaterialsAndLight",
+    "folder": "CH07_PBR",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part02_MaterialsAndLight/CH07_PBR/Maps/L_CH07_PBR",
+    "notes": "Docs/Chapters/CH07_PBR.md"
+  },
+  {
+    "id": "CH08",
+    "slug": "BRDF",
+    "title": "BRDF와 반사 분포",
+    "part": "Part02_MaterialsAndLight",
+    "folder": "CH08_BRDF",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part02_MaterialsAndLight/CH08_BRDF/Maps/L_CH08_BRDF",
+    "notes": "Docs/Chapters/CH08_BRDF.md"
+  },
+  {
+    "id": "CH09",
+    "slug": "Fresnel",
+    "title": "Fresnel과 시선 각도",
+    "part": "Part02_MaterialsAndLight",
+    "folder": "CH09_Fresnel",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part02_MaterialsAndLight/CH09_Fresnel/Maps/L_CH09_Fresnel",
+    "notes": "Docs/Chapters/CH09_Fresnel.md"
+  },
+  {
+    "id": "CH10",
+    "slug": "ShadersWPO",
+    "title": "Shader와 순열과 WPO",
+    "part": "Part02_MaterialsAndLight",
+    "folder": "CH10_ShadersWPO",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part02_MaterialsAndLight/CH10_ShadersWPO/Maps/L_CH10_ShadersWPO",
+    "notes": "Docs/Chapters/CH10_ShadersWPO.md"
+  },
+  {
+    "id": "CH11",
+    "slug": "Substrate",
+    "title": "Substrate와 재질 레이어",
+    "part": "Part02_MaterialsAndLight",
+    "folder": "CH11_Substrate",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part02_MaterialsAndLight/CH11_Substrate/Maps/L_CH11_Substrate",
+    "notes": "Docs/Chapters/CH11_Substrate.md"
+  },
+  {
+    "id": "CH12",
+    "slug": "TranslucencyRefraction",
+    "title": "Translucency와 굴절",
+    "part": "Part02_MaterialsAndLight",
+    "folder": "CH12_TranslucencyRefraction",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part02_MaterialsAndLight/CH12_TranslucencyRefraction/Maps/L_CH12_TranslucencyRefraction",
+    "notes": "Docs/Chapters/CH12_TranslucencyRefraction.md"
+  },
+  {
+    "id": "CH13",
+    "slug": "SubsurfaceScattering",
+    "title": "SSS와 표면 아래 산란",
+    "part": "Part02_MaterialsAndLight",
+    "folder": "CH13_SubsurfaceScattering",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part02_MaterialsAndLight/CH13_SubsurfaceScattering/Maps/L_CH13_SubsurfaceScattering",
+    "notes": "Docs/Chapters/CH13_SubsurfaceScattering.md"
+  },
+  {
+    "id": "CH14",
+    "slug": "DrawCalls",
+    "title": "Draw Call과 배칭",
+    "part": "Part03_GeometryAndTextures",
+    "folder": "CH14_DrawCalls",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part03_GeometryAndTextures/CH14_DrawCalls/Maps/L_CH14_DrawCalls",
+    "notes": "Docs/Chapters/CH14_DrawCalls.md"
+  },
+  {
+    "id": "CH15",
+    "slug": "Instancing",
+    "title": "Instancing과 반복 배치",
+    "part": "Part03_GeometryAndTextures",
+    "folder": "CH15_Instancing",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part03_GeometryAndTextures/CH15_Instancing/Maps/L_CH15_Instancing",
+    "notes": "Docs/Chapters/CH15_Instancing.md"
+  },
+  {
+    "id": "CH16",
+    "slug": "LOD",
+    "title": "LOD와 화면 크기",
+    "part": "Part03_GeometryAndTextures",
+    "folder": "CH16_LOD",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part03_GeometryAndTextures/CH16_LOD/Maps/L_CH16_LOD",
+    "notes": "Docs/Chapters/CH16_LOD.md"
+  },
+  {
+    "id": "CH17",
+    "slug": "Nanite",
+    "title": "Nanite와 가상화 지오메트리",
+    "part": "Part03_GeometryAndTextures",
+    "folder": "CH17_Nanite",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part03_GeometryAndTextures/CH17_Nanite/Maps/L_CH17_Nanite",
+    "notes": "Docs/Chapters/CH17_Nanite.md"
+  },
+  {
+    "id": "CH18",
+    "slug": "Culling",
+    "title": "Culling과 가시성",
+    "part": "Part03_GeometryAndTextures",
+    "folder": "CH18_Culling",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part03_GeometryAndTextures/CH18_Culling/Maps/L_CH18_Culling",
+    "notes": "Docs/Chapters/CH18_Culling.md"
+  },
+  {
+    "id": "CH19",
+    "slug": "Mipmaps",
+    "title": "Mipmap과 텍스처 샘플링",
+    "part": "Part03_GeometryAndTextures",
+    "folder": "CH19_Mipmaps",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part03_GeometryAndTextures/CH19_Mipmaps/Maps/L_CH19_Mipmaps",
+    "notes": "Docs/Chapters/CH19_Mipmaps.md"
+  },
+  {
+    "id": "CH20",
+    "slug": "TextureStreaming",
+    "title": "Texture Streaming과 메모리 예산",
+    "part": "Part03_GeometryAndTextures",
+    "folder": "CH20_TextureStreaming",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part03_GeometryAndTextures/CH20_TextureStreaming/Maps/L_CH20_TextureStreaming",
+    "notes": "Docs/Chapters/CH20_TextureStreaming.md"
+  },
+  {
+    "id": "CH21",
+    "slug": "Lumen",
+    "title": "Lumen과 동적 간접광",
+    "part": "Part04_LightingAndImageQuality",
+    "folder": "CH21_Lumen",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part04_LightingAndImageQuality/CH21_Lumen/Maps/L_CH21_Lumen",
+    "notes": "Docs/Chapters/CH21_Lumen.md"
+  },
+  {
+    "id": "CH22",
+    "slug": "VirtualShadowMaps",
+    "title": "Virtual Shadow Maps와 페이지 캐시",
+    "part": "Part04_LightingAndImageQuality",
+    "folder": "CH22_VirtualShadowMaps",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part04_LightingAndImageQuality/CH22_VirtualShadowMaps/Maps/L_CH22_VirtualShadowMaps",
+    "notes": "Docs/Chapters/CH22_VirtualShadowMaps.md"
+  },
+  {
+    "id": "CH23",
+    "slug": "TAA",
+    "title": "TAA와 프레임 히스토리",
+    "part": "Part04_LightingAndImageQuality",
+    "folder": "CH23_TAA",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part04_LightingAndImageQuality/CH23_TAA/Maps/L_CH23_TAA",
+    "notes": "Docs/Chapters/CH23_TAA.md"
+  },
+  {
+    "id": "CH24",
+    "slug": "TSR",
+    "title": "TSR과 시간적 업스케일링",
+    "part": "Part04_LightingAndImageQuality",
+    "folder": "CH24_TSR",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part04_LightingAndImageQuality/CH24_TSR/Maps/L_CH24_TSR",
+    "notes": "Docs/Chapters/CH24_TSR.md"
+  },
+  {
+    "id": "CH25",
+    "slug": "CPUGPUBottlenecks",
+    "title": "CPU와 GPU 병목",
+    "part": "Part05_Profiling",
+    "folder": "CH25_CPUGPUBottlenecks",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part05_Profiling/CH25_CPUGPUBottlenecks/Maps/L_CH25_CPUGPUBottlenecks",
+    "notes": "Docs/Chapters/CH25_CPUGPUBottlenecks.md"
+  },
+  {
+    "id": "CH26",
+    "slug": "GPUProfiling",
+    "title": "GPU Profiler와 전후 검증",
+    "part": "Part05_Profiling",
+    "folder": "CH26_GPUProfiling",
+    "status": "starter",
+    "map": "/Game/RenderingLab/Chapters/Part05_Profiling/CH26_GPUProfiling/Maps/L_CH26_GPUProfiling",
+    "notes": "Docs/Chapters/CH26_GPUProfiling.md"
+  }
+]
