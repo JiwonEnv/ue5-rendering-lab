@@ -14,35 +14,57 @@
 
 레벨 경로 `/Game/RenderingLab/Chapters/Part04_LightingAndImageQuality/CH22_VirtualShadowMaps/Maps/L_CH22_VirtualShadowMaps`
 
+## 흐름 개념도
+
+```mermaid
+flowchart LR
+ N0["필요한 그림자 영역"]
+ N1["해당 페이지 계산"]
+ N0 --> N1
+ N2["다음 프레임에 재사용"]
+ N1 --> N2
+```
+
 ## 원리
 
-VSM은 고해상도 가상 그림자 맵을 페이지 단위로 제공한다. 방향광은 카메라 주변 해상도를 효율적으로 배치하기 위해 클립맵을 사용한다.
+그림자 맵은 라이트에서 본 표면 깊이를 저장해 빛이 가려지는지 판정하는 자료입니다. VSM은 높은 해상도의 그림자 맵을 작은 페이지 단위로 제공하는 방식입니다. 필요한 부분만 계산하고 메모리에 유지해 넓은 장면의 세밀한 그림자를 다룹니다.
 
 ## 작동 과정
 
-보이는 표면이 요구하는 페이지를 할당하고 라이트 관점에서 가림을 기록한다. 이전 프레임의 페이지를 재사용하지만 움직이는 라이트나 그림자 캐스터, WPO 등이 캐시 무효화를 일으킬 수 있다.
+카메라 화면에 보이는 표면이 요구하는 그림자 영역을 찾고 해당 페이지를 준비합니다. 방향광에는 카메라 주변의 여러 범위를 계층으로 배치하는 클립맵을 사용합니다. 이전에 계산한 페이지를 다시 쓰는 것이 캐시 재사용입니다. 라이트나 물체가 변하면 과거 결과가 맞지 않아 페이지를 새로 계산할 수 있습니다.
 
 ## 아트 실무
 
-바람에 흔들리는 풀밭이 멀리까지 그림자를 만들면 원거리 WPO와 그림자 표현을 각각 비교한다. 라이트 여러 개가 같은 수관을 비추면 영향 반경도 검토한다.
+그림자를 만드는 물체를 캐스터라고 부릅니다. 바람으로 정점을 움직이는 WPO 식생은 멀리서도 캐시 갱신을 일으킬 수 있습니다. 원거리 바람, 그림자 거리와 라이트 영향 반경을 각각 조정한 버전을 비교합니다. 한 번에 여러 변수를 끄면 무엇이 비용을 줄였는지 알기 어렵습니다.
 
 ## 성능 비용
 
-페이지 갱신과 그림자 투영은 별도 비용이다. 새로 드러난 페이지, 큰 변형 bounds, 겹치는 그림자 라이트는 시간과 페이지 풀 압박에 영향을 준다.
+그림자용 깊이를 만드는 작업과, 그 결과를 표면에 적용하는 투영 작업은 별도 비용입니다. 새로 필요한 페이지, 움직이는 캐스터, 큰 bounds와 겹치는 광원은 작업량을 늘릴 수 있습니다. 캐시 무효화는 저장한 결과가 더 이상 맞지 않아 다시 계산해야 하는 상태를 뜻합니다.
 
 ## 언리얼 실습
 
-① Shadow Map Method에서 Virtual Shadow Maps를 확인한다. ② 고정 카메라에서 VSM Cached Page 시각화로 바람 켜짐·꺼짐을 비교한다. ③ 같은 조건으로 카메라를 움직여 Shadow Depths와 Projection 그룹을 나눠 기록한다.
+Shadow Map Method에서 Virtual Shadow Maps를 확인합니다. 카메라를 고정하고 VSM Cached Page 시각화로 바람 켜짐·꺼짐을 비교합니다. 다음에는 바람 조건을 고정하고 카메라를 움직입니다. Shadow Depths와 Projection 계열 시간을 나누어 기록합니다.
 
 ## 핵심 요약
 
-VSM 비용은 그림자 선명도와 함께 페이지의 재사용률과 갱신 범위를 본다.
+그림자 선명도와 함께, 이미 계산한 결과를 얼마나 재사용하는지 확인합니다.
+
+## 공식 자료
+
+- [Nanite Virtualized Geometry](https://dev.epicgames.com/documentation/en-us/unreal-engine/nanite-virtualized-geometry-in-unreal-engine)
+- [Virtual Shadow Maps](https://dev.epicgames.com/documentation/en-us/unreal-engine/virtual-shadow-maps-in-unreal-engine)
+
+## 관련 개념
+
+- [CH10 Shader와 순열과 WPO](CH10_ShadersWPO.md)
+- [CH21 Lumen과 동적 간접광](CH21_Lumen.md)
 
 ## 작업 기록
 
 - 제작한 에셋
-- 변경한 설정
-- 검증한 엔진 버전과 기기
-- 전후 캡처와 측정 결과
+- 바꾼 변수와 유지한 조건
+- 전후 화면과 실행 시간
+- 확인한 기기와 설정
 
-[챕터 목록으로 돌아가기](../../README.md#학습-순서)
+
+[처음 읽는 방법](../ReadingGuide.md) · [용어집](../Glossary.md) · [보충 주석](../SupplementaryNotes.md) · [챕터 목록](../../README.md#학습-순서)

@@ -14,35 +14,57 @@
 
 레벨 경로 `/Game/RenderingLab/Chapters/Part03_GeometryAndTextures/CH16_LOD/Maps/L_CH16_LOD`
 
+## 흐름 개념도
+
+```mermaid
+flowchart LR
+ N0["크게 보이는 형상"]
+ N1["중간 디테일"]
+ N0 --> N1
+ N2["작게 보이는 형상"]
+ N1 --> N2
+```
+
 ## 원리
 
-LOD는 화면에서 필요로 하는 디테일에 맞춰 대체 표현을 선택하는 방식이다. 전통 Static Mesh LOD는 화면 크기 기준으로 작성할 수 있다.
+LOD는 Level of Detail의 약자로 화면에서 필요한 정도에 맞춰 디테일을 바꾸는 방식입니다. 가까운 난간에는 나사와 베벨이 보이지만 멀리서는 기둥의 굵기와 윤곽이 더 중요합니다. 전통적인 Static Mesh LOD는 여러 단계의 대체 메시를 사용합니다.
 
 ## 작동 과정
 
-LOD0에서 먼 단계로 갈수록 삼각형, 섹션 또는 재질 복잡도를 낮출 수 있다. 기준이 화면 크기이므로 오브젝트 스케일과 카메라 FOV에 따라 같은 거리에서도 선택이 달라진다.
+UE는 화면에서 차지하는 크기를 기준으로 LOD를 선택할 수 있습니다. 그래서 같은 거리라도 메시의 크기나 카메라의 시야각이 바뀌면 선택 결과가 달라질 수 있습니다. 시야각은 FOV라고 부르며, 넓을수록 더 넓은 범위를 한 화면에 담습니다. 단계별로 삼각형·섹션·재질을 줄이는 방법을 검토합니다.
 
 ## 아트 실무
 
-난간의 나사와 작은 베벨은 먼저 줄이고, 위쪽 윤곽과 굵은 기둥 간격은 유지한다. 색, 노멀, 그림자 실루엣이 전환 시 튀지 않는지 본다.
+작은 나사와 베벨을 먼저 줄이고 멀리서도 읽히는 상단 윤곽과 기둥 간격은 유지합니다. 단순화 과정에서 노멀과 색이 달라져 번쩍이는 전환이 생기는지도 봅니다. 디더 전환은 작은 점무늬의 가시성을 바꾸며 두 단계를 이어 보이게 하는 방법이며, 이동 중의 안정성까지 확인합니다.
 
 ## 성능 비용
 
-정점 처리와 그림자 지오메트리를 줄일 수 있다. 섹션 수가 같고 화면을 덮는 면적이 비슷하면 호출과 픽셀 비용은 여전히 남는다. 디더 전환 구간도 측정한다.
+정점 처리와 그림자에 그릴 지오메트리를 줄일 수 있습니다. 하지만 섹션 수와 화면 면적, 재질이 그대로라면 호출과 픽셀 비용은 많이 줄지 않을 수 있습니다. 전환 중 두 표현을 처리하는 구간의 비용도 함께 측정합니다.
 
 ## 언리얼 실습
 
-① Static Mesh Editor에서 LOD별 화면 크기와 삼각형 수를 확인한다. ② 가능하면 LOD Coloration 또는 Forced LOD로 개별 형태를 본다. ③ 고정 이동 경로에서 실루엣·그림자 튐과 GPU ms를 비교한다.
+Static Mesh Editor에서 각 LOD의 형상과 Screen Size를 확인합니다. Screen Size는 화면 크기 기준입니다. 지원되는 LOD Coloration으로 선택 단계를 보고 Forced LOD로 특정 단계를 고정해 형상을 비교합니다. 같은 카메라 이동에서 윤곽·그림자 튐과 GPU 시간을 기록합니다.
 
 ## 핵심 요약
 
-디테일 삭제의 기준은 월드 거리보다 실제 화면에서 읽히는 크기다.
+멀리서 읽히는 정보를 유지하면서 줄일 대상을 고릅니다. 거리 하나보다 화면 크기와 실제 효과를 기준으로 판단합니다.
+
+## 공식 자료
+
+- [Instanced Static Mesh Component](https://dev.epicgames.com/documentation/en-us/unreal-engine/instanced-static-mesh-component-in-unreal-engine)
+- [Optimizing LOD Screen Size Per Platform](https://dev.epicgames.com/documentation/en-us/unreal-engine/optimizing-lod-screen-size-per-platform-in-unreal-engine)
+
+## 관련 개념
+
+- [CH17 Nanite와 가상화 지오메트리](CH17_Nanite.md)
+- [CH23 TAA와 프레임 히스토리](CH23_TAA.md)
 
 ## 작업 기록
 
 - 제작한 에셋
-- 변경한 설정
-- 검증한 엔진 버전과 기기
-- 전후 캡처와 측정 결과
+- 바꾼 변수와 유지한 조건
+- 전후 화면과 실행 시간
+- 확인한 기기와 설정
 
-[챕터 목록으로 돌아가기](../../README.md#학습-순서)
+
+[처음 읽는 방법](../ReadingGuide.md) · [용어집](../Glossary.md) · [보충 주석](../SupplementaryNotes.md) · [챕터 목록](../../README.md#학습-순서)

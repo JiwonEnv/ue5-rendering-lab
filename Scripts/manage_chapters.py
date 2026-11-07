@@ -51,6 +51,9 @@ Forward 전환이나 Adaptive GBuffer 실험은 프로젝트 설정 변경과 �
 
 ## 구조와 확장
 
+- [처음 읽는 방법](Docs/ReadingGuide.md)
+- [용어집](Docs/Glossary.md)
+- [보충 주석](Docs/SupplementaryNotes.md)
 - [폴더 구조와 에셋 규칙](Docs/FolderStructure.md)
 - [새 챕터 추가 방법](Docs/AddingChapters.md)
 - [커밋 규칙](CONTRIBUTING.md)
@@ -118,9 +121,10 @@ def main():
             path = content / sub
             path.mkdir(parents=True)
             (path / '.gitkeep').touch()
-        headings = ['챕터 학습 목표', '예제 학습 목표', '원리', '제작 절차', '검증 방법', '결과와 참고 자료']
+        headings = ['챕터 학습 목표', '예제 학습 목표', '원리', '작동 과정', '아트 실무', '성능 비용', '언리얼 실습', '핵심 요약', '결과와 참고 자료']
         body = [f'# {chapter_id} {args.title}', '', '**구현 상태 — 기본 실습 레벨 준비**', '',
                 f'레벨 경로 `{map_path}`', '']
+        body.extend(['필수 용어는 처음 사용하는 자리에서 뜻을 설명하고, 원리와 관찰할 화면을 연결합니다. 심화 내용은 보충 주석으로 연결합니다.', ''])
         for heading in headings:
             prefix = '###' if heading == '예제 학습 목표' else '##'
             body.extend([f'{prefix} {heading}', '', '작성 예정', ''])

@@ -14,35 +14,59 @@
 
 레벨 경로 `/Game/RenderingLab/Chapters/Part01_RenderingBasics/CH05_DepthEarlyZ/Maps/L_CH05_DepthEarlyZ`
 
+## 흐름 개념도
+
+```mermaid
+flowchart LR
+ N0["앞쪽 표면의 깊이"]
+ N1["가려짐 판정"]
+ N0 --> N1
+ N2["불필요한 표면 계산 줄이기"]
+ N1 --> N2
+```
+
 ## 원리
 
-깊이 버퍼는 화면 위치별 깊이를 저장한다. Early Z는 가능한 경우 비싼 픽셀 셰이딩 전에 가려진 프래그먼트를 거르는 GPU 동작이다.
+깊이 버퍼는 화면 위치마다 앞쪽 표면의 깊이를 저장합니다. 새 삼각형이 이미 그린 표면 뒤에 있다면 최종 화면에 기여하지 않을 수 있습니다. Early Z는 가능한 경우 이런 가려짐을 먼저 검사해 비싼 표면 계산을 줄이는 GPU 동작입니다. Z는 깊이 축을 가리키는 관용적 이름입니다.
 
 ## 작동 과정
 
-Depth Prepass가 먼저 깊이를 채우면 뒤의 패스가 그 값을 이용할 수 있다. 프리패스 구성, 그리기 순서와 머티리얼의 깊이·마스크 동작에 따라 절약량이 달라진다. Scene Depth는 투영된 값이므로 일반적인 월드 거리와 같은 값으로 해석하면 안 된다.
+Depth Prepass는 주요 표면의 깊이를 먼저 준비하는 단계입니다. 뒤의 작업은 그 값을 읽어 가려진 후보를 제외할 수 있습니다. 삼각형이 덮는 화면 위치에서 만들어지는 처리 후보를 프래그먼트라고 부릅니다. 같은 화면 픽셀에도 여러 삼각형의 프래그먼트가 도착할 수 있으며, 모두 최종 색으로 남는 것은 아닙니다.
 
 ## 아트 실무
 
-계단 뒤 장식처럼 대부분 가려지는 불투명 디테일과 잎사귀 카드처럼 구멍이 많은 실루엣을 구분한다. 화면을 덮는 면적이 같아도 깊이에서 제거할 수 있는 작업량이 다르다.
+벽 뒤 장식은 벽의 깊이로 가려질 수 있습니다. 반면 잎 카드처럼 구멍이 있는 표면은 먼저 구멍 여부를 알아야 합니다. Masked 재질은 텍스처 등의 값으로 해당 위치를 남길지 버릴지 정합니다. 구멍이 많은 카드와 꽉 찬 벽의 깊이 처리 효과가 다른 이유입니다.
 
 ## 성능 비용
 
-프리패스에는 지오메트리 제출과 깊이 쓰기 비용이 든다. Masked 표면은 마스크를 평가해야 커버리지를 확정할 수 있다. 픽셀 절약량과 프리패스 비용을 함께 본다.
+깊이를 먼저 준비하는 일에도 메시 처리와 메모리 쓰기가 필요합니다. 뒤에서 줄이는 표면 계산이 크면 이득이 날 수 있지만, 단순한 장면에서는 선행 작업의 부담도 봐야 합니다. 깊이 화면의 밝기는 진단용 표시이므로 그 숫자를 카메라와 물체 사이의 실제 거리로 바로 읽지 않습니다.
 
 ## 언리얼 실습
 
-① 불투명 벽 뒤에 복잡한 머티리얼의 큰 패널을 놓는다. ② 가림판이 패널을 완전히 가리는 경우와 일부 드러내는 경우를 비교한다. ③ Scene Depth와 PrePass/Base Pass 시간을 기록한다. 오브젝트 컬링의 영향은 일부가 계속 보이는 조건으로 줄인다.
+불투명 가림판 뒤에 복잡한 재질의 패널을 둡니다. 패널 일부가 계속 보이도록 하여 오브젝트 전체가 제외되는 영향을 줄입니다. 가리는 면적만 바꾸며 Scene Depth와 PrePass·Base Pass 시간을 기록합니다. 오브젝트 전체를 제외하는 컬링은 CH18에서 구분해 설명합니다.
 
 ## 핵심 요약
 
-깊이 프리패스는 픽셀 작업을 줄일 수 있는 선행 투자다.
+깊이 준비의 추가 작업과 줄어든 표면 계산을 함께 측정합니다. 화면에 안 보이는 물체라도 모든 비용이 자동으로 사라지는 것은 아닙니다.
+
+## 공식 자료
+
+- [Render Dependency Graph](https://dev.epicgames.com/documentation/en-us/unreal-engine/rendering-dependency-graph-in-unreal-engine)
+- [Introduction to Performance Profiling and Configuration](https://dev.epicgames.com/documentation/en-us/unreal-engine/introduction-to-performance-profiling-and-configuration-in-unreal-engine)
+- [Decal Materials](https://dev.epicgames.com/documentation/en-us/unreal-engine/decal-materials-in-unreal-engine)
+- [Visibility and Occlusion Culling](https://dev.epicgames.com/documentation/en-us/unreal-engine/visibility-and-occlusion-culling-in-unreal-engine)
+
+## 관련 개념
+
+- [CH06 Overdraw와 화면 겹침](CH06_Overdraw.md)
+- [CH18 Culling과 가시성](CH18_Culling.md)
 
 ## 작업 기록
 
 - 제작한 에셋
-- 변경한 설정
-- 검증한 엔진 버전과 기기
-- 전후 캡처와 측정 결과
+- 바꾼 변수와 유지한 조건
+- 전후 화면과 실행 시간
+- 확인한 기기와 설정
 
-[챕터 목록으로 돌아가기](../../README.md#학습-순서)
+
+[처음 읽는 방법](../ReadingGuide.md) · [용어집](../Glossary.md) · [보충 주석](../SupplementaryNotes.md) · [챕터 목록](../../README.md#학습-순서)

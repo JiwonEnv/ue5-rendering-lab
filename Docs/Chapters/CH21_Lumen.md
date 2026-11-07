@@ -14,35 +14,57 @@ L자 방의 Lumen Scene과 Surface Cache를 관찰하고 메시 분할 또는 �
 
 레벨 경로 `/Game/RenderingLab/Chapters/Part04_LightingAndImageQuality/CH21_Lumen/Maps/L_CH21_Lumen`
 
+## 흐름 개념도
+
+```mermaid
+flowchart LR
+ N0["화면에서 추적"]
+ N1["장면 정보로 보완"]
+ N0 --> N1
+ N2["간접광과 반사 계산"]
+ N1 --> N2
+```
+
 ## 원리
 
-Lumen은 동적 전역 조명과 반사를 계산한다. 빨간 벽에서 튄 빛이 흰 벽에 색을 입히는 현상은 간접광의 대표 사례다.
+직접광은 광원에서 표면으로 바로 도달한 빛이고, 간접광은 다른 표면에서 반사되어 온 빛입니다. Lumen은 움직이는 장면의 간접광과 반사를 계산합니다. 빨간 벽에서 튄 빛이 흰 벽에 붉은 기운을 주는 현상은 전역 조명, 즉 장면 전체의 빛 전달을 이해하는 사례입니다.
 
 ## 작동 과정
 
-화면 추적을 먼저 활용하고 화면에서 해결하기 어려운 부분을 소프트웨어 거리장 또는 하드웨어 레이 트레이싱으로 보완한다. Surface Cache는 표면 정보를 여러 방향에서 캡처해 조회에 사용한다. 반사 설정에 따라 히트 위치에서 조명을 평가하는 경로도 있다.
+Lumen은 먼저 화면에 있는 정보를 따라 빛의 경로를 조사하는 Screen Trace를 활용합니다. 부족한 부분은 거리장으로 표현한 장면이나 하드웨어 레이 트레이싱으로 보완할 수 있습니다. 거리장은 표면까지의 거리를 저장한 표현입니다. 레이 트레이싱은 광선과 물체가 만나는 위치를 추적하는 계산 방식입니다.
 
 ## 아트 실무
 
-한 메시로 만든 방에서 벽이 검게 반사되면 Surface Cache의 분홍 영역을 본다. 벽, 바닥, 천장을 분리한 변형을 만들고 얇은 벽의 누광은 거리장 표현도 살핀다.
+Surface Cache는 추적한 표면의 재질과 조명 정보를 빠르게 조회하기 위한 저장 체계입니다. 여러 방향에서 표면을 담은 Cards를 사용합니다. 한 메시로 된 방의 일부가 분홍색으로 표시되면 이 표면 정보의 적용 범위를 확인합니다. 벽·바닥·천장을 분리한 버전과 비교하고, 얇은 벽의 누광은 거리장 표현도 살핍니다.
 
 ## 성능 비용
 
-내부 해상도, 추적 방식과 거리, 반사 범위, 장면 표현 갱신이 비용을 바꾼다. HWRT는 지원 GPU를 요구하며 인스턴스 수와 변형이 큰 장면에서는 가속 구조 갱신도 중요하다.
+내부 해상도, 추적 거리, 반사 범위와 장면 갱신이 비용에 영향을 줍니다. 하드웨어 레이 트레이싱은 지원 GPU가 필요하며, 광선이 만날 후보를 빠르게 찾기 위한 가속 구조도 관리합니다. 인스턴스가 많거나 물체가 자주 변형되면 그 구조를 갱신하는 부담을 봅니다.
 
 ## 언리얼 실습
 
-① 간접광이 보이는 L자 방을 만들고 노출을 고정한다. ② Lumen Overview, Lumen Scene, Surface Cache를 확인한다. ③ 메시 분할 또는 추적 설정 한 가지만 바꾸고 간접광·반사 품질과 GPU 그룹을 비교한다.
+L자 방에서 노출을 고정합니다. Lumen Overview는 관련 결과를 모아 보는 모드, Lumen Scene은 추적에 쓰는 장면 표현, Surface Cache는 표면 정보의 적용 상태를 살피는 모드입니다. 메시 분할 또는 추적 설정 한 가지만 바꾸며 누광·반사·간접광과 GPU 시간을 비교합니다.
 
 ## 핵심 요약
 
-반사·간접광 문제를 화면 정보 부족, 장면 표현 누락, 계산 예산으로 나눠 확인한다.
+현재 화면의 정보, 추적할 장면 표현과 계산 예산을 나누어 Lumen 문제를 조사합니다.
+
+## 공식 자료
+
+- [Lumen Technical Details](https://dev.epicgames.com/documentation/en-us/unreal-engine/lumen-technical-details-in-unreal-engine)
+- [Lumen Performance Guide](https://dev.epicgames.com/documentation/en-us/unreal-engine/lumen-performance-guide-for-unreal-engine)
+
+## 관련 개념
+
+- [CH03 GBuffer와 표면 정보](CH03_GBuffer.md)
+- [CH22 Virtual Shadow Maps와 페이지 캐시](CH22_VirtualShadowMaps.md)
 
 ## 작업 기록
 
 - 제작한 에셋
-- 변경한 설정
-- 검증한 엔진 버전과 기기
-- 전후 캡처와 측정 결과
+- 바꾼 변수와 유지한 조건
+- 전후 화면과 실행 시간
+- 확인한 기기와 설정
 
-[챕터 목록으로 돌아가기](../../README.md#학습-순서)
+
+[처음 읽는 방법](../ReadingGuide.md) · [용어집](../Glossary.md) · [보충 주석](../SupplementaryNotes.md) · [챕터 목록](../../README.md#학습-순서)

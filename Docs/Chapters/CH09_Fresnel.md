@@ -14,35 +14,59 @@
 
 레벨 경로 `/Game/RenderingLab/Chapters/Part02_MaterialsAndLight/CH09_Fresnel/Maps/L_CH09_Fresnel`
 
+## 흐름 개념도
+
+```mermaid
+flowchart LR
+ N0["정면에서 보기"]
+ N1["비스듬히 보기"]
+ N0 --> N1
+ N2["달라지는 반사율"]
+ N1 --> N2
+```
+
 ## 원리
 
-Fresnel은 계면의 반사율이 각도에 따라 달라지는 성질이다. F0는 법선 방향 입사의 반사율이다. 일반적인 유전체는 스치는 각도에서 반사율이 커진다.
+Fresnel은 빛이 두 물질의 경계를 만날 때 각도에 따라 반사 비율이 달라지는 성질입니다. 물이나 유리 같은 비금속은 정면보다 스치는 각도에서 반사가 강해지는 경우가 흔합니다. F0는 표면에 수직으로 빛이 들어올 때의 반사율을 뜻합니다.
 
 ## 작동 과정
 
-Schlick 근사에서는 F0와 스치는 각도의 반사값 사이를 각도 함수로 보간한다. 미세면 BRDF에서는 시선과 미세면 반벡터 사이의 각도를 사용한다. UE의 Fresnel 머티리얼 노드는 화면 테두리 마스크에도 쓰이는 표현 도구다.
+잔잔한 물을 위에서 보면 물속이 잘 보이다가 낮은 시선에서는 하늘 반사가 강해지는 현상을 떠올릴 수 있습니다. 재질 모델은 각도에 따른 반사율을 계산하거나 근사합니다. 근사는 계산 비용을 줄이면서 주요 경향을 재현하는 방법입니다. 세부 수식보다 정면과 가장자리의 반응을 먼저 관찰합니다.
 
 ## 아트 실무
 
-바닥의 얕은 물기는 내려다볼 때보다 복도를 낮게 바라볼 때 반사가 강하다. 발광 테두리를 넣으면 빛이 없는 곳에서도 밝아지므로 자연 반사와 효과 마스크를 별개로 설계한다.
+젖은 바닥을 높은 시점과 낮은 시점에서 비교합니다. UE의 Fresnel 노드는 시선과 표면 방향에 따라 달라지는 마스크에도 쓸 수 있습니다. 마스크는 효과를 어느 부분에 얼마나 적용할지 정하는 값입니다. 이를 발광에 연결한 림 효과는 재질의 자연 반사와 목적을 구분해 조절합니다.
 
 ## 성능 비용
 
-마스크 계산 자체보다 마스크가 추가하는 샘플, 발광·반투명 레이어, 반사 기능이 더 큰 측정 대상일 수 있다.
+간단한 각도 마스크의 계산과 새 투명 레이어·반사 기능을 추가하는 일은 부담이 다릅니다. 마스크를 만드는 노드 수보다 그 값으로 어떤 추가 작업을 켰는지도 확인합니다. 실제 반사 계산의 각도와 아트용 Fresnel 마스크의 각도 사용은 구현이 다를 수 있습니다.
 
 ## 언리얼 실습
 
-① 반사 환경이 있는 레벨에서 물기 있는 판을 정면과 낮은 시선에서 본다. ② 별도 재질에서 Fresnel 노드 출력을 Emissive에 연결해 마스크만 확인한다. ③ 두 결과를 같은 구도에서 비교한다.
+반사할 환경이 있는 레벨에서 젖은 판을 정면과 낮은 시선으로 봅니다. 별도 재질에서 Fresnel 출력을 Emissive에 연결해 마스크의 모양만 확인합니다. Emissive는 표면 자체가 밝게 보이도록 하는 입력입니다. 두 결과가 조명 변화에 어떻게 반응하는지 비교합니다.
 
 ## 핵심 요약
 
-F0는 정면의 반사율이며 Fresnel 노드로 만든 림은 별도의 아트 제어다.
+정면의 반사율과 각도에 따른 변화, 의도적으로 넣은 림 표현의 역할을 구분합니다.
+
+## 공식 자료
+
+- [Physically Based Materials](https://dev.epicgames.com/documentation/en-us/unreal-engine/physically-based-materials-in-unreal-engine)
+- [Using Fresnel](https://dev.epicgames.com/documentation/en-us/unreal-engine/using-fresnel-in-your-unreal-engine-materials)
+- [Overview of Substrate Materials](https://dev.epicgames.com/documentation/en-us/unreal-engine/overview-of-substrate-materials-in-unreal-engine)
+- [Real Shading in Unreal Engine 4 · Brian Karis](https://blog.selfshadow.com/publications/s2013-shading-course/karis/s2013_pbs_epic_notes_v2.pdf)
+
+## 관련 개념
+
+- [CH08 BRDF와 반사 분포](CH08_BRDF.md)
+- [CH12 Translucency와 굴절](CH12_TranslucencyRefraction.md)
 
 ## 작업 기록
 
 - 제작한 에셋
-- 변경한 설정
-- 검증한 엔진 버전과 기기
-- 전후 캡처와 측정 결과
+- 바꾼 변수와 유지한 조건
+- 전후 화면과 실행 시간
+- 확인한 기기와 설정
 
-[챕터 목록으로 돌아가기](../../README.md#학습-순서)
+
+[처음 읽는 방법](../ReadingGuide.md) · [용어집](../Glossary.md) · [보충 주석](../SupplementaryNotes.md) · [챕터 목록](../../README.md#학습-순서)

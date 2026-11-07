@@ -59,6 +59,9 @@ Forward 전환이나 Adaptive GBuffer 실험은 프로젝트 설정 변경과 �
 
 ## 구조와 확장
 
+- [처음 읽는 방법](Docs/ReadingGuide.md)
+- [용어집](Docs/Glossary.md)
+- [보충 주석](Docs/SupplementaryNotes.md)
 - [폴더 구조와 에셋 규칙](Docs/FolderStructure.md)
 - [새 챕터 추가 방법](Docs/AddingChapters.md)
 - [커밋 규칙](CONTRIBUTING.md)

@@ -14,35 +14,57 @@
 
 레벨 경로 `/Game/RenderingLab/Chapters/Part01_RenderingBasics/CH03_GBuffer/Maps/L_CH03_GBuffer`
 
+## 흐름 개념도
+
+```mermaid
+flowchart LR
+ N0["표면 값을 기록"]
+ N1["조명에서 읽기"]
+ N0 --> N1
+ N2["최종 색 계산"]
+ N1 --> N2
+```
+
 ## 원리
 
-GBuffer는 Deferred 조명이 읽는 표면 데이터 집합이다. Base Color, 법선, Roughness 등은 조명에 대한 표면 반응을 결정한다. Scene Depth는 함께 참조하는 별도의 깊이 리소스다.
+버퍼는 계산 중 필요한 데이터를 보관하는 메모리 공간입니다. GBuffer는 Deferred 조명이 읽을 표면 정보의 묶음입니다. 재질의 기본 색인 Base Color, 반사가 퍼지는 정도인 Roughness, 표면이 향하는 방향인 법선 등이 여기에 관여합니다. 최종 화면 색과는 역할이 다릅니다.
 
 ## 작동 과정
 
-Base Pass가 가시 불투명 표면의 정보를 기록하면 조명 단계가 법선과 재질 파라미터를 읽고, 필요에 따라 깊이와 카메라 정보로 표면 위치를 재구성한다. 실제 패킹과 데이터 형식은 렌더러·플랫폼·Substrate 설정에 따라 달라진다.
+Base Pass는 화면에 보이는 불투명 표면의 정보를 기록하는 대표 작업입니다. 조명 단계는 그 값을 읽어 표면에 빛이 어떻게 반사될지 계산합니다. 깊이를 저장한 별도 데이터인 Scene Depth와 카메라 정보를 이용해 표면 위치를 알아낼 수도 있습니다. 어떤 값을 몇 개의 채널에 담는지는 플랫폼과 저장 형식에 따라 달라집니다.
 
 ## 아트 실무
 
-벽이 젖은 듯 보일 때 Roughness와 World Normal을 따로 본다. 거칠기는 정상인데 하이라이트 방향이 어긋난다면 노멀 맵이나 탄젠트부터 검사한다.
+벽이 유난히 번들거리면 Roughness 화면을 먼저 봅니다. 밝은 반사 부분의 방향이 이상하면 World Normal을 봅니다. 노멀 맵은 작은 표면 방향 변화를 텍스처로 표현하는 방법입니다. 노멀 맵에 쓰는 방향 기준이 메시와 맞지 않으면 반사가 어색해질 수 있습니다. 방향 기준의 세부 구현은 용어집의 탄젠트를 참고합니다.
 
 ## 성능 비용
 
-가상 데이터가 32 B/px라면 1080p는 약 63.3 MiB, 3840×2160은 약 253.1 MiB다. 이는 픽셀 수에 따른 저장량 예시다. 실제 대역폭은 쓰기·읽기 횟수와 압축·캐시에도 좌우되며, 고정 형식에서 노드가 늘어도 바이트 수는 그대로일 수 있다.
+메모리 사용량은 저장할 픽셀 수와 픽셀당 데이터 크기에 영향을 받습니다. 가정한 저장량이 32바이트/픽셀이면 1080p는 약 63.3 MiB이며 4K에서는 네 배입니다. 실제 UE 버퍼 크기를 뜻하는 수치는 아닙니다. 대역폭은 일정 시간에 데이터를 옮길 수 있는 양이며, 같은 데이터를 자주 읽고 쓰면 이 한도도 중요해집니다.
 
 ## 언리얼 실습
 
-① 같은 벽을 Roughness 0.2와 0.8 두 인스턴스로 나눈다. ② View Mode → Buffer Visualization에서 Roughness와 Base Color를 비교한다. ③ GPU 캡처에서 Base Pass의 실제 타깃을 확인하고 내부 해상도를 바꿔 시간 변화를 기록한다.
+같은 벽 재질의 설정값 변형인 Material Instance를 두 개 만들고 Roughness를 0.2와 0.8로 둡니다. View Mode → Buffer Visualization에서 Roughness와 Base Color를 비교합니다. 다음에는 내부 렌더링 해상도만 바꿔 Base Pass와 전체 GPU 시간을 확인합니다. 머티리얼 인스턴스의 제작 방식은 CH07에서 설명합니다.
 
 ## 핵심 요약
 
-버퍼 내용, 저장 형식, 셰이더 계산량을 각각 확인한다.
+재질 입력이 잘못됐는지와 조명 이후에 문제가 생겼는지를 분리합니다. 노드가 늘어난다고 저장 바이트까지 항상 늘어나는 것은 아닙니다.
+
+## 공식 자료
+
+- [Render Dependency Graph](https://dev.epicgames.com/documentation/en-us/unreal-engine/rendering-dependency-graph-in-unreal-engine)
+- [Programming with Substrate GBuffer Formats](https://dev.epicgames.com/documentation/en-us/unreal-engine/programming-with-substrate-gbuffer-formats)
+
+## 관련 개념
+
+- [CH07 PBR과 재질 입력](CH07_PBR.md)
+- [CH11 Substrate와 재질 레이어](CH11_Substrate.md)
 
 ## 작업 기록
 
 - 제작한 에셋
-- 변경한 설정
-- 검증한 엔진 버전과 기기
-- 전후 캡처와 측정 결과
+- 바꾼 변수와 유지한 조건
+- 전후 화면과 실행 시간
+- 확인한 기기와 설정
 
-[챕터 목록으로 돌아가기](../../README.md#학습-순서)
+
+[처음 읽는 방법](../ReadingGuide.md) · [용어집](../Glossary.md) · [보충 주석](../SupplementaryNotes.md) · [챕터 목록](../../README.md#학습-순서)

@@ -14,35 +14,57 @@
 
 레벨 경로 `/Game/RenderingLab/Chapters/Part03_GeometryAndTextures/CH15_Instancing/Maps/L_CH15_Instancing`
 
+## 흐름 개념도
+
+```mermaid
+flowchart LR
+ N0["메시와 재질 공유"]
+ N1["배치별 위치와 값"]
+ N0 --> N1
+ N2["묶어 처리"]
+ N1 --> N2
+```
+
 ## 원리
 
-인스턴싱은 같은 메시 리소스를 여러 배치에서 재사용한다. ISM 및 HISM은 다수 반복 오브젝트를 컴포넌트 단위로 구성하는 대표 방법이다.
+인스턴싱은 같은 메시 데이터를 여러 배치에서 재사용하는 방식입니다. 울타리 기둥마다 별도의 메시 데이터를 만드는 대신, 공통 형상과 재질을 공유하고 각 기둥의 위치·회전·크기를 따로 보관합니다. 이런 위치와 방향·크기의 정보를 변환 또는 Transform이라고 합니다.
 
 ## 작동 과정
 
-메시와 머티리얼을 공유하고 인스턴스마다 변환 및 선택적으로 Per Instance Custom Data를 제공한다. HISM은 계층을 구성해 인스턴스 그룹 처리를 지원한다. 가시성·LOD 세부 동작은 기능과 버전에 따라 달라진다.
+ISM은 Instanced Static Mesh Component의 약자로 반복 메시를 한 컴포넌트 안에서 관리합니다. 컴포넌트는 Actor가 가진 메시·조명 같은 기능 요소입니다. HISM은 여기에 공간적으로 묶은 계층을 사용합니다. 어느 묶음을 보이게 하고 어떤 세부 형상을 쓸지는 기능과 버전의 처리 방식을 확인합니다.
 
 ## 아트 실무
 
-울타리 기둥 200개를 반복 배치하고 Per Instance Custom Data로 밝기나 색을 바꾼다. 메시 슬롯과 그림자 조건은 일치시킨다.
+같은 기둥 200개에 조금씩 다른 색을 주고 싶다면 Per Instance Custom Data를 검토합니다. 각 배치에 추가 숫자를 전달하고 재질에서 읽는 기능입니다. 메시와 재질을 매번 새로 만들지 않고 변주할 수 있습니다. 충돌과 그림자, 갱신할 위치의 수 같은 실제 사용 조건도 함께 맞춥니다.
 
 ## 성능 비용
 
-Actor·컴포넌트와 제출 부담을 낮출 여지가 있지만 인스턴스별 지오메트리와 픽셀 작업은 발생한다. 자주 갱신되는 변환, 군집의 범위와 가시성도 비용에 영향을 준다.
+배치마다 Actor와 컴포넌트를 관리하는 부담, 그리기 제출 부담을 줄일 수 있습니다. 공유해도 실제로 보이는 기둥의 삼각형과 픽셀 계산은 남습니다. 모든 기둥이 고정된 경우와 매 프레임 위치를 바꾸는 경우의 갱신 비용도 다를 수 있습니다.
 
 ## 언리얼 실습
 
-① Static Mesh Actor 200개와 ISM 200개를 서로 다른 레벨 변형에 둔다. ② 전부 보이는 위치와 일부만 보이는 위치에서 Draw와 GPU를 기록한다. ③ 같은 메시의 HISM 버전도 필요 시 비교하고 충돌·그림자 조건을 맞춘다.
+개별 Static Mesh Actor 200개와 ISM 안의 200개를 별도 레벨 변형으로 준비합니다. 모든 기둥이 보이는 구도와 일부만 보이는 구도에서 Draw·GPU 시간을 기록합니다. 필요하면 HISM도 비교합니다. 어떤 방식을 쓰든 수량·재질·충돌·그림자 조건을 맞춥니다.
 
 ## 핵심 요약
 
-공유 리소스로 제출과 관리 비용을 줄이고 실제 가시 작업량은 따로 잰다.
+공유로 줄이는 관리·제출 비용과 실제 가시 지오메트리의 계산량을 분리합니다.
+
+## 공식 자료
+
+- [Mesh Drawing Pipeline](https://dev.epicgames.com/documentation/en-us/unreal-engine/mesh-drawing-pipeline-in-unreal-engine)
+- [Instanced Static Mesh Component](https://dev.epicgames.com/documentation/en-us/unreal-engine/instanced-static-mesh-component-in-unreal-engine)
+
+## 관련 개념
+
+- [CH14 Draw Call과 배칭](CH14_DrawCalls.md)
+- [CH18 Culling과 가시성](CH18_Culling.md)
 
 ## 작업 기록
 
 - 제작한 에셋
-- 변경한 설정
-- 검증한 엔진 버전과 기기
-- 전후 캡처와 측정 결과
+- 바꾼 변수와 유지한 조건
+- 전후 화면과 실행 시간
+- 확인한 기기와 설정
 
-[챕터 목록으로 돌아가기](../../README.md#학습-순서)
+
+[처음 읽는 방법](../ReadingGuide.md) · [용어집](../Glossary.md) · [보충 주석](../SupplementaryNotes.md) · [챕터 목록](../../README.md#학습-순서)

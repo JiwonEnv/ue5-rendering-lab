@@ -14,35 +14,57 @@
 
 레벨 경로 `/Game/RenderingLab/Chapters/Part03_GeometryAndTextures/CH14_DrawCalls/Maps/L_CH14_DrawCalls`
 
+## 흐름 개념도
+
+```mermaid
+flowchart LR
+ N0["보이는 메시 섹션"]
+ N1["그릴 상태와 명령 준비"]
+ N0 --> N1
+ N2["GPU 실행"]
+ N1 --> N2
+```
+
 ## 원리
 
-Draw Call은 GPU에 지오메트리를 그리도록 제출하는 명령이다. Actor 하나에 메시 섹션이 여럿이면 패스마다 여러 작업이 생길 수 있다.
+Draw Call은 GPU에 특정 지오메트리를 그리도록 제출하는 명령입니다. 하나의 Actor에 메시 하나가 있어도, 재질이 나뉜 섹션이나 깊이·그림자 패스 때문에 여러 그리기 작업이 생길 수 있습니다. Actor는 레벨에 배치한 오브젝트의 단위이므로 그 개수와 호출 수를 같게 세지 않습니다.
 
 ## 작동 과정
 
-렌더러는 가시성, 메시 섹션, 머티리얼과 파이프라인 상태를 바탕으로 그리기 명령을 준비한다. 호환되는 데이터는 엔진의 배칭이나 인스턴싱으로 합쳐질 수 있다. 섀도와 깊이 패스의 수치는 메인 패스와 다르다.
+메시 섹션은 보통 서로 다른 재질을 적용할 수 있는 메시의 구역입니다. 렌더러는 보이는 섹션에 필요한 재질과 그리기 상태를 준비합니다. 호환되는 작업을 묶어 제출 부담을 줄이는 것을 배칭이라고 합니다. 실제로 묶일 수 있는 조건은 메시·재질·패스와 엔진 처리 방식에 따라 달라집니다.
 
 ## 아트 실무
 
-골목 소품 하나에 금속, 나무, 흙 슬롯을 쓰는 대신 텍스처 아틀라스와 공유 머티리얼을 후보로 둔다. 동네 전체를 하나로 합치면 부분 가림의 이점을 잃을 수 있다.
+소품 하나에 나무·금속·흙 슬롯을 각각 두면 표현은 편하지만 그리기 작업이 늘 수 있습니다. 여러 이미지를 한 장에 모으는 텍스처 아틀라스와 공유 재질을 대안으로 검토합니다. 반대로 동네 전체를 한 메시로 합치면 일부만 보일 때 필요한 부분을 제외하기 어려워질 수 있습니다.
 
 ## 성능 비용
 
-제출과 상태 준비는 CPU 부담이 될 수 있다. 호출이 줄어도 화면 픽셀, 셰이더, 그림자 작업이 유지되면 GPU 시간 변화는 작을 수 있다.
+명령과 상태를 준비하는 일은 CPU 부담이 될 수 있습니다. 호출을 줄여도 GPU가 처리하는 표면 면적과 재질 계산이 비슷하면 GPU 시간은 거의 그대로일 수 있습니다. CPU 제출이 병목인 상황과 화면 계산이 병목인 상황을 나누어 판단합니다.
 
 ## 언리얼 실습
 
-① 같은 형상의 3섹션과 1섹션 메시를 준비한다. ② 카메라와 배치 수를 맞춘다. ③ stat scenerendering 또는 stat rhi의 관련 카운터와 stat unit의 Draw를 기록한다. GPU 캡처로 어떤 패스에서 작업이 줄었는지 확인한다.
+형상과 외관이 비슷한 세 섹션 메시와 한 섹션 메시를 만듭니다. 같은 수를 같은 구도로 배치합니다. stat scenerendering 또는 stat rhi에서 관련 그리기 수치를 보고, stat unit의 Draw와 GPU 시간을 기록합니다. 여기서 Draw는 주로 CPU 렌더 스레드 시간이며 Draw Call 개수를 뜻하는 항목은 아닙니다.
 
 ## 핵심 요약
 
-Actor 수를 Draw Call 수로 환산하지 않고 패스와 섹션을 실제로 확인한다.
+오브젝트 개수, 메시 섹션과 패스별 호출, CPU·GPU 시간을 각각 확인합니다.
+
+## 공식 자료
+
+- [Introduction to Performance Profiling and Configuration](https://dev.epicgames.com/documentation/en-us/unreal-engine/introduction-to-performance-profiling-and-configuration-in-unreal-engine)
+- [Mesh Drawing Pipeline](https://dev.epicgames.com/documentation/en-us/unreal-engine/mesh-drawing-pipeline-in-unreal-engine)
+
+## 관련 개념
+
+- [CH15 Instancing과 반복 배치](CH15_Instancing.md)
+- [CH25 CPU와 GPU 병목](CH25_CPUGPUBottlenecks.md)
 
 ## 작업 기록
 
 - 제작한 에셋
-- 변경한 설정
-- 검증한 엔진 버전과 기기
-- 전후 캡처와 측정 결과
+- 바꾼 변수와 유지한 조건
+- 전후 화면과 실행 시간
+- 확인한 기기와 설정
 
-[챕터 목록으로 돌아가기](../../README.md#학습-순서)
+
+[처음 읽는 방법](../ReadingGuide.md) · [용어집](../Glossary.md) · [보충 주석](../SupplementaryNotes.md) · [챕터 목록](../../README.md#학습-순서)

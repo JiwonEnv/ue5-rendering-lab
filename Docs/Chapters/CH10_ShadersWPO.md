@@ -2,7 +2,7 @@
 
 ## 챕터 학습 목표
 
-머티리얼 그래프가 정점·픽셀·패스별 GPU 작업으로 이어지는 방식을 이해합니다. 마스터 재질과 WPO 식생을 설계할 때 실행 비용, 셰이더 순열, 컴파일·쿠킹 부담을 구분해 관리합니다.
+재질과 움직임을 만드는 그래프가 GPU의 어떤 작업으로 이어지는지 이해합니다. 여러 에셋이 공유할 재질과 흔들리는 식생을 설계할 때 실행 부담, 준비할 프로그램의 종류와 배포 준비 시간을 구분해 관리합니다.
 
 ### 예제 학습 목표
 
@@ -14,35 +14,59 @@
 
 레벨 경로 `/Game/RenderingLab/Chapters/Part02_MaterialsAndLight/CH10_ShadersWPO/Maps/L_CH10_ShadersWPO`
 
+## 흐름 개념도
+
+```mermaid
+flowchart LR
+ N0["재질 그래프"]
+ N1["실행할 프로그램 준비"]
+ N0 --> N1
+ N2["정점과 표면 계산"]
+ N1 --> N2
+```
+
 ## 원리
 
-셰이더는 GPU가 실행하는 프로그램이다. UE 머티리얼 그래프는 여러 패스와 플랫폼에 맞춰 컴파일된다. Static Switch 조합은 실제 사용하는 구성에 따라 셰이더 순열을 늘릴 수 있다.
+셰이더는 GPU에서 실행되는 계산 프로그램입니다. 재질 그래프는 표면의 색과 반사 등을 노드로 표현한 제작 화면이며, 엔진은 이를 GPU가 실행할 프로그램으로 바꿉니다. 이런 준비 과정을 컴파일이라고 합니다. 같은 그래프라도 플랫폼과 사용 기능에 따라 여러 실행 버전이 필요할 수 있습니다.
 
 ## 작동 과정
 
-정점 경로의 WPO는 메시 정점 위치를 움직인다. 픽셀 경로는 각 표면 위치에서 텍스처나 반사 파라미터를 평가한다. 정적 스위치는 컴파일 시 경로를 선택하고 일반 Scalar Parameter는 같은 순열의 실행 값을 바꾼다.
+정점 셰이더는 모델 꼭짓점의 위치 등을 처리하고, 픽셀 셰이더는 화면에서 표면을 표현할 값을 계산합니다. WPO는 World Position Offset의 약자로 정점에 위치 변화를 더하는 입력입니다. 풀 끝에 시간에 따라 변하는 이동량을 주면 흔들림을 만들 수 있습니다. 표현할 굽힘의 세밀함은 원래 정점의 수와 배치에도 영향을 받습니다.
 
 ## 아트 실무
 
-풀의 흔들림을 WPO로 만들 때 근거리와 원거리 변형 요구가 다르다. 그림자도 변형을 따라가는지, 변형한 정점이 기존 bounds 밖으로 나가는지 함께 본다.
+여러 재질이 공유할 기본 그래프를 마스터 재질이라고 부릅니다. Static Switch는 컴파일할 때 경로를 고르는 스위치입니다. 실제로 쓰는 스위치 조합에 따라 별도 버전, 즉 셰이더 순열이 생길 수 있습니다. 반면 일반 Scalar Parameter는 같은 실행 버전에서 숫자를 바꾸는 용도입니다.
 
 ## 성능 비용
 
-ALU, 텍스처 샘플과 캐시, 픽셀 커버리지, 정점 밀도, WPO에 따른 그림자 무효화가 다른 비용을 만든다. 컴파일 및 쿠킹 시간은 실행 GPU ms와 별도다.
+정점 수, 화면 면적, 텍스처 읽기와 계산이 각각 부담을 만듭니다. 텍스처 샘플은 이미지에서 필요한 좌표의 값을 읽는 작업입니다. 캐시는 자주 쓰는 데이터를 가까이 두어 다시 읽기 쉽게 하는 임시 저장 영역입니다. 컴파일 시간과 배포용 데이터를 준비하는 쿠킹 시간은 실행 중 GPU 시간과 따로 기록합니다.
 
 ## 언리얼 실습
 
-① 같은 풀 메시로 WPO 켜짐/꺼짐 재질을 만든다. ② Material Editor의 Platform Stats에서 대상 셰이더 모델을 비교한다. ③ 같은 밀도로 배치해 Base Pass와 Shadow Depths를 측정하고 움직임 범위를 확인한다.
+같은 풀 메시에서 WPO 켜짐·꺼짐을 비교합니다. 변형한 정점이 오브젝트의 가시성 판정 범위인 bounds 밖으로 나가는지 봅니다. Material Editor의 Platform Stats는 대상 플랫폼용 셰이더 통계입니다. 이 통계와 함께 실제 Base Pass·Shadow Depths 시간을 기록합니다. 뒤의 이름은 각각 표면 준비와 그림자용 깊이 작업을 가리킵니다.
 
 ## 핵심 요약
 
-그래프 노드 수, 생성된 순열 수, 실제 프레임 비용을 따로 읽는다.
+노드 개수, 컴파일할 버전 수, 실제 프레임의 작업량은 서로 다른 지표입니다. 그래프의 변화가 어느 작업에 영향을 주는지 확인합니다.
+
+## 공식 자료
+
+- [Render Dependency Graph](https://dev.epicgames.com/documentation/en-us/unreal-engine/rendering-dependency-graph-in-unreal-engine)
+- [Material Editor UI](https://dev.epicgames.com/documentation/en-us/unreal-engine/unreal-engine-material-editor-ui)
+- [Material Inputs](https://dev.epicgames.com/documentation/en-us/unreal-engine/material-inputs-in-unreal-engine)
+- [Material Instances](https://dev.epicgames.com/documentation/unreal-engine/instanced-materials-in-unreal-engine)
+
+## 관련 개념
+
+- [CH15 Instancing과 반복 배치](CH15_Instancing.md)
+- [CH22 Virtual Shadow Maps와 페이지 캐시](CH22_VirtualShadowMaps.md)
 
 ## 작업 기록
 
 - 제작한 에셋
-- 변경한 설정
-- 검증한 엔진 버전과 기기
-- 전후 캡처와 측정 결과
+- 바꾼 변수와 유지한 조건
+- 전후 화면과 실행 시간
+- 확인한 기기와 설정
 
-[챕터 목록으로 돌아가기](../../README.md#학습-순서)
+
+[처음 읽는 방법](../ReadingGuide.md) · [용어집](../Glossary.md) · [보충 주석](../SupplementaryNotes.md) · [챕터 목록](../../README.md#학습-순서)

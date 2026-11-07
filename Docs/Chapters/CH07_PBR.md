@@ -14,35 +14,57 @@
 
 레벨 경로 `/Game/RenderingLab/Chapters/Part02_MaterialsAndLight/CH07_PBR/Maps/L_CH07_PBR`
 
+## 흐름 개념도
+
+```mermaid
+flowchart LR
+ N0["재료의 특성 입력"]
+ N1["빛에 대한 반응"]
+ N0 --> N1
+ N2["여러 조명에서 확인"]
+ N1 --> N2
+```
+
 ## 원리
 
-PBR은 재질과 빛의 상호작용을 물리적으로 그럴듯하게 근사하는 제작 방식이다. Base Color, Metallic, Roughness, Specular는 다른 역할을 한다.
+PBR은 빛과 재료의 상호작용을 물리적으로 그럴듯하게 근사하는 제작 방식입니다. Base Color는 기본 색, Metallic은 금속성, Roughness는 반사가 퍼지는 정도를 정합니다. Specular는 주로 비금속 표면의 반사 세기를 조절하는 입력입니다. 각 값의 역할을 나누면 조명이 바뀌어도 재질을 일관되게 만들 수 있습니다.
 
 ## 작동 과정
 
-일반적인 금속성 워크플로에서 비금속의 Base Color는 확산 반사 색, 금속의 Base Color는 주로 반사 색에 관여한다. Roughness를 높이면 반사가 넓게 퍼진다. 순수 재료는 Metallic 0 또는 1을 기준으로 두고, 경계의 혼합이나 픽셀보다 작은 패턴의 평균에는 중간값이 나올 수 있다.
+보통 비금속의 Base Color는 여러 방향으로 퍼지는 확산 반사 색에, 금속의 Base Color는 금속 반사의 색에 관여합니다. 거칠기가 높으면 반사가 넓게 퍼집니다. 순수 재료는 Metallic 0 또는 1을 기준으로 하고, 재료 경계나 아주 작은 혼합 패턴의 평균에는 중간값이 나타날 수 있습니다.
 
 ## 아트 실무
 
-페인트가 벗겨진 철문에서 페인트와 녹을 비금속, 노출 금속을 금속으로 분리한다. 방향광 그림자를 Base Color에 직접 칠하면 조명이 바뀔 때 방향이 충돌한다.
+페인트와 녹은 비금속으로, 벗겨져 드러난 철은 금속으로 구분합니다. 조명 때문에 생긴 방향성 그림자나 하이라이트를 기본 색에 그려 넣으면 라이트가 움직일 때 충돌합니다. 재료에 남은 얼룩과 장면 조명에 의해 달라지는 음영을 구별해 제작합니다.
 
 ## 성능 비용
 
-거칠기 수치 자체를 바꾸는 일과 추가 텍스처·복잡한 블렌딩을 넣는 일의 비용은 다르다. ORM 채널 패킹은 호환되는 샘플 조건에서 읽기를 줄일 수 있으며 데이터 맵은 선형으로 읽는다.
+거칠기 숫자만 바꾸는 일과 텍스처를 추가해 복잡하게 혼합하는 일은 비용이 다릅니다. ORM 패킹은 가림·거칠기·금속성 데이터를 이미지의 R·G·B 채널 각각에 다른 숫자 정보를 넣는 방식입니다. 같은 좌표와 조건으로 읽을 수 있을 때 접근 횟수를 줄일 수 있습니다. 텍스처의 sRGB 옵션은 색 이미지용 변환을 적용해 읽는 설정입니다. 거칠기 같은 숫자 데이터에 이 변환을 적용하면 값이 달라질 수 있어 색 이미지와 구분합니다.
 
 ## 언리얼 실습
 
-① Material Instance에서 Metallic 0/1과 Roughness 0.15/0.65 조합을 만든다. ② Skylight와 넓은 반사광에서 비교한다. ③ Buffer Visualization으로 입력을 확인하고 광원 방향을 바꿔 인공적으로 구워 넣은 하이라이트가 있는지 본다.
+Material Instance는 원본 재질의 구조를 공유하면서 노출한 설정값을 바꾸는 변형입니다. 두 금속성 값과 두 거칠기 값의 조합을 만들고 같은 조명에서 비교합니다. 환경의 빛을 제공하는 Sky Light와 넓은 광원에서 반사를 봅니다. 광원 방향만 바꿔 기본 색에 고정된 음영이 남는지 확인합니다.
 
 ## 핵심 요약
 
-재질의 속성은 재질 입력에, 장면의 조명 변화는 조명에 맡긴다.
+재료 자체의 특성은 재질 입력으로 표현하고, 조명 변화에 따른 결과는 다른 조명에서도 검증합니다.
+
+## 공식 자료
+
+- [Physically Based Materials](https://dev.epicgames.com/documentation/en-us/unreal-engine/physically-based-materials-in-unreal-engine)
+- [Using Fresnel](https://dev.epicgames.com/documentation/en-us/unreal-engine/using-fresnel-in-your-unreal-engine-materials)
+
+## 관련 개념
+
+- [CH08 BRDF와 반사 분포](CH08_BRDF.md)
+- [CH09 Fresnel과 시선 각도](CH09_Fresnel.md)
 
 ## 작업 기록
 
 - 제작한 에셋
-- 변경한 설정
-- 검증한 엔진 버전과 기기
-- 전후 캡처와 측정 결과
+- 바꾼 변수와 유지한 조건
+- 전후 화면과 실행 시간
+- 확인한 기기와 설정
 
-[챕터 목록으로 돌아가기](../../README.md#학습-순서)
+
+[처음 읽는 방법](../ReadingGuide.md) · [용어집](../Glossary.md) · [보충 주석](../SupplementaryNotes.md) · [챕터 목록](../../README.md#학습-순서)

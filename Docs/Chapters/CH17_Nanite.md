@@ -14,35 +14,57 @@
 
 레벨 경로 `/Game/RenderingLab/Chapters/Part03_GeometryAndTextures/CH17_Nanite/Maps/L_CH17_Nanite`
 
+## 흐름 개념도
+
+```mermaid
+flowchart LR
+ N0["원본을 작은 묶음으로 구성"]
+ N1["필요한 디테일 선택"]
+ N0 --> N1
+ N2["데이터 공급"]
+ N1 --> N2
+```
+
 ## 원리
 
-Nanite는 메시 데이터를 계층적 클러스터로 구성해 필요한 디테일을 선택하고 스트리밍하는 가상화 지오메트리 시스템이다.
+Nanite는 높은 디테일의 메시를 효율적으로 표시하기 위한 가상화 지오메트리 시스템입니다. 가상화는 원본의 모든 데이터를 항상 같은 방식으로 처리하는 대신, 필요한 부분과 세부 수준을 선택해 공급하는 접근입니다. 엔진은 메시를 작은 삼각형 묶음인 클러스터와 그 계층으로 구성합니다.
 
 ## 작동 과정
 
-화면에서 필요한 오차 수준과 가시성에 따라 클러스터를 고른다. Nanite의 전용 래스터·가시성 경로는 전통 메시의 그리기 방식과 다르다. 폴백 메시와 다른 기능의 연결도 대상 플랫폼별로 확인한다.
+화면에서 허용할 형상 오차와 가시성을 바탕으로 클러스터를 선택합니다. 원본과 표시 형상이 화면에서 얼마나 달라도 되는지를 생각하면 오차 기준을 이해하기 쉽습니다. 필요한 메시 데이터는 스트리밍으로 공급합니다. Nanite는 전용 가시성·래스터 경로를 사용하므로 전통 메시의 호출 방식과 그대로 대응시키지 않습니다.
 
 ## 아트 실무
 
-절벽처럼 복잡한 고밀도 표면에 적용한 뒤, 얇은 잎을 여러 겹 쌓은 수관도 따로 시험한다. 가까운 표면들이 깊이상 겹치면 Nanite에서도 작업량이 늘 수 있다.
+복잡한 절벽에는 좋은 후보가 되지만 얇은 잎이 촘촘히 겹친 수관도 별도로 시험합니다. 서로 가까운 표면이 깊이상 겹치면 화면 계산이 남을 수 있습니다. 다른 렌더링 기능이 원본 대신 참조할 수 있는 대체 표현을 폴백 메시라고 합니다. 그 품질과 대상 플랫폼의 지원도 확인합니다.
 
 ## 성능 비용
 
-높은 원본 폴리곤을 다룰 수 있어도 인스턴스 수, 클러스터 가시성, Masked/WPO 재질, 화면 겹침, 디스크와 스트리밍 자원은 남는다. 적용 여부로 조명과 그림자 경로도 달라질 수 있다.
+원본 폴리곤 수 외에 인스턴스 수, 겹친 클러스터, 구멍 마스크와 정점 변형 재질, 디스크에서 데이터를 읽는 작업이 관여합니다. Nanite를 켠 사실만으로 조명·그림자·재질 비용이 없어지지는 않습니다. 기능 지원은 사용하는 엔진 버전과 프로젝트 조건을 기준으로 확인합니다.
 
 ## 언리얼 실습
 
-① 같은 절벽 배치에서 Nanite와 전통 LOD를 비교한다. ② Nanite Visualization의 Triangles, Clusters, Overdraw를 확인한다. ③ 근거리·먼거리와 빠른 이동에서 GPU, 팝인, 그림자를 기록한다. 폴백 품질이 비교를 왜곡하는지도 확인한다.
+같은 절벽 배치에 Nanite와 전통 LOD 버전을 준비합니다. Nanite Visualization에서 Triangles는 표시 삼각형, Clusters는 처리 묶음, Overdraw는 겹침을 살피는 데 사용합니다. 근거리·원거리·빠른 이동에서 외관과 GPU 시간을 기록합니다. 폴백 표현 때문에 비교 품질이 달라지지 않았는지도 봅니다.
 
 ## 핵심 요약
 
-Nanite는 지오메트리 선택을 바꾸며 화면 겹침과 재질 비용은 계속 측정해야 한다.
+Nanite의 이점과 남아 있는 재질·겹침·스트리밍 비용을 함께 검증합니다.
+
+## 공식 자료
+
+- [Instanced Static Mesh Component](https://dev.epicgames.com/documentation/en-us/unreal-engine/instanced-static-mesh-component-in-unreal-engine)
+- [Nanite Virtualized Geometry](https://dev.epicgames.com/documentation/en-us/unreal-engine/nanite-virtualized-geometry-in-unreal-engine)
+
+## 관련 개념
+
+- [CH06 Overdraw와 화면 겹침](CH06_Overdraw.md)
+- [CH20 Texture Streaming과 메모리 예산](CH20_TextureStreaming.md)
 
 ## 작업 기록
 
 - 제작한 에셋
-- 변경한 설정
-- 검증한 엔진 버전과 기기
-- 전후 캡처와 측정 결과
+- 바꾼 변수와 유지한 조건
+- 전후 화면과 실행 시간
+- 확인한 기기와 설정
 
-[챕터 목록으로 돌아가기](../../README.md#학습-순서)
+
+[처음 읽는 방법](../ReadingGuide.md) · [용어집](../Glossary.md) · [보충 주석](../SupplementaryNotes.md) · [챕터 목록](../../README.md#학습-순서)
