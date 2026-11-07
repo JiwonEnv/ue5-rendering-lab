@@ -5,7 +5,8 @@
 ## 현재 구성
 
 UE 5.8.4의 콘텐츠 전용 프로젝트입니다. 시작 레벨과 챕터별 기본 실습 레벨을 제공합니다.
-각 기본 레벨에는 공통 비교 무대, 조명, 고정 노출, 카메라와 비교용 구가 있습니다.
+CH01은 쇼윈도 골목과 12개의 실제 진단·A/B 캡처를 제공합니다.
+나머지 기본 레벨에는 공통 비교 무대, 조명, 고정 노출, 카메라와 비교용 구가 있습니다.
 챕터별 특화 기능을 구현하는 절차는 각 실습 문서에 정리되어 있습니다.
 `기본 레벨 준비` 상태의 챕터는 해당 기능의 완성 예제가 될 때까지 추가 제작이 필요합니다.
 
@@ -29,7 +30,7 @@ Forward 전환이나 Adaptive GBuffer 실험은 프로젝트 설정 변경과 �
 <!-- Generated from Docs/chapters.json by Scripts/manage_chapters.py -->
 | ID | 주제와 실습 절차 | 제작 상태 |
 | --- | --- | --- |
-| CH01 | [렌더링 파이프라인](Docs/Chapters/CH01_RenderingPipeline.md) | 기본 레벨 준비 |
+| CH01 | [렌더링 파이프라인](Docs/Chapters/CH01_RenderingPipeline.md) | 실습 검증 완료 |
 | CH02 | [Forward와 Deferred](Docs/Chapters/CH02_ForwardDeferred.md) | 기본 레벨 준비 |
 | CH03 | [GBuffer와 표면 정보](Docs/Chapters/CH03_GBuffer.md) | 기본 레벨 준비 |
 | CH04 | [DBuffer와 데칼](Docs/Chapters/CH04_DBufferDecals.md) | 기본 레벨 준비 |

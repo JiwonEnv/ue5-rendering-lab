@@ -5,7 +5,7 @@
     "title": "렌더링 파이프라인",
     "part": "Part01_RenderingBasics",
     "folder": "CH01_RenderingPipeline",
-    "status": "starter",
+    "status": "verified",
     "map": "/Game/RenderingLab/Chapters/Part01_RenderingBasics/CH01_RenderingPipeline/Maps/L_CH01_RenderingPipeline",
     "notes": "Docs/Chapters/CH01_RenderingPipeline.md"
   },

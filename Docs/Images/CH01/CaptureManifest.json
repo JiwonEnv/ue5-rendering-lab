@@ -1,0 +1,223 @@
+{
+  "engine": "5.8.4-58902052+++UE5+Release-5.8",
+  "map": "/Game/RenderingLab/Chapters/Part01_RenderingBasics/CH01_RenderingPipeline/Maps/L_CH01_RenderingPipeline",
+  "resolution": [
+    1600,
+    900
+  ],
+  "capture_type": "Unreal Editor DX12 viewport",
+  "camera_location": [
+    -1550.0,
+    -1600.0,
+    1000.0
+  ],
+  "camera_rotation": [
+    -16.999999999999993,
+    39.999999999999986,
+    4.157349764328758e-15
+  ],
+  "screen_percentage": 100,
+  "dynamic_resolution": false,
+  "exposure": "Manual, physical camera exposure disabled",
+  "images": [
+    {
+      "file": "01_Lit.png",
+      "mode": "lit",
+      "sha256": "e3e58f922f7eed22b7ebd07ae494f69ff454bfbbb29fde11c547706da88256e7",
+      "camera_location": [
+        -1550,
+        -1600,
+        1000
+      ],
+      "camera_rotation": [
+        -17,
+        40,
+        0
+      ],
+      "field_of_view": 58
+    },
+    {
+      "file": "02_BaseColor.png",
+      "mode": "BaseColor",
+      "sha256": "664c5dd24e3ca7710725a818d2713f9ae1edab5c10857ab425b7ec3d5d2b57ae",
+      "camera_location": [
+        -1550,
+        -1600,
+        1000
+      ],
+      "camera_rotation": [
+        -17,
+        40,
+        0
+      ],
+      "field_of_view": 58
+    },
+    {
+      "file": "03_WorldNormal.png",
+      "mode": "WorldNormal",
+      "sha256": "9e20cad22204f3c03d16c4970e3d5f9482f3d32a3f4342acd4e788a75f7d0096",
+      "camera_location": [
+        -1550,
+        -1600,
+        1000
+      ],
+      "camera_rotation": [
+        -17,
+        40,
+        0
+      ],
+      "field_of_view": 58
+    },
+    {
+      "file": "04_SceneDepth.png",
+      "mode": "SceneDepth",
+      "sha256": "bfc9785cfc27daf3de88db068c22afd2b925abd2b7aebd99f76be6521a1f6671",
+      "camera_location": [
+        -1550,
+        -1600,
+        1000
+      ],
+      "camera_rotation": [
+        -17,
+        40,
+        0
+      ],
+      "field_of_view": 58
+    },
+    {
+      "file": "05_Roughness.png",
+      "mode": "Roughness",
+      "sha256": "0cc62a066886ae34ccff6ae05b0293beb65cdd0a24ea0f4a435ede96a1ff4770",
+      "camera_location": [
+        -1550,
+        -1600,
+        1000
+      ],
+      "camera_rotation": [
+        -17,
+        40,
+        0
+      ],
+      "field_of_view": 58
+    },
+    {
+      "file": "06_Wireframe.png",
+      "mode": "wireframe",
+      "sha256": "29f129badb2c1a9bc81da1aa69e9118f96d966a40c0f789f0c5c450fa46b111f",
+      "camera_location": [
+        -1550,
+        -1600,
+        1000
+      ],
+      "camera_rotation": [
+        -17,
+        40,
+        0
+      ],
+      "field_of_view": 58
+    },
+    {
+      "file": "07_GlassOff.png",
+      "mode": "glass_off",
+      "sha256": "af964e8cb772b5657663d6aa04d95b5bb319d2c3f1f1f7d46b09f3f92d8f384e",
+      "camera_location": [
+        -1550,
+        -1600,
+        1000
+      ],
+      "camera_rotation": [
+        -17,
+        40,
+        0
+      ],
+      "field_of_view": 58
+    },
+    {
+      "file": "08_BloomOff.png",
+      "mode": "bloom_off",
+      "sha256": "636571d514b5337d2044e3f99821a382ae320cba9501a34bad6df4b4f0c5dbe4",
+      "camera_location": [
+        -1550,
+        -1600,
+        1000
+      ],
+      "camera_rotation": [
+        -17,
+        40,
+        0
+      ],
+      "field_of_view": 58
+    },
+    {
+      "file": "09_DecalOff.png",
+      "mode": "decal_off",
+      "sha256": "a95b512b12e6ca428366a58b016747b9d6fd02a8b17f77d48170c15aa03afcec",
+      "camera_location": [
+        -1550,
+        -1600,
+        1000
+      ],
+      "camera_rotation": [
+        -17,
+        40,
+        0
+      ],
+      "field_of_view": 58
+    },
+    {
+      "file": "10_LightingOnly.png",
+      "mode": "lightingonly",
+      "sha256": "0538422a5011b84e5fa20c2f34f7aa324685665ff95d182400fb134c9bda740e",
+      "camera_location": [
+        -1550,
+        -1600,
+        1000
+      ],
+      "camera_rotation": [
+        -17,
+        40,
+        0
+      ],
+      "field_of_view": 58
+    },
+    {
+      "file": "11_DecalCloseup.png",
+      "mode": "decal_closeup",
+      "sha256": "0a54fdff7f92d6e80dcdea4636f35f0e0f88daf223fe4b3b6e9aedf795f1f483",
+      "camera_location": [
+        -250,
+        -180,
+        300
+      ],
+      "camera_rotation": [
+        0,
+        16,
+        0
+      ],
+      "field_of_view": 45
+    },
+    {
+      "file": "12_DecalOffCloseup.png",
+      "mode": "decal_off_closeup",
+      "sha256": "fdbafb367bde9e3b7fa790e8fb9291932d371ddd21406b2fba726a952cb192d9",
+      "camera_location": [
+        -250,
+        -180,
+        300
+      ],
+      "camera_rotation": [
+        0,
+        16,
+        0
+      ],
+      "field_of_view": 45
+    }
+  ],
+  "measurement_note": "Screenshots are visual evidence, not GPU performance benchmarks.",
+  "complete": true,
+  "hardware": {
+    "gpu": "NVIDIA GeForce RTX 3070 Ti",
+    "rhi": "D3D12",
+    "platform": "Windows"
+  }
+}
