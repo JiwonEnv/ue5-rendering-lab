@@ -118,11 +118,12 @@ def main():
             path = content / sub
             path.mkdir(parents=True)
             (path / '.gitkeep').touch()
-        headings = ['학습 목표', '원리', '제작 절차', '검증 방법', '결과와 참고 자료']
+        headings = ['챕터 학습 목표', '예제 학습 목표', '원리', '제작 절차', '검증 방법', '결과와 참고 자료']
         body = [f'# {chapter_id} {args.title}', '', '**구현 상태 — 기본 실습 레벨 준비**', '',
                 f'레벨 경로 `{map_path}`', '']
         for heading in headings:
-            body.extend([f'## {heading}', '', '작성 예정', ''])
+            prefix = '###' if heading == '예제 학습 목표' else '##'
+            body.extend([f'{prefix} {heading}', '', '작성 예정', ''])
         (ROOT / notes).write_text('\n'.join(body), encoding='utf-8')
         chapter = {
             'id': chapter_id, 'slug': args.slug, 'title': args.title,
