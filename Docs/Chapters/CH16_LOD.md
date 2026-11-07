@@ -49,6 +49,12 @@ Static Mesh Editor에서 각 LOD의 형상과 Screen Size를 확인합니다. Sc
 
 멀리서 읽히는 정보를 유지하면서 줄일 대상을 고릅니다. 거리 하나보다 화면 크기와 실제 효과를 기준으로 판단합니다.
 
+## 그림으로 연결하기
+
+![CH16 설명도](../Images/Concepts/explain-16.png)
+
+화면에서 작게 보이는 메시에는 단순한 형상을 선택할 수 있습니다. 실제 전환 기준은 단순한 거리만이 아니라 화면상 크기와 설정에 의존합니다.
+
 ## 공식 자료
 
 - [Instanced Static Mesh Component](https://dev.epicgames.com/documentation/en-us/unreal-engine/instanced-static-mesh-component-in-unreal-engine)

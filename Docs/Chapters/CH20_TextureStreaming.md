@@ -49,6 +49,12 @@ stat streaming을 켜고 같은 경로의 첫 진입과 재방문을 비교합�
 
 메모리 부족, 잘못 추정한 수요와 데이터를 늦게 읽는 문제를 나누어 진단합니다.
 
+## 그림으로 연결하기
+
+![CH20 설명도](../Images/Concepts/explain-20.png)
+
+시점에 필요한 밉을 저장 장치에서 메모리로 가져옵니다. 메모리 예산 부족과 읽기 지연은 다른 문제이므로 함께 기록합니다.
+
 ## 공식 자료
 
 - [Texture Asset Editor](https://dev.epicgames.com/documentation/en-us/unreal-engine/texture-asset-editor-in-unreal-engine)

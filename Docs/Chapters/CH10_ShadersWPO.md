@@ -49,6 +49,12 @@ flowchart LR
 
 노드 개수, 컴파일할 버전 수, 실제 프레임의 작업량은 서로 다른 지표입니다. 그래프의 변화가 어느 작업에 영향을 주는지 확인합니다.
 
+## 그림으로 연결하기
+
+![CH10 설명도](../Images/Concepts/explain-10.png)
+
+정적 분기는 컴파일할 프로그램의 경우의 수를, WPO는 정점 위치를 바꿉니다. 그래프 노드 수를 GPU 시간으로 바로 읽지 않습니다.
+
 ## 공식 자료
 
 - [Render Dependency Graph](https://dev.epicgames.com/documentation/en-us/unreal-engine/rendering-dependency-graph-in-unreal-engine)

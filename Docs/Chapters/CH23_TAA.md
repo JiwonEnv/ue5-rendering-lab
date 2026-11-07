@@ -49,6 +49,12 @@ Anti-Aliasing Method를 Temporal AA로 선택하고 내부 해상도를 100%로 
 
 시간적 처리는 현재 화면과 과거 정보의 연결에 의존합니다. 정지 이미지 하나로 움직임 품질을 판정하지 않습니다.
 
+## 그림으로 연결하기
+
+![CH23 설명도](../Images/Concepts/explain-23.png)
+
+이전 프레임 정보를 현재 위치로 옮겨 현재 샘플과 결합합니다. 가려짐 해제나 잘못된 모션 정보가 있으면 이전 값을 그대로 재사용하기 어렵습니다.
+
 ## 공식 자료
 
 - [Anti-Aliasing and Upscaling](https://dev.epicgames.com/documentation/en-us/unreal-engine/anti-aliasing-and-upscaling-in-unreal-engine)

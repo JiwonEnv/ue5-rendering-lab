@@ -49,6 +49,12 @@ Opaque는 뒤를 가리는 불투명 표면입니다. Masked는 위치별로 남
 
 삼각형 수 하나로 식생의 효율을 판단하지 않습니다. 실제로 반복 처리하는 화면 영역을 함께 봅니다.
 
+## 그림으로 연결하기
+
+![CH06 설명도](../Images/Concepts/explain-6.png)
+
+동일한 화면 위치에 카드가 여러 겹 놓입니다. 보이지 않는 층까지 처리하면 비용이 늘 수 있으며, 실제 비용은 재질과 깊이 검사 조건에 달려 있습니다.
+
 ## 공식 자료
 
 - [Render Dependency Graph](https://dev.epicgames.com/documentation/en-us/unreal-engine/rendering-dependency-graph-in-unreal-engine)

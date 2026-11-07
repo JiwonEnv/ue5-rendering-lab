@@ -49,6 +49,12 @@ BRDF는 어느 방향에서 온 빛이 어느 방향으로 얼마나 반사되�
 
 반사의 모양은 재질과 빛의 조건이 함께 만듭니다. 수식을 외우기보다 각 입력이 화면을 어떻게 바꾸는지 연결합니다.
 
+## 그림으로 연결하기
+
+![CH08 설명도](../Images/Concepts/explain-8.png)
+
+같은 입사광도 표면과 관찰 방향에 따라 다르게 반사됩니다. 화살표는 방향의 개념이며 그 길이와 굵기를 실제 BRDF 수치로 읽지 않습니다.
+
 ## 공식 자료
 
 - [Physically Based Materials](https://dev.epicgames.com/documentation/en-us/unreal-engine/physically-based-materials-in-unreal-engine)

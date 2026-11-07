@@ -49,6 +49,12 @@ Shadow Map Method에서 Virtual Shadow Maps를 확인합니다. 카메라를 고
 
 그림자 선명도와 함께, 이미 계산한 결과를 얼마나 재사용하는지 확인합니다.
 
+## 그림으로 연결하기
+
+![CH22 설명도](../Images/Concepts/explain-22.png)
+
+그림자 캐시에 남아 있는 페이지는 재사용할 수 있지만, 움직임·변형 등에 의해 무효화된 영역은 다시 그려야 할 수 있습니다.
+
 ## 공식 자료
 
 - [Nanite Virtualized Geometry](https://dev.epicgames.com/documentation/en-us/unreal-engine/nanite-virtualized-geometry-in-unreal-engine)

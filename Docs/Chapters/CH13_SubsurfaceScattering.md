@@ -49,6 +49,12 @@ UE의 Subsurface Profile은 화면에 보이는 정보를 이용해 산란의 �
 
 산란 모델, 거리 스케일과 물체 두께를 함께 조정해 내부를 지난 빛의 외관을 만듭니다.
 
+## 그림으로 연결하기
+
+![CH13 설명도](../Images/Concepts/explain-13.png)
+
+빛이 표면 안으로 들어가 여러 방향으로 퍼져 나온 상황을 단면으로 표현했습니다. UE의 화면 기반 근사는 실제 내부 광선을 모두 추적하는 방식과 다릅니다.
+
 ## 공식 자료
 
 - [Overview of Substrate Materials](https://dev.epicgames.com/documentation/en-us/unreal-engine/overview-of-substrate-materials-in-unreal-engine)

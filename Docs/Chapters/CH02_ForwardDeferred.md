@@ -49,6 +49,12 @@ Deferred는 화면 크기의 표면 데이터를 메모리에 쓰고 다시 읽�
 
 계산 순서의 차이를 필요한 기능과 연결해 렌더러를 선택합니다. 비교할 때는 한쪽에서 빠진 기능 때문에 빨라진 것인지도 확인합니다.
 
+## 그림으로 연결하기
+
+![CH02 설명도](../Images/Concepts/explain-2.png)
+
+Forward는 표면 계산에 조명을 반영하고, Deferred는 표면 정보를 저장한 뒤 조명을 계산합니다. 대표적인 불투명 경로의 비교이며 추가 패스는 생략했습니다.
+
 ## 공식 자료
 
 - [Rendering Settings](https://dev.epicgames.com/documentation/en-us/unreal-engine/rendering-settings-in-the-unreal-engine-project-settings)

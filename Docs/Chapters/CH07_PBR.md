@@ -49,6 +49,12 @@ Material Instance는 원본 재질의 구조를 공유하면서 노출한 설정
 
 재료 자체의 특성은 재질 입력으로 표현하고, 조명 변화에 따른 결과는 다른 조명에서도 검증합니다.
 
+## 그림으로 연결하기
+
+![CH07 설명도](../Images/Concepts/explain-7.png)
+
+Base Color는 바탕색, Metallic은 금속성, Roughness는 반사 분포를 제어합니다. 세 입력을 같은 장면에서 한 번에 하나씩 비교합니다.
+
 ## 공식 자료
 
 - [Physically Based Materials](https://dev.epicgames.com/documentation/en-us/unreal-engine/physically-based-materials-in-unreal-engine)

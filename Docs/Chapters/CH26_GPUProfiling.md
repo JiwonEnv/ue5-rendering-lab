@@ -51,6 +51,12 @@ stat gpu로 큰 작업 그룹을 확인하고 profilegpu 또는 Unreal Insights�
 
 한 변수의 수정이 특정 패스, 전체 프레임과 화질에 미친 영향을 같은 조건의 기록으로 설명합니다.
 
+## 그림으로 연결하기
+
+![CH26 설명도](../Images/Concepts/explain-26.png)
+
+같은 카메라·조건에서 기준 측정, 한 변수 수정, 재측정을 반복합니다. 패스 시간 감소와 총 프레임 개선·화질 유지를 함께 확인합니다.
+
 ## 공식 자료
 
 - [Introduction to Performance Profiling and Configuration](https://dev.epicgames.com/documentation/en-us/unreal-engine/introduction-to-performance-profiling-and-configuration-in-unreal-engine)

@@ -51,6 +51,12 @@ stat unit의 Game은 주로 게임 로직을 처리하는 CPU 실행 흐름, Dra
 
 프레임 제한과 대기를 확인한 뒤, 실제로 처리율을 제한하는 작업을 고릅니다.
 
+## 그림으로 연결하기
+
+![CH25 설명도](../Images/Concepts/explain-25.png)
+
+CPU와 GPU의 작업은 겹칠 수 있습니다. 단순화한 시간축에서 처리율을 제한하는 구간을 보며, 각 시간의 합을 전체 프레임 시간으로 사용하지 않습니다.
+
 ## 공식 자료
 
 - [Introduction to Performance Profiling and Configuration](https://dev.epicgames.com/documentation/en-us/unreal-engine/introduction-to-performance-profiling-and-configuration-in-unreal-engine)

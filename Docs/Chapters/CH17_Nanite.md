@@ -49,6 +49,12 @@ Nanite는 높은 디테일의 메시를 효율적으로 표시하기 위한 가�
 
 Nanite의 이점과 남아 있는 재질·겹침·스트리밍 비용을 함께 검증합니다.
 
+## 그림으로 연결하기
+
+![CH17 설명도](../Images/Concepts/explain-17.png)
+
+Nanite는 화면에 필요한 세밀함에 맞춰 클러스터를 선택합니다. 클러스터의 크기·개수는 설명용이며 실제 시각화나 고정 삼각형 예산이 아닙니다.
+
 ## 공식 자료
 
 - [Instanced Static Mesh Component](https://dev.epicgames.com/documentation/en-us/unreal-engine/instanced-static-mesh-component-in-unreal-engine)

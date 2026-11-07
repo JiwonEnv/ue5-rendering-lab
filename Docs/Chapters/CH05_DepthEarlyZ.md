@@ -49,6 +49,12 @@ Depth Prepass는 주요 표면의 깊이를 먼저 준비하는 단계입니다.
 
 깊이 준비의 추가 작업과 줄어든 표면 계산을 함께 측정합니다. 화면에 안 보이는 물체라도 모든 비용이 자동으로 사라지는 것은 아닙니다.
 
+## 그림으로 연결하기
+
+![CH05 설명도](../Images/Concepts/explain-5.png)
+
+앞쪽 불투명 표면의 깊이를 이용해 뒤쪽 후보를 거릅니다. 실제 셰이더 실행 생략 여부와 깊이 검사 시점은 재질·경로에 따라 달라집니다.
+
 ## 공식 자료
 
 - [Render Dependency Graph](https://dev.epicgames.com/documentation/en-us/unreal-engine/rendering-dependency-graph-in-unreal-engine)

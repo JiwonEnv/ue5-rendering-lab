@@ -49,6 +49,14 @@ L자 방에서 노출을 고정합니다. Lumen Overview는 관련 결과를 모
 
 현재 화면의 정보, 추적할 장면 표현과 계산 예산을 나누어 Lumen 문제를 조사합니다.
 
+## 그림으로 연결하기
+
+![CH21 설명도](../Images/Concepts/explain-21.png)
+
+벽에서 반사된 빛이 다른 표면의 색에 기여하는 간접광입니다. 왼쪽 외부 렌더는 일반적인 사례이며 Lumen 실행 결과나 성능 비교가 아닙니다.
+
+외부 렌더 이미지 · Trevorgoodchild · Public domain · 원본 색상과 비율 유지. [원본과 이용 조건](https://commons.wikimedia.org/wiki/File:Cornellbox_pathtracing_irradiancecaching.png). [이미지 출처 기록](../Images/Sources.md).
+
 ## 공식 자료
 
 - [Lumen Technical Details](https://dev.epicgames.com/documentation/en-us/unreal-engine/lumen-technical-details-in-unreal-engine)

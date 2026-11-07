@@ -49,6 +49,12 @@ flowchart LR
 
 작업 모듈의 편의와 가시성 판정의 효율을 함께 고려해 메시를 나눕니다.
 
+## 그림으로 연결하기
+
+![CH18 설명도](../Images/Concepts/explain-18.png)
+
+화면 밖 물체와 앞 물체에 가려진 물체는 서로 다른 이유로 제외 후보가 됩니다. 실제 가시성 판정에는 보수적 경계와 프레임 지연이 개입할 수 있습니다.
+
 ## 공식 자료
 
 - [Instanced Static Mesh Component](https://dev.epicgames.com/documentation/en-us/unreal-engine/instanced-static-mesh-component-in-unreal-engine)

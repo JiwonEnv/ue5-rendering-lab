@@ -49,6 +49,12 @@ Anti-Aliasing Method를 TSR로 선택합니다. 부하에 따라 내부 크기�
 
 같은 출력에서 움직임 품질을 비교하고, 줄어든 장면 계산과 재구성 비용을 함께 측정합니다.
 
+## 그림으로 연결하기
+
+![CH24 설명도](../Images/Concepts/explain-24.png)
+
+낮은 내부 해상도의 현재 정보에 모션·이전 프레임을 결합해 출력 영상을 재구성합니다. 그림은 처리 관계이며 품질 보장이나 실측 확대 결과가 아닙니다.
+
 ## 공식 자료
 
 - [Anti-Aliasing and Upscaling](https://dev.epicgames.com/documentation/en-us/unreal-engine/anti-aliasing-and-upscaling-in-unreal-engine)

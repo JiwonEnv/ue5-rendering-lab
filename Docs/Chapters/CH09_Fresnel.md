@@ -49,6 +49,12 @@ Fresnel은 빛이 두 물질의 경계를 만날 때 각도에 따라 반사 비
 
 정면의 반사율과 각도에 따른 변화, 의도적으로 넣은 림 표현의 역할을 구분합니다.
 
+## 그림으로 연결하기
+
+![CH09 설명도](../Images/Concepts/explain-9.png)
+
+비금속에서도 표면을 비스듬히 보면 반사가 강해질 수 있습니다. 도식은 Fresnel 경향을 설명하며 굴절·흡수·거칠기의 영향을 모두 나타내지는 않습니다.
+
 ## 공식 자료
 
 - [Physically Based Materials](https://dev.epicgames.com/documentation/en-us/unreal-engine/physically-based-materials-in-unreal-engine)

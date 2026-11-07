@@ -49,6 +49,12 @@ Translucency는 뒤의 색이 비치는 표면을 표현합니다. 가장 단순
 
 반투명 문제는 재질 입력, 합성 순서와 읽을 수 있는 배경 정보로 나누어 조사합니다.
 
+## 그림으로 연결하기
+
+![CH12 설명도](../Images/Concepts/explain-12.png)
+
+반투명 결과에는 표면 자체의 반사와 뒤쪽 배경의 영향이 함께 들어갑니다. 굴절은 배경을 읽는 위치도 바꾸며 단순 알파 합성만으로 끝나지 않습니다.
+
 ## 공식 자료
 
 - [Lit Translucency](https://dev.epicgames.com/documentation/en-us/unreal-engine/lit-translucency-in-unreal-engine)

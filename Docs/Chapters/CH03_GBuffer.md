@@ -49,6 +49,12 @@ Base Pass는 화면에 보이는 불투명 표면의 정보를 기록하는 대�
 
 재질 입력이 잘못됐는지와 조명 이후에 문제가 생겼는지를 분리합니다. 노드가 늘어난다고 저장 바이트까지 항상 늘어나는 것은 아닙니다.
 
+## 그림으로 연결하기
+
+![CH03 설명도](../Images/Concepts/explain-3.png)
+
+한 화면 위치에서 색·방향·거칠기 등의 정보를 따로 읽습니다. 도식의 칸은 실제 GBuffer 텍스처 수나 채널 배치를 뜻하지 않습니다.
+
 ## 공식 자료
 
 - [Render Dependency Graph](https://dev.epicgames.com/documentation/en-us/unreal-engine/rendering-dependency-graph-in-unreal-engine)

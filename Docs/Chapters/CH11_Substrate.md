@@ -49,6 +49,12 @@ Closure는 실행 시 조명에 대해 평가할 재료 반응의 단위를 가�
 
 표현하려는 재료 관계에 맞춰 혼합 방식을 선택합니다. 보기 복잡한 그래프와 실제로 복잡하게 평가되는 재질을 구분합니다.
 
+## 그림으로 연결하기
+
+![CH11 설명도](../Images/Concepts/explain-11.png)
+
+가로 혼합과 수직 적층은 다른 표면 구성을 나타냅니다. 층을 추가한 결과는 조명·거칠기·플랫폼 조건을 유지하고 검증합니다.
+
 ## 공식 자료
 
 - [Programming with Substrate GBuffer Formats](https://dev.epicgames.com/documentation/en-us/unreal-engine/programming-with-substrate-gbuffer-formats)

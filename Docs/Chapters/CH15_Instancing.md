@@ -49,6 +49,12 @@ ISM은 Instanced Static Mesh Component의 약자로 반복 메시를 한 컴포�
 
 공유로 줄이는 관리·제출 비용과 실제 가시 지오메트리의 계산량을 분리합니다.
 
+## 그림으로 연결하기
+
+![CH15 설명도](../Images/Concepts/explain-15.png)
+
+같은 메시의 배치를 묶어 제출 준비를 줄일 수 있습니다. 각 배치의 화면 크기·재질·그림자 계산 비용은 여전히 남습니다.
+
 ## 공식 자료
 
 - [Mesh Drawing Pipeline](https://dev.epicgames.com/documentation/en-us/unreal-engine/mesh-drawing-pipeline-in-unreal-engine)

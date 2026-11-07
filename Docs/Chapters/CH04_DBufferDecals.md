@@ -49,6 +49,12 @@ Material Domain을 Deferred Decal로 정한 얼룩 재질을 벽에 투영합니
 
 데칼의 수뿐 아니라 투영 범위와 수신 표면을 관리합니다. DBuffer 값을 재질에서 직접 조합한다면 기본 적용과 중복되지 않는지도 확인합니다.
 
+## 그림으로 연결하기
+
+![CH04 설명도](../Images/Concepts/explain-4.png)
+
+데칼 볼륨과 수신 표면이 만나는 위치에 표면 수정값을 적용합니다. 데칼의 면적·겹침과 수신 설정을 함께 확인합니다.
+
 ## 공식 자료
 
 - [Programming with Substrate GBuffer Formats](https://dev.epicgames.com/documentation/en-us/unreal-engine/programming-with-substrate-gbuffer-formats)

@@ -49,6 +49,12 @@ Draw Call은 GPU에 특정 지오메트리를 그리도록 제출하는 명령�
 
 오브젝트 개수, 메시 섹션과 패스별 호출, CPU·GPU 시간을 각각 확인합니다.
 
+## 그림으로 연결하기
+
+![CH14 설명도](../Images/Concepts/explain-14.png)
+
+서로 다른 그리기 상태를 CPU에서 준비하고 GPU에 제출합니다. Actor 하나가 Draw Call 하나라는 뜻은 아니며 여러 패스와 재질 슬롯이 영향을 줍니다.
+
 ## 공식 자료
 
 - [Introduction to Performance Profiling and Configuration](https://dev.epicgames.com/documentation/en-us/unreal-engine/introduction-to-performance-profiling-and-configuration-in-unreal-engine)

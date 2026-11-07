@@ -49,6 +49,12 @@ flowchart LR
 
 밉은 작게 보이는 텍스처를 안정적으로 읽기 위한 준비입니다. 밉 선택과 메모리 상주 관리는 서로 연결된 다른 작업입니다.
 
+## 그림으로 연결하기
+
+![CH19 설명도](../Images/Concepts/explain-19.png)
+
+작은 화면 영역이 넓은 텍스처 영역을 대표할 때 낮은 밉을 읽어 깜빡임과 읽기 비용을 줄입니다. 필터링의 개념이며 실제 텍스처 실측이 아닙니다.
+
 ## 공식 자료
 
 - [Texture Asset Editor](https://dev.epicgames.com/documentation/en-us/unreal-engine/texture-asset-editor-in-unreal-engine)
