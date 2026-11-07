@@ -1,0 +1,20 @@
+# Unreal-generated files
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+.vs/
+.idea/
+.vscode/
+*.sln
+*.suo
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.opendb
+*.xcodeproj
+*.xcworkspace
+*.pyc
+__pycache__/
+.DS_Store
+Thumbs.db
