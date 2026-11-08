@@ -7,7 +7,7 @@
 UE 5.8.4의 콘텐츠 전용 프로젝트입니다. 시작 레벨과 챕터별 기본 실습 레벨을 제공합니다.
 CH01은 쇼윈도 골목과 12개의 실제 진단·A/B 캡처를 제공합니다.
 나머지 기본 레벨에는 공통 비교 무대, 조명, 고정 노출, 카메라와 비교용 구가 있습니다.
-챕터별 특화 기능을 구현하는 절차는 각 실습 문서에 정리되어 있습니다.
+주제별 원리는 각 문서의 블로그 포스트에서 설명합니다. 원고에는 실습 절차나 과제가 포함되지 않습니다.
 `기본 레벨 준비` 상태의 챕터는 해당 기능의 완성 예제가 될 때까지 추가 제작이 필요합니다.
 
 ## 시작하기
@@ -25,7 +25,9 @@ Windows DX12 SM6, Deferred, Lumen, Virtual Shadow Maps, TSR,
 Substrate Blendable을 시작 설정으로 사용합니다. 대상 기기에서 기능 지원을 확인하세요.
 Forward 전환이나 Adaptive GBuffer 실험은 프로젝트 설정 변경과 재시작이 필요할 수 있습니다.
 
-## 학습 순서
+<a id="학습-순서"></a>
+
+## 포스트 목록
 
 <!-- Generated from Docs/chapters.json by Scripts/manage_chapters.py -->
 | ID | 주제와 실습 절차 | 제작 상태 |
@@ -59,15 +61,15 @@ Forward 전환이나 Adaptive GBuffer 실험은 프로젝트 설정 변경과 �
 
 ## 구조와 확장
 
-- [처음 읽는 방법](Docs/ReadingGuide.md)
-- [용어집](Docs/Glossary.md)
-- [보충 주석](Docs/SupplementaryNotes.md)
+- [포스트 모음 소개](Docs/ReadingGuide.md)
+- [용어 찾아보기](Docs/Glossary.md)
+- [기술 메모](Docs/SupplementaryNotes.md)
 - [전체 챕터 보완 기록](Docs/ChapterReview.md)
 - [이미지 출처](Docs/Images/Sources.md)
 - [폴더 구조와 에셋 규칙](Docs/FolderStructure.md)
 - [새 챕터 추가 방법](Docs/AddingChapters.md)
 - [커밋 규칙](CONTRIBUTING.md)
-- [한국어 학습 가이드 PDF](Docs/Guide/UE5_Rendering_Guide_KO.pdf)
+- [블로그 포스트 모음 PDF](Docs/Guide/UE5_Rendering_Guide_KO.pdf)
 
 챕터 ID와 에셋 경로는 유지하고 `Docs/chapters.json` 배열에서 학습 순서를 관리합니다.
 새 챕터는 새 ID를 부여한 뒤 원하는 학습 순서에 배치할 수 있습니다.

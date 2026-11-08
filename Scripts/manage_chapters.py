@@ -24,7 +24,7 @@ def update_readme(chapters):
 UE 5.8.4의 콘텐츠 전용 프로젝트입니다. 시작 레벨과 챕터별 기본 실습 레벨을 제공합니다.
 CH01은 쇼윈도 골목과 12개의 실제 진단·A/B 캡처를 제공합니다.
 나머지 기본 레벨에는 공통 비교 무대, 조명, 고정 노출, 카메라와 비교용 구가 있습니다.
-챕터별 특화 기능을 구현하는 절차는 각 실습 문서에 정리되어 있습니다.
+주제별 원리는 각 문서의 블로그 포스트에서 설명합니다. 원고에는 실습 절차나 과제가 포함되지 않습니다.
 `기본 레벨 준비` 상태의 챕터는 해당 기능의 완성 예제가 될 때까지 추가 제작이 필요합니다.
 
 ## 시작하기
@@ -42,7 +42,9 @@ Windows DX12 SM6, Deferred, Lumen, Virtual Shadow Maps, TSR,
 Substrate Blendable을 시작 설정으로 사용합니다. 대상 기기에서 기능 지원을 확인하세요.
 Forward 전환이나 Adaptive GBuffer 실험은 프로젝트 설정 변경과 재시작이 필요할 수 있습니다.
 
-## 학습 순서
+<a id="학습-순서"></a>
+
+## 포스트 목록
 
 <!-- Generated from Docs/chapters.json by Scripts/manage_chapters.py -->
 | ID | 주제와 실습 절차 | 제작 상태 |
@@ -51,15 +53,15 @@ Forward 전환이나 Adaptive GBuffer 실험은 프로젝트 설정 변경과 �
 
 ## 구조와 확장
 
-- [처음 읽는 방법](Docs/ReadingGuide.md)
-- [용어집](Docs/Glossary.md)
-- [보충 주석](Docs/SupplementaryNotes.md)
+- [포스트 모음 소개](Docs/ReadingGuide.md)
+- [용어 찾아보기](Docs/Glossary.md)
+- [기술 메모](Docs/SupplementaryNotes.md)
 - [전체 챕터 보완 기록](Docs/ChapterReview.md)
 - [이미지 출처](Docs/Images/Sources.md)
 - [폴더 구조와 에셋 규칙](Docs/FolderStructure.md)
 - [새 챕터 추가 방법](Docs/AddingChapters.md)
 - [커밋 규칙](CONTRIBUTING.md)
-- [한국어 학습 가이드 PDF](Docs/Guide/UE5_Rendering_Guide_KO.pdf)
+- [블로그 포스트 모음 PDF](Docs/Guide/UE5_Rendering_Guide_KO.pdf)
 
 챕터 ID와 에셋 경로는 유지하고 `Docs/chapters.json` 배열에서 학습 순서를 관리합니다.
 새 챕터는 새 ID를 부여한 뒤 원하는 학습 순서에 배치할 수 있습니다.
@@ -123,10 +125,9 @@ def main():
             path = content / sub
             path.mkdir(parents=True)
             (path / '.gitkeep').touch()
-        headings = ['무엇인가', '렌더링에서 맡는 역할', '입력과 출력', '작동 과정', '원리를 보여 주는 그림', '왜 배경 제작에 필요한가', '성능과 제작 비용', '원리 확인 예제', '예제 학습 목표', '실습 절차', '예상 결과와 이유', '결과를 어떻게 해석할까', '이 챕터에서 기억할 것', '이해한 뒤 확인할 조건', '결과와 참고 자료']
-        body = [f'# {chapter_id} {args.title}', '', '**구현 상태 — 기본 실습 레벨 준비**', '',
-                f'레벨 경로 `{map_path}`', '']
-        body.extend(['주제의 정의·전체 역할·입력과 출력·작동 과정을 먼저 설명합니다. 제작의 목적을 연결한 뒤 예제로 일부 원리를 확인하며, 증상이나 실습이 주제의 정의를 대신하지 않게 합니다.', ''])
+        headings = ['주제를 소개하는 도입', '원리를 설명하는 소제목', '제작 사례로 이어지는 소제목', '성능과 표현을 다루는 소제목', '맺는 문단', '참고 자료']
+        body = [f'# {args.title}', '']
+        body.extend(['독립된 블로그 포스트로 작성합니다. 정의와 원리를 연결된 문단으로 설명하고, 이미지와 제작 사례로 의미를 풀어냅니다. 학습 목표·실습·과제 형식은 사용하지 않습니다.', ''])
         for heading in headings:
             prefix = '###' if heading == '예제 학습 목표' else '##'
             body.extend([f'{prefix} {heading}', '', '작성 예정', ''])
