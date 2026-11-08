@@ -1,6 +1,6 @@
 # 이미지 출처와 편집 기록
 
-각 챕터의 원리 바로 아래에 실제 이미지 파일을 삽입하고, 관찰 지점과 해석 범위를 함께 적었습니다.
+현재 본문은 중심 질문에 맞는 그림을 선별해 사용합니다. 아래에는 사용 중인 자료와 이전 판에서 보관한 자료의 원본 기록을 모두 남깁니다.
 
 CH01의 원본 12장은 이 프로젝트에서 직접 촬영했습니다. 외부 사례는 이 프로젝트의 실행 결과나 성능 보장으로 사용하지 않습니다.
 
@@ -8,9 +8,38 @@ CH01의 원본 12장은 이 프로젝트에서 직접 촬영했습니다. 외부
 
 `CH01/CaptureManifest.json`에 촬영 조건과 원본 해시가 있습니다. `Concepts/explain-foundations.png`는 CPU·GPU 역할을 설명하는 자체 개념도입니다.
 
-## 본문에 사용한 외부 그림
+## 현재 본문에서 쓰는 그림
 
-본문의 외부 그림 28개에 원본 출처·저자·편집 기록을 붙였습니다. 각 그림의 이용 조건은 저장소 전체의 라이선스와 구별합니다.
+- CH01 실제 CH01 캡처, coordinates와 raster 외부 설명도
+- CH02 직접 제작 개념도 `Focused/focus-02.png`
+- CH03 외부 자료 `gbuffer-print.png`
+- CH04 외부 자료 `decal-print.png`
+- CH05 외부 자료 `depth-print.png`
+- CH06 외부 자료 `overdraw-print.png`
+- CH07 외부 자료 `pbr-print.png`
+- CH08 외부 자료 `brdf-print.png`
+- CH09 외부 자료 `fresnel-print.png`
+- CH10 직접 제작 개념도 `Focused/focus-10.png`
+- CH11 직접 제작 개념도 `Focused/focus-11.png`
+- CH12 직접 제작 개념도 `Focused/focus-12.png`
+- CH13 직접 제작 개념도 `Focused/focus-13.png`
+- CH14 직접 제작 개념도 `Focused/focus-14.png`
+- CH15 외부 자료 `instance-data-print.png`
+- CH16 외부 자료 `lod-print.png`
+- CH17 직접 제작 개념도 `Focused/focus-17.png`
+- CH18 직접 제작 개념도 `Focused/focus-18.png`
+- CH19 외부 자료 `mipmap-print.png`
+- CH20 외부 자료 `streaming-stats-print.png`
+- CH21 Cornell box 외부 렌더, Public domain, 원본 전체·비율·색상 유지
+- CH22 외부 자료 `vsm-cache-print.png`
+- CH23 직접 제작 개념도 `Focused/focus-23.png`
+- CH24 외부 자료 `tsr-output-print.png`
+- CH25 외부 자료 `cpu-frames-print.png`
+- CH26 외부 자료 `gpu-events-print.png`
+
+## 보관한 외부 그림과 원본 기록
+
+보관한 외부 그림 28개에 원본 출처·저자·편집 기록을 붙였습니다. 각 그림의 이용 조건은 저장소 전체의 라이선스와 구별합니다.
 
 ### coordinates · 출처 37
 
@@ -354,7 +383,7 @@ Epic 공식 TSR 비교 · 왼쪽 네이티브 4K, 오른쪽 1080p에서 4K로 �
 
 ## 이전 간접광 참고 이미지
 
-Trevorgoodchild의 Cornell box 이미지는 `Concepts/cornellbox.png`에 보관되어 있습니다. 이번 판의 Lumen 본문은 Epic의 실제 Lumen 반사 비교로 교체했습니다.
+Trevorgoodchild의 Cornell box 이미지는 `Concepts/cornellbox.png`에 보관되어 있습니다. 현재 Lumen 본문은 간접광의 색 전달을 설명하기 위해 이 그림을 다시 사용합니다. Lumen 실행 결과로 표시하지 않습니다.
 [Cornell box 원본과 Public domain 표기](https://commons.wikimedia.org/wiki/File:Cornellbox_pathtracing_irradiancecaching.png)
 
 확인일 2026-11-08. 저작권과 출처 표시는 각 원본에 따릅니다.

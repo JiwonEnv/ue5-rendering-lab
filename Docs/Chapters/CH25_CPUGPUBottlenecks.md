@@ -1,41 +1,32 @@
 # CH25 CPU와 GPU 병목
 
-## 챕터 학습 목표
+## 중심 질문
 
-프레임 처리율을 제한하는 원인과 스레드·GPU의 대기를 구분합니다. 에셋 수정이 필요한 상황과 게임 로직·제출·동기화 문제를 판별해 효과가 있는 최적화 작업의 우선순위를 정합니다.
+폴리곤과 해상도를 줄였는데 왜 FPS가 그대로일까?
+
+## 먼저 알아둘 답
+
+프레임 진행을 제한하는 다른 작업이 남아 있으면 일부 GPU 일을 줄여도 최종 속도는 오르지 않을 수 있습니다.
+
+## 왜 알아야 할까
+
+최적화 대상을 추측으로 고르지 않고 실제로 프레임을 제한하는 구간부터 수정하기 위해 배웁니다.
 
 ### 예제 학습 목표
 
-고정 경로에서 stat unit과 해상도 변경 반응을 확인한 뒤 Insights의 CPU·GPU·대기 구간을 대조합니다.
+내부 해상도 변화에 Frame과 GPU 시간이 함께 반응하는지 확인합니다.
 
-**구현 상태 — 기본 실습 레벨 준비**
+**구현 상태 — 기본 레벨 준비, 아래 절차에 따른 특화 예제 제작과 실측 필요**
 
-바닥, 조명, 카메라와 비교용 기본 도형을 가진 시작 레벨입니다. 아래 항목은 챕터별 예제를 완성할 때 수행할 실습 절차입니다.
+레벨 `/Game/RenderingLab/Chapters/Part05_Profiling/CH25_CPUGPUBottlenecks/Maps/L_CH25_CPUGPUBottlenecks`
 
-레벨 경로 `/Game/RenderingLab/Chapters/Part05_Profiling/CH25_CPUGPUBottlenecks/Maps/L_CH25_CPUGPUBottlenecks`
+## 왜 이런 결과가 생길까
 
-## 흐름 개념도
+CPU는 게임 상태와 그리기 명령을 준비하고 GPU는 제출된 작업을 실행합니다. 이 작업은 여러 프레임에 걸쳐 겹칠 수 있습니다. 처리율은 느린 준비·실행 구간이나 동기화에 제한됩니다. 병목은 이 제한 원인입니다. CPU가 명령을 늦게 주면 GPU가 가벼워져도 다음 프레임 준비가 빨라지지는 않습니다.
 
-```mermaid
-flowchart LR
- N0["게임 상태 처리"]
- N1["그리기 명령 준비"]
- N0 --> N1
- N2["GPU 계산"]
- N1 --> N2
- N3["프레임 진행"]
- N2 --> N3
-```
+## 제작 중에는 이렇게 나타납니다
 
-## 원리
-
-병목은 해당 상황에서 처리 속도를 제한하는 작업입니다. CPU와 GPU는 서로 다른 프레임의 일을 겹쳐 처리할 수 있으므로 각 시간을 모두 더해 최종 프레임 시간으로 읽지 않습니다. 한쪽이 다른 쪽을 기다리면 표시된 시간이 실제 계산 시간과 다르게 보일 수도 있습니다.
-
-## 작동 과정
-
-stat unit의 Game은 주로 게임 로직을 처리하는 CPU 실행 흐름, Draw는 렌더 명령을 준비하는 흐름, GPU는 그래픽 계산 시간을 보는 출발점입니다. RHIT가 표시되면 그래픽 API 명령 처리 쪽의 CPU 흐름을 함께 봅니다. 스레드·RHI의 뜻은 CH01과 용어집에서 다시 확인할 수 있습니다.
-
-## 그림으로 연결하기
+최적화는 눈에 복잡한 물체를 줄이는 일과 같지 않습니다. 프레임 제한이나 VSync로 기다리는 조건이라면 계산을 줄여도 표시 FPS가 유지될 수 있습니다.
 
 ![외부 실측 화면 · John Farrow가 기록한 Unreal Insights의 프레임 시간 그래프입니다.](../Images/External/cpu-frames-print.png)
 
@@ -45,50 +36,33 @@ stat unit의 Game은 주로 게임 로직을 처리하는 CPU 실행 흐름, Dra
 
 [© John Farrow · Unrealcode.net · 출처 59](https://www.unrealcode.net/Optimization_Part3/)
 
-원저작권과 원문 출처 표시는 유지합니다
-
 원본 전체 유지 · 투명 배경은 흰색으로 표시
 
-## 아트 실무
+원저작권과 원문 출처 표시는 유지합니다
 
-내부 해상도를 낮춰 GPU 시간과 프레임 시간이 함께 줄면 화면 계산을 조사할 근거가 됩니다. 프레임 시간이 그대로라면 CPU, 대기와 프레임 제한도 봅니다. VSync는 화면 갱신에 출력 시점을 맞추는 기능이며, 설정한 FPS 제한과 함께 측정값을 일정 수준에 묶어 둘 수 있습니다.
+## 실습 절차
 
-## 성능 비용
+진단용으로 프레임 제한과 VSync 영향을 확인합니다. 같은 경로의 안정 구간에서 stat unit의 Frame·Game·Draw·GPU를 기록한 뒤 내부 해상도만 낮춰 다시 비교합니다.
 
-60 FPS의 프레임 간격은 약 16.67 ms, 30 FPS는 약 33.33 ms입니다. ms는 1초의 천분의 1입니다. 평균만 보면 드문 끊김을 놓칠 수 있습니다. P95 프레임 시간은 느린 쪽 5%가 시작되는 경계 부근을 보는 지표입니다. 최대 시간과 느린 구간의 원인도 함께 살핍니다.
+## 예상 결과와 이유
 
-## 언리얼 실습
+GPU 화면 계산이 제한 원인이면 해상도 감소에 GPU와 Frame이 함께 반응할 수 있습니다. CPU 제한이면 GPU는 줄어도 Frame 변화가 작을 수 있습니다.
 
-성능 도구를 쓸 수 있는 Development 빌드를 목표 기기에서 실행합니다. stat unit·stat unitgraph로 경향을 보고 내부 해상도만 낮춰 반응을 확인합니다. Unreal Insights는 CPU·GPU 작업을 시간축에 펼쳐 보여 주는 분석 도구입니다. 느린 프레임에서 계산과 대기 구간을 대조합니다.
+## 결과를 어떻게 해석할까
 
-## 관찰과 판단
+이는 원인 후보를 좁히는 실험입니다. 가장 긴 수치가 대기 시간을 포함할 수도 있으므로 Unreal Insights에서 Game·Render·RHI·GPU 시간축을 대조해 계산과 기다림을 구분합니다.
 
-프레임 제한과 VSync를 확인한 뒤 안정 구간을 반복 측정합니다. 내부 해상도 변화에 Frame·GPU가 같이 반응하는지 봅니다. 느린 프레임의 Game·Render·RHI·GPU 시간축에서 계산과 대기를 구분합니다.
+## 실제 제작에서의 선택
 
-## 오판을 피하려면
+GPU가 원인이면 무거운 패스로, CPU가 원인이면 게임 로직·명령 준비·관리 작업으로 조사 방향을 정합니다.
 
-가장 긴 막대 하나를 반드시 원인으로 읽지 않습니다. 동기화 대기와 비동기 작업의 겹침이 있으므로 타임라인과 작업 의존 관계를 확인한 뒤 수정 대상을 고릅니다.
+## 이해한 뒤 확인할 조건
 
-## 핵심 요약
+FPS 대신 ms도 기록합니다. 프레임 제한을 풀어 원인을 진단한 뒤 실제 제품 설정으로 되돌려 효과를 확인합니다.
 
-프레임 제한과 대기를 확인한 뒤, 실제로 처리율을 제한하는 작업을 고릅니다.
-
-## 공식 자료
+## 공식 자료와 확장
 
 - [Introduction to Performance Profiling and Configuration](https://dev.epicgames.com/documentation/en-us/unreal-engine/introduction-to-performance-profiling-and-configuration-in-unreal-engine)
 - [Stat Commands](https://dev.epicgames.com/documentation/en-us/unreal-engine/stat-commands-in-unreal-engine)
 
-## 관련 개념
-
-- [CH14 Draw Call과 배칭](CH14_DrawCalls.md)
-- [CH26 GPU Profiler와 전후 검증](CH26_GPUProfiling.md)
-
-## 작업 기록
-
-- 제작한 에셋
-- 바꾼 변수와 유지한 조건
-- 전후 화면과 실행 시간
-- 확인한 기기와 설정
-
-
-[처음 읽는 방법](../ReadingGuide.md) · [용어집](../Glossary.md) · [보충 주석](../SupplementaryNotes.md) · [챕터 목록](../../README.md#학습-순서)
+[읽는 순서](../ReadingGuide.md) · [용어집](../Glossary.md) · [심화와 적용 조건](../SupplementaryNotes.md)

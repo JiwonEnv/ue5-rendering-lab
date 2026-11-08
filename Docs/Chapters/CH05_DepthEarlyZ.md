@@ -1,39 +1,32 @@
 # CH05 Depth와 Early Z
 
-## 챕터 학습 목표
+## 중심 질문
 
-가려진 표면을 어떤 시점에 제외할 수 있는지 이해합니다. 밀집된 건축물·실내·식생에서 깊이 프리패스와 Early Z가 줄이는 작업을 구분하고, 가림 효과와 선행 비용을 함께 판단합니다.
+앞에 벽이 있으면 뒤의 비싼 재질 계산도 하지 않을까?
+
+## 먼저 알아둘 답
+
+깊이 검사는 가려짐을 판정하고, 그 판정을 재질 계산보다 일찍 할 수 있을 때 뒤 표면의 불필요한 계산을 줄입니다.
+
+## 왜 알아야 할까
+
+실내·밀집 건축·식생에서 가림이 실제로 어떤 일을 줄이는지 이해하기 위해 배웁니다.
 
 ### 예제 학습 목표
 
-불투명 가림판으로 패널의 노출 범위를 바꾸며 Scene Depth와 PrePass·Base Pass의 변화를 확인합니다.
+가림 범위가 깊이 표시와 뒤쪽 재질 처리 시간에 미치는 영향을 구분합니다.
 
-**구현 상태 — 기본 실습 레벨 준비**
+**구현 상태 — 기본 레벨 준비, 아래 절차에 따른 특화 예제 제작과 실측 필요**
 
-바닥, 조명, 카메라와 비교용 기본 도형을 가진 시작 레벨입니다. 아래 항목은 챕터별 예제를 완성할 때 수행할 실습 절차입니다.
+레벨 `/Game/RenderingLab/Chapters/Part01_RenderingBasics/CH05_DepthEarlyZ/Maps/L_CH05_DepthEarlyZ`
 
-레벨 경로 `/Game/RenderingLab/Chapters/Part01_RenderingBasics/CH05_DepthEarlyZ/Maps/L_CH05_DepthEarlyZ`
+## 왜 이런 결과가 생길까
 
-## 흐름 개념도
+화면의 한 위치에 여러 불투명 표면이 겹치면 가까운 표면이 남아야 합니다. 깊이 버퍼는 이 비교에 쓸 깊이를 보관합니다. Early Z는 깊이로 탈락할 후보를 비싼 픽셀 계산 전에 제외하는 처리입니다. Depth Prepass는 깊이를 먼저 그려 준비하는 별도 작업이며, Early Z 자체와 같은 뜻은 아닙니다.
 
-```mermaid
-flowchart LR
- N0["앞쪽 표면의 깊이"]
- N1["가려짐 판정"]
- N0 --> N1
- N2["불필요한 표면 계산 줄이기"]
- N1 --> N2
-```
+## 제작 중에는 이렇게 나타납니다
 
-## 원리
-
-깊이 버퍼는 화면 위치마다 앞쪽 표면의 깊이를 저장합니다. 새 삼각형이 이미 그린 표면 뒤에 있다면 최종 화면에 기여하지 않을 수 있습니다. Early Z는 가능한 경우 이런 가려짐을 먼저 검사해 비싼 표면 계산을 줄이는 GPU 동작입니다. Z는 깊이 축을 가리키는 관용적 이름입니다.
-
-## 작동 과정
-
-Depth Prepass는 주요 표면의 깊이를 먼저 준비하는 단계입니다. 뒤의 작업은 그 값을 읽어 가려진 후보를 제외할 수 있습니다. 삼각형이 덮는 화면 위치에서 만들어지는 처리 후보를 프래그먼트라고 부릅니다. 같은 화면 픽셀에도 여러 삼각형의 프래그먼트가 도착할 수 있으며, 모두 최종 색으로 남는 것은 아닙니다.
-
-## 그림으로 연결하기
+깊이를 먼저 준비하면 뒤의 재질 계산을 줄일 기회가 생기지만, 앞서 깊이를 그리는 일도 비용입니다. 따라서 최종 화면에서 가려졌다는 사실과 GPU 일이 얼마나 줄었는지는 별개입니다.
 
 ![외부 비교 이미지 · 왼쪽은 깊이 비교를 항상 통과, 오른쪽은 앞쪽 깊이를 선택한 OpenGL 예시입니다.](../Images/External/depth-print.png)
 
@@ -43,52 +36,34 @@ Depth Prepass는 주요 표면의 깊이를 먼저 준비하는 단계입니다.
 
 [© Joey de Vries · LearnOpenGL · @JoeyDeVriez · 출처 47](https://learnopengl.com/Advanced-OpenGL/Depth-testing)
 
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
-
 동일 범위의 원본을 나란히 배치 · 표제 추가
 
-## 아트 실무
+[이용 조건 CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
-벽 뒤 장식은 벽의 깊이로 가려질 수 있습니다. 반면 잎 카드처럼 구멍이 있는 표면은 먼저 구멍 여부를 알아야 합니다. Masked 재질은 텍스처 등의 값으로 해당 위치를 남길지 버릴지 정합니다. 구멍이 많은 카드와 꽉 찬 벽의 깊이 처리 효과가 다른 이유입니다.
+## 실습 절차
 
-## 성능 비용
+비교용 전통 불투명 메시의 뒤 패널에 계산이 많은 재질을 둡니다. 카메라를 고정하고 앞의 단순한 가림판으로 패널을 절반, 대부분 가리는 두 상태를 만듭니다. Prepass 설정은 유지하고 Scene Depth와 Base Pass 시간을 봅니다.
 
-깊이를 먼저 준비하는 일에도 메시 처리와 메모리 쓰기가 필요합니다. 뒤에서 줄이는 표면 계산이 크면 이득이 날 수 있지만, 단순한 장면에서는 선행 작업의 부담도 봐야 합니다. 깊이 화면의 밝기는 진단용 표시이므로 그 숫자를 카메라와 물체 사이의 실제 거리로 바로 읽지 않습니다.
+## 예상 결과와 이유
 
-## 언리얼 실습
+Scene Depth에는 가림판이 앞면으로 보일 것입니다. 조기 깊이 제거가 유효하고 뒤 패널의 픽셀 계산 비중이 크다면, 더 많이 가린 상태에서 해당 계산 시간이 줄 것으로 예상합니다.
 
-불투명 가림판 뒤에 복잡한 재질의 패널을 둡니다. 패널 일부가 계속 보이도록 하여 오브젝트 전체가 제외되는 영향을 줄입니다. 가리는 면적만 바꾸며 Scene Depth와 PrePass·Base Pass 시간을 기록합니다. 오브젝트 전체를 제외하는 컬링은 CH18에서 구분해 설명합니다.
+## 결과를 어떻게 해석할까
 
-## 관찰과 판단
+시간이 그대로면 뒤 표면이 원래 싸거나, 다른 일이 지배적이거나, 조기 제거 조건이 다를 수 있습니다. 깊이 표시가 맞는다는 것만으로 최적화 효과를 입증하지 않습니다.
 
-복잡한 패널 일부가 계속 보이게 두고 앞 가림판 면적만 바꿉니다. Scene Depth에서 앞쪽 깊이가 기록되는지 먼저 확인합니다. PrePass와 Base Pass 변화 뒤에 전체 GPU 시간도 확인합니다.
+## 실제 제작에서의 선택
 
-## 오판을 피하려면
+불투명 가림을 활용하되 Prepass만 늘리면 빨라진다고 결정하지 않습니다. 가려진 픽셀 계산을 줄인 이득과 깊이 준비 비용을 함께 봅니다.
 
-패널 전체가 사라지면 오브젝트 컬링 효과가 섞일 수 있습니다. Masked의 구멍 검사나 픽셀 깊이를 바꾸는 설정도 조기 검사 동작에 관여합니다. 올바른 가림과 Early Z의 성능 이득은 다른 결론입니다.
+## 이해한 뒤 확인할 조건
 
-## 핵심 요약
+Masked, 깊이를 바꾸는 Pixel Depth Offset, 반투명은 조건이 다릅니다. 먼저 불투명 재질에서 기본 관계를 이해한 뒤 별도로 비교합니다.
 
-깊이 준비의 추가 작업과 줄어든 표면 계산을 함께 측정합니다. 화면에 안 보이는 물체라도 모든 비용이 자동으로 사라지는 것은 아닙니다.
-
-## 공식 자료
+## 공식 자료와 확장
 
 - [Render Dependency Graph](https://dev.epicgames.com/documentation/en-us/unreal-engine/rendering-dependency-graph-in-unreal-engine)
 - [Introduction to Performance Profiling and Configuration](https://dev.epicgames.com/documentation/en-us/unreal-engine/introduction-to-performance-profiling-and-configuration-in-unreal-engine)
 - [Decal Materials](https://dev.epicgames.com/documentation/en-us/unreal-engine/decal-materials-in-unreal-engine)
-- [Visibility and Occlusion Culling](https://dev.epicgames.com/documentation/en-us/unreal-engine/visibility-and-occlusion-culling-in-unreal-engine)
 
-## 관련 개념
-
-- [CH06 Overdraw와 화면 겹침](CH06_Overdraw.md)
-- [CH18 Culling과 가시성](CH18_Culling.md)
-
-## 작업 기록
-
-- 제작한 에셋
-- 바꾼 변수와 유지한 조건
-- 전후 화면과 실행 시간
-- 확인한 기기와 설정
-
-
-[처음 읽는 방법](../ReadingGuide.md) · [용어집](../Glossary.md) · [보충 주석](../SupplementaryNotes.md) · [챕터 목록](../../README.md#학습-순서)
+[읽는 순서](../ReadingGuide.md) · [용어집](../Glossary.md) · [심화와 적용 조건](../SupplementaryNotes.md)

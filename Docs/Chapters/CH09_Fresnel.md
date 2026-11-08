@@ -1,39 +1,32 @@
 # CH09 Fresnel과 시선 각도
 
-## 챕터 학습 목표
+## 중심 질문
 
-시선 각도에 따라 반사가 달라지는 이유를 이해합니다. 물·유리·젖은 바닥·코팅 표면의 반사를 설계하고, 광학적 반응과 의도적으로 추가한 림 효과를 구분해 조절합니다.
+물이나 유리는 왜 비스듬히 볼 때 반사가 강해질까?
+
+## 먼저 알아둘 답
+
+반사되는 빛의 비율은 입사각에 따라 달라지며, 비금속은 스치는 각도에서 반사가 강해집니다.
+
+## 왜 알아야 할까
+
+물·유리·코팅의 각도별 외관을 만들고 물리 반사와 의도적인 림 효과를 구분하기 위해 배웁니다.
 
 ### 예제 학습 목표
 
-바닥을 보는 각도에 따른 반사 변화와 Fresnel 노드로 만든 발광 마스크를 각각 관찰합니다.
+각도 의존 반사와 Fresnel 발광 마스크의 차이를 확인합니다.
 
-**구현 상태 — 기본 실습 레벨 준비**
+**구현 상태 — 기본 레벨 준비, 아래 절차에 따른 특화 예제 제작과 실측 필요**
 
-바닥, 조명, 카메라와 비교용 기본 도형을 가진 시작 레벨입니다. 아래 항목은 챕터별 예제를 완성할 때 수행할 실습 절차입니다.
+레벨 `/Game/RenderingLab/Chapters/Part02_MaterialsAndLight/CH09_Fresnel/Maps/L_CH09_Fresnel`
 
-레벨 경로 `/Game/RenderingLab/Chapters/Part02_MaterialsAndLight/CH09_Fresnel/Maps/L_CH09_Fresnel`
+## 왜 이런 결과가 생길까
 
-## 흐름 개념도
+Fresnel은 경계면에서 빛이 얼마나 반사되는지 각도와 물질 특성에 따라 설명합니다. 표면을 정면에서 보는 조건과 거의 스치듯 보는 조건의 반사율이 같지 않습니다. 실제 화면에서는 광원의 분포와 거칠기도 함께 작용하므로 가장자리가 언제나 밝은 선으로 보인다는 뜻은 아닙니다.
 
-```mermaid
-flowchart LR
- N0["정면에서 보기"]
- N1["비스듬히 보기"]
- N0 --> N1
- N2["달라지는 반사율"]
- N1 --> N2
-```
+## 제작 중에는 이렇게 나타납니다
 
-## 원리
-
-Fresnel은 빛이 두 물질의 경계를 만날 때 각도에 따라 반사 비율이 달라지는 성질입니다. 물이나 유리 같은 비금속은 정면보다 스치는 각도에서 반사가 강해지는 경우가 흔합니다. F0는 표면에 수직으로 빛이 들어올 때의 반사율을 뜻합니다.
-
-## 작동 과정
-
-잔잔한 물을 위에서 보면 물속이 잘 보이다가 낮은 시선에서는 하늘 반사가 강해지는 현상을 떠올릴 수 있습니다. 재질 모델은 각도에 따른 반사율을 계산하거나 근사합니다. 근사는 계산 비용을 줄이면서 주요 경향을 재현하는 방법입니다. 세부 수식보다 정면과 가장자리의 반응을 먼저 관찰합니다.
-
-## 그림으로 연결하기
+PBR 재질의 반사에는 이미 각도 의존성이 포함됩니다. 여기에 Fresnel 노드를 Emissive로 더하면 물리 반사뿐 아니라 광원 없이도 밝아지는 별도의 연출을 만든 것입니다.
 
 ![외부 시각화 이미지 · 구의 중심과 실루엣 부근에서 Fresnel 반사 계수가 달라지는 예입니다.](../Images/External/fresnel-print.png)
 
@@ -43,50 +36,34 @@ Fresnel은 빛이 두 물질의 경계를 만날 때 각도에 따라 반사 비
 
 [© Joey de Vries · LearnOpenGL · @JoeyDeVriez · 출처 41](https://learnopengl.com/PBR/Theory)
 
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+원본 전체와 비율 유지
 
-## 아트 실무
+[이용 조건 CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
-젖은 바닥을 높은 시점과 낮은 시점에서 비교합니다. UE의 Fresnel 노드는 시선과 표면 방향에 따라 달라지는 마스크에도 쓸 수 있습니다. 마스크는 효과를 어느 부분에 얼마나 적용할지 정하는 값입니다. 이를 발광에 연결한 림 효과는 재질의 자연 반사와 목적을 구분해 조절합니다.
+## 실습 절차
 
-## 성능 비용
+반사할 환경이 있는 물 또는 유리 표면을 준비합니다. 카메라 각도만 바꿔 정면과 낮은 시점의 반사를 봅니다. 이후 별도 재질에 Fresnel 노드의 출력을 Emissive에 연결하고 조명을 줄여 비교합니다.
 
-간단한 각도 마스크의 계산과 새 투명 레이어·반사 기능을 추가하는 일은 부담이 다릅니다. 마스크를 만드는 노드 수보다 그 값으로 어떤 추가 작업을 켰는지도 확인합니다. 실제 반사 계산의 각도와 아트용 Fresnel 마스크의 각도 사용은 구현이 다를 수 있습니다.
+## 예상 결과와 이유
 
-## 언리얼 실습
+기본 표면에서는 각도에 따라 환경 반사의 비중이 달라질 것입니다. 발광 마스크는 환경이 어두워져도 스치는 부분을 밝힐 수 있습니다.
 
-반사할 환경이 있는 레벨에서 젖은 판을 정면과 낮은 시선으로 봅니다. 별도 재질에서 Fresnel 출력을 Emissive에 연결해 마스크의 모양만 확인합니다. Emissive는 표면 자체가 밝게 보이도록 하는 입력입니다. 두 결과가 조명 변화에 어떻게 반응하는지 비교합니다.
+## 결과를 어떻게 해석할까
 
-## 관찰과 판단
+두 결과가 비슷해 보여도 빛을 만드는 원인이 다릅니다. Fresnel 노드의 마스크를 실제 물질의 반사율 전체와 동일시하지 않습니다.
 
-같은 젖은 판을 높은 시점과 스치는 시점에서 봅니다. 별도 재질의 Fresnel 마스크는 Emissive로 출력해 모양만 확인합니다. 광원을 바꿨을 때 자연 반사와 인위적 림이 어떻게 달라지는지 봅니다.
+## 실제 제작에서의 선택
 
-## 오판을 피하려면
+자연스러운 유리·물은 기본 반사 모델과 거칠기부터 맞추고, 림 발광은 필요한 연출로 명시해 추가합니다.
 
-Emissive에 연결한 각도 마스크는 물리적 반사와 같지 않습니다. 실루엣이 밝다는 사실만으로 재질의 F0가 올바르다고 판정하지 않습니다.
+## 이해한 뒤 확인할 조건
 
-## 핵심 요약
+F0는 정면 입사에서의 반사율입니다. 굴절률과 금속의 파장별 반응 같은 세부는 공식 PBR 자료에서 확장합니다.
 
-정면의 반사율과 각도에 따른 변화, 의도적으로 넣은 림 표현의 역할을 구분합니다.
-
-## 공식 자료
+## 공식 자료와 확장
 
 - [Physically Based Materials](https://dev.epicgames.com/documentation/en-us/unreal-engine/physically-based-materials-in-unreal-engine)
 - [Using Fresnel](https://dev.epicgames.com/documentation/en-us/unreal-engine/using-fresnel-in-your-unreal-engine-materials)
 - [Overview of Substrate Materials](https://dev.epicgames.com/documentation/en-us/unreal-engine/overview-of-substrate-materials-in-unreal-engine)
-- [Real Shading in Unreal Engine 4 · Brian Karis](https://blog.selfshadow.com/publications/s2013-shading-course/karis/s2013_pbs_epic_notes_v2.pdf)
 
-## 관련 개념
-
-- [CH08 BRDF와 반사 분포](CH08_BRDF.md)
-- [CH12 Translucency와 굴절](CH12_TranslucencyRefraction.md)
-
-## 작업 기록
-
-- 제작한 에셋
-- 바꾼 변수와 유지한 조건
-- 전후 화면과 실행 시간
-- 확인한 기기와 설정
-
-
-[처음 읽는 방법](../ReadingGuide.md) · [용어집](../Glossary.md) · [보충 주석](../SupplementaryNotes.md) · [챕터 목록](../../README.md#학습-순서)
+[읽는 순서](../ReadingGuide.md) · [용어집](../Glossary.md) · [심화와 적용 조건](../SupplementaryNotes.md)

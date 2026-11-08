@@ -92,7 +92,7 @@
   {
     "id": "CH10",
     "slug": "ShadersWPO",
-    "title": "Shader와 순열과 WPO",
+    "title": "셰이더와 WPO",
     "part": "Part02_MaterialsAndLight",
     "folder": "CH10_ShadersWPO",
     "status": "starter",
@@ -102,7 +102,7 @@
   {
     "id": "CH11",
     "slug": "Substrate",
-    "title": "Substrate와 재질 레이어",
+    "title": "Substrate와 물질 적층",
     "part": "Part02_MaterialsAndLight",
     "folder": "CH11_Substrate",
     "status": "starter",
@@ -112,7 +112,7 @@
   {
     "id": "CH12",
     "slug": "TranslucencyRefraction",
-    "title": "Translucency와 굴절",
+    "title": "Translucency와 합성",
     "part": "Part02_MaterialsAndLight",
     "folder": "CH12_TranslucencyRefraction",
     "status": "starter",
@@ -132,7 +132,7 @@
   {
     "id": "CH14",
     "slug": "DrawCalls",
-    "title": "Draw Call과 배칭",
+    "title": "Draw Call과 제출 작업",
     "part": "Part03_GeometryAndTextures",
     "folder": "CH14_DrawCalls",
     "status": "starter",
@@ -182,7 +182,7 @@
   {
     "id": "CH19",
     "slug": "Mipmaps",
-    "title": "Mipmap과 텍스처 샘플링",
+    "title": "Mipmap과 샘플링",
     "part": "Part03_GeometryAndTextures",
     "folder": "CH19_Mipmaps",
     "status": "starter",
@@ -192,7 +192,7 @@
   {
     "id": "CH20",
     "slug": "TextureStreaming",
-    "title": "Texture Streaming과 메모리 예산",
+    "title": "Texture Streaming",
     "part": "Part03_GeometryAndTextures",
     "folder": "CH20_TextureStreaming",
     "status": "starter",
@@ -202,7 +202,7 @@
   {
     "id": "CH21",
     "slug": "Lumen",
-    "title": "Lumen과 동적 간접광",
+    "title": "Lumen과 간접광",
     "part": "Part04_LightingAndImageQuality",
     "folder": "CH21_Lumen",
     "status": "starter",
@@ -212,7 +212,7 @@
   {
     "id": "CH22",
     "slug": "VirtualShadowMaps",
-    "title": "Virtual Shadow Maps와 페이지 캐시",
+    "title": "Virtual Shadow Maps",
     "part": "Part04_LightingAndImageQuality",
     "folder": "CH22_VirtualShadowMaps",
     "status": "starter",
@@ -232,7 +232,7 @@
   {
     "id": "CH24",
     "slug": "TSR",
-    "title": "TSR과 시간적 업스케일링",
+    "title": "TSR과 시간적 재구성",
     "part": "Part04_LightingAndImageQuality",
     "folder": "CH24_TSR",
     "status": "starter",
@@ -252,7 +252,7 @@
   {
     "id": "CH26",
     "slug": "GPUProfiling",
-    "title": "GPU Profiler와 전후 검증",
+    "title": "GPU Profiler와 개선 검증",
     "part": "Part05_Profiling",
     "folder": "CH26_GPUProfiling",
     "status": "starter",

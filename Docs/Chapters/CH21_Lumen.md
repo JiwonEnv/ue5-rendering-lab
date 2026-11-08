@@ -1,92 +1,62 @@
-# CH21 Lumen과 동적 간접광
+# CH21 Lumen과 간접광
 
-## 챕터 학습 목표
+## 중심 질문
 
-간접광과 반사가 장면의 표현·추적·갱신에 의존하는 방식을 이해합니다. 실내 누광, 누락된 반사와 노이즈를 진단하고, 메시 구성·라이팅·추적 품질을 목표 성능에 맞게 설계합니다.
+직접 빛이 닿지 않는 흰 벽은 왜 주변 벽의 색을 띨까?
+
+## 먼저 알아둘 답
+
+빛은 첫 표면에서 끝나지 않고 다른 표면으로 전달되며, Lumen은 이 간접광을 실시간으로 근사합니다.
+
+## 왜 알아야 할까
+
+실내의 밝기·색 번짐을 재질색과 구분하고, 라이트를 추가하기 전에 빛 전달을 진단하기 위해 배웁니다.
 
 ### 예제 학습 목표
 
-L자 방의 Lumen Scene과 Surface Cache를 관찰하고 메시 분할 또는 추적 설정의 영향을 비교합니다.
+색 벽만 바꿔 흰 벽의 재질색과 간접광을 구분합니다.
 
-**구현 상태 — 기본 실습 레벨 준비**
+**구현 상태 — 기본 레벨 준비, 아래 절차에 따른 특화 예제 제작과 실측 필요**
 
-바닥, 조명, 카메라와 비교용 기본 도형을 가진 시작 레벨입니다. 아래 항목은 챕터별 예제를 완성할 때 수행할 실습 절차입니다.
+레벨 `/Game/RenderingLab/Chapters/Part04_LightingAndImageQuality/CH21_Lumen/Maps/L_CH21_Lumen`
 
-레벨 경로 `/Game/RenderingLab/Chapters/Part04_LightingAndImageQuality/CH21_Lumen/Maps/L_CH21_Lumen`
+## 왜 이런 결과가 생길까
 
-## 흐름 개념도
+광원에서 바로 도달한 빛은 직접광입니다. 붉은 벽에 닿은 빛 일부가 다시 방 안으로 퍼져 흰 벽에 도달하면 붉은 간접광이 생깁니다. Lumen은 화면 정보와 별도 장면 표현을 이용해 이런 빛의 전달을 추정합니다. 화면에 보이는 정보만 쓰면 화면 밖 물체를 놓칠 수 있으므로 보완할 장면 정보가 필요합니다.
 
-```mermaid
-flowchart LR
- N0["화면에서 추적"]
- N1["장면 정보로 보완"]
- N0 --> N1
- N2["간접광과 반사 계산"]
- N1 --> N2
-```
+## 제작 중에는 이렇게 나타납니다
 
-## 원리
+흰 벽이 붉게 보인다고 Base Color를 푸르게 보정하면 다른 조명에서 재질이 틀어질 수 있습니다. 먼저 표면의 고유 색과 들어오는 간접광을 구분해야 합니다.
 
-직접광은 광원에서 표면으로 바로 도달한 빛이고, 간접광은 다른 표면에서 반사되어 온 빛입니다. Lumen은 움직이는 장면의 간접광과 반사를 계산합니다. 빨간 벽에서 튄 빛이 흰 벽에 붉은 기운을 주는 현상은 전역 조명, 즉 장면 전체의 빛 전달을 이해하는 사례입니다.
+![간접광의 색 전달](../Images/Concepts/cornellbox.png)
 
-## 작동 과정
+외부 경로 추적 Cornell box 렌더. 색 벽의 간접광 현상을 설명하며 Lumen 실행 결과는 아닙니다. 원본 전체·색상·비율 유지.
 
-Lumen은 먼저 화면에 있는 정보를 따라 빛의 경로를 조사하는 Screen Trace를 활용합니다. 부족한 부분은 거리장으로 표현한 장면이나 하드웨어 레이 트레이싱으로 보완할 수 있습니다. 거리장은 표면까지의 거리를 저장한 표현입니다. 레이 트레이싱은 광선과 물체가 만나는 위치를 추적하는 계산 방식입니다.
+[Trevorgoodchild · Public domain · 출처 36](https://commons.wikimedia.org/wiki/File:Cornellbox_pathtracing_irradiancecaching.png)
 
-## 그림으로 연결하기
+## 실습 절차
 
-![Epic 공식 반사 비교 · 왼쪽 Surface Cache, 오른쪽 Hit Lighting입니다. 동일한 바닥 반사 영역을 발췌했습니다.](../Images/External/lumen-reflection-print.png)
+한쪽 벽만 색이 있는 작은 방과 흰 수신 벽을 준비합니다. Lumen GI와 노출·직접광을 고정합니다. 색 벽의 Base Color만 빨강에서 중성 회색으로 바꾸고 수신 벽의 Base Color와 Lit를 비교합니다.
 
-Epic 공식 반사 비교 · 왼쪽 Surface Cache, 오른쪽 Hit Lighting입니다. 동일한 바닥 반사 영역을 발췌했습니다.
+## 예상 결과와 이유
 
-읽을 곳  오른쪽 바닥에 추가된 밝은 반사선과 조명 반응을 봅니다. 반사 조명 평가 방식의 차이이며 모든 Lumen 문제의 해결책은 아닙니다. 원문 UE 5.5 예시를 현재 기능 지원·GPU 시간과 구분합니다.
+수신 벽의 Base Color는 유지되고 Lit의 색 번짐은 달라질 것입니다. 직접광은 같아도 주변 재료가 간접 조명을 바꾼다는 예상입니다.
 
-[© Epic Games · 공식 문서 · 출처 55](https://dev.epicgames.com/documentation/en-us/unreal-engine/lumen-technical-details-in-unreal-engine?application_version=5.5)
+## 결과를 어떻게 해석할까
 
-원저작권과 원문 출처 표시는 유지합니다
+변화가 없으면 GI 설정과 장면 표현을 먼저 확인합니다. Surface Cache는 추적한 표면의 재질·조명을 조회하는 저장 체계입니다. 누락을 조사할 때 진단하지만 이 장의 첫 결론은 색 번짐의 원인입니다.
 
-원본 일부 발췌·확대 · 색상 유지 · 표제 추가
+## 실제 제작에서의 선택
 
-## 아트 실무
+수신 벽의 텍스처를 바로 보정하지 말고 주변 표면·간접광·노출을 조사합니다. 표현 누락은 Lumen Scene과 Surface Cache를 다음 진단 대상으로 삼습니다.
 
-Surface Cache는 추적한 표면의 재질과 조명 정보를 빠르게 조회하기 위한 저장 체계입니다. 여러 방향에서 표면을 담은 Cards를 사용합니다. 한 메시로 된 방의 일부가 분홍색으로 표시되면 이 표면 정보의 적용 범위를 확인합니다. 벽·바닥·천장을 분리한 버전과 비교하고, 얇은 벽의 누광은 거리장 표현도 살핍니다.
+## 이해한 뒤 확인할 조건
 
-## 성능 비용
+반사에서 Surface Cache와 Hit Lighting을 비교하는 것은 별도 문제입니다. 반사 모드나 추적 옵션을 이 간접광 실험과 동시에 바꾸지 않습니다.
 
-내부 해상도, 추적 거리, 반사 범위와 장면 갱신이 비용에 영향을 줍니다. 하드웨어 레이 트레이싱은 지원 GPU가 필요하며, 광선이 만날 후보를 빠르게 찾기 위한 가속 구조도 관리합니다. 인스턴스가 많거나 물체가 자주 변형되면 그 구조를 갱신하는 부담을 봅니다.
-
-## 언리얼 실습
-
-L자 방에서 노출을 고정합니다. Lumen Overview는 관련 결과를 모아 보는 모드, Lumen Scene은 추적에 쓰는 장면 표현, Surface Cache는 표면 정보의 적용 상태를 살피는 모드입니다. 메시 분할 또는 추적 설정 한 가지만 바꾸며 누광·반사·간접광과 GPU 시간을 비교합니다.
-
-## 관찰과 판단
-
-문제가 있는 구도에서 Lit와 Lumen Scene·Surface Cache를 비교합니다. 메시 분할 또는 추적 설정 하나만 바꾸고 반사 누락과 누광을 확인합니다. 반사 품질과 전체 GPU 시간을 함께 기록합니다.
-
-## 오판을 피하려면
-
-Surface Cache와 Hit Lighting의 비교는 반사 조명 평가 방식의 비교입니다. 하드웨어 RT 지원·설정 조건을 확인하며, 한 옵션이 모든 누광과 반사 문제를 해결한다고 일반화하지 않습니다.
-
-## 핵심 요약
-
-현재 화면의 정보, 추적할 장면 표현과 계산 예산을 나누어 Lumen 문제를 조사합니다.
-
-## 공식 자료
+## 공식 자료와 확장
 
 - [Lumen Technical Details](https://dev.epicgames.com/documentation/en-us/unreal-engine/lumen-technical-details-in-unreal-engine)
 - [Lumen Performance Guide](https://dev.epicgames.com/documentation/en-us/unreal-engine/lumen-performance-guide-for-unreal-engine)
 
-## 관련 개념
-
-- [CH03 GBuffer와 표면 정보](CH03_GBuffer.md)
-- [CH22 Virtual Shadow Maps와 페이지 캐시](CH22_VirtualShadowMaps.md)
-
-## 작업 기록
-
-- 제작한 에셋
-- 바꾼 변수와 유지한 조건
-- 전후 화면과 실행 시간
-- 확인한 기기와 설정
-
-
-[처음 읽는 방법](../ReadingGuide.md) · [용어집](../Glossary.md) · [보충 주석](../SupplementaryNotes.md) · [챕터 목록](../../README.md#학습-순서)
+[읽는 순서](../ReadingGuide.md) · [용어집](../Glossary.md) · [심화와 적용 조건](../SupplementaryNotes.md)

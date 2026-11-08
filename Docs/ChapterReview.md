@@ -1,44 +1,44 @@
-# 전체 챕터 보완 기록
+# 중심 질문에 따른 편집 기록
 
-26개 챕터의 용어·인과 관계·이미지의 관찰 가능성·실습의 통제 조건을 점검했습니다. 각 챕터에 관찰 절차와 오판을 피하는 기준을 추가했습니다.
+내용을 추가하는 방식에서 벗어나, 각 챕터의 질문·설명·그림·실험이 같은 원리를 향하도록 다시 편집했습니다.
 
-CH01은 직접 제작한 장면과 실제 캡처입니다. CH02–26은 기본 레벨과 제작·검증 절차이며, 외부 이미지는 비교·학습을 위한 사례입니다. 이 보완에서 해당 레벨의 새 실측을 수행했다고 주장하지 않습니다.
-
-| 챕터 | PDF 시작 쪽 | 추가·수정한 내용 |
+| 챕터 | PDF 시작 쪽 | 중심 질문 |
 |---|---:|---|
-| [CH01](Chapters/CH01_RenderingPipeline.md) | 4 | 좌표·깊이 진단의 해석 범위 재점검 |
-| [CH02](Chapters/CH02_ForwardDeferred.md) | 18 | 렌더러 비교의 기능·화질 동등 조건 보강 |
-| [CH03](Chapters/CH03_GBuffer.md) | 20 | 진단 화면과 실제 버퍼 저장 형식 구분 |
-| [CH04](Chapters/CH04_DBufferDecals.md) | 22 | 공식 데칼 전후 이미지와 수신 표면 검증 |
-| [CH05](Chapters/CH05_DepthEarlyZ.md) | 24 | 깊이 검사 비교와 Early Z 이득의 차이 설명 |
-| [CH06](Chapters/CH06_Overdraw.md) | 26 | 실제 Quad Overdraw 화면과 비용 오판 교정 |
-| [CH07](Chapters/CH07_PBR.md) | 28 | 금속성·거칠기 비교 조건 보강 |
-| [CH08](Chapters/CH08_BRDF.md) | 30 | 광원 크기와 거칠기 분리 검증 |
-| [CH09](Chapters/CH09_Fresnel.md) | 32 | 물리 반사와 아트용 각도 마스크 구분 |
-| [CH10](Chapters/CH10_ShadersWPO.md) | 34 | 실제 셰이더 통계 화면과 WPO·순열 검증 분리 |
-| [CH11](Chapters/CH11_Substrate.md) | 36 | 공식 코팅 비교와 두 변수 동시 변경의 한계 명시 |
-| [CH12](Chapters/CH12_TranslucencyRefraction.md) | 38 | 정렬·화면 기반 굴절 검증 보강 |
-| [CH13](Chapters/CH13_SubsurfaceScattering.md) | 40 | 실제 산란 비교와 모델별 입력 의미 구분 |
-| [CH14](Chapters/CH14_DrawCalls.md) | 42 | 공식 그리기 파이프라인과 시간·호출 수 구분 |
-| [CH15](Chapters/CH15_Instancing.md) | 44 | 인스턴스별 데이터의 실제 렌더 예시 |
-| [CH16](Chapters/CH16_LOD.md) | 46 | LOD 전환의 실루엣·그림자·출력 조건 보강 |
-| [CH17](Chapters/CH17_Nanite.md) | 48 | 실제 Nanite 시각화의 적용 범위와 면적 보존 검증 |
-| [CH18](Chapters/CH18_Culling.md) | 50 | 시야 제외·가림 판정 단계별 외부 도식 |
-| [CH19](Chapters/CH19_Mipmaps.md) | 52 | 밉·필터·상주 상태를 분리한 관찰 |
-| [CH20](Chapters/CH20_TextureStreaming.md) | 54 | 실제 스트리밍 통계와 예산·수요·상주량 구분 |
-| [CH21](Chapters/CH21_Lumen.md) | 56 | 실제 Lumen 반사 조명 비교로 교체 |
-| [CH22](Chapters/CH22_VirtualShadowMaps.md) | 58 | 실제 VSM 캐시·무효화 범위 시각화 |
-| [CH23](Chapters/CH23_TAA.md) | 60 | AA 전후 확대와 정지 이미지의 한계 명시 |
-| [CH24](Chapters/CH24_TSR.md) | 62 | 동일 출력에서 입력 해상도 차이와 TSR 비교 |
-| [CH25](Chapters/CH25_CPUGPUBottlenecks.md) | 64 | 실제 프레임 그래프에서 계산·대기 구분 |
-| [CH26](Chapters/CH26_GPUProfiling.md) | 66 | 실제 GPU Insights 시간축과 계층 시간 검증 |
+| [CH01](Chapters/CH01_RenderingPipeline.md) | 4 | 같은 장면인데 왜 진단 화면마다 보이는 것이 다를까? |
+| [CH02](Chapters/CH02_ForwardDeferred.md) | 10 | 왜 렌더러를 바꾸면 같은 에셋의 표현과 비용 조건이 달라질까? |
+| [CH03](Chapters/CH03_GBuffer.md) | 12 | 벽이 번들거릴 때 왜 최종 색보다 Roughness 화면을 먼저 볼까? |
+| [CH04](Chapters/CH04_DBufferDecals.md) | 14 | 데칼은 왜 벽 그림처럼 빛에 반응하고, 옆 소품에도 묻을까? |
+| [CH05](Chapters/CH05_DepthEarlyZ.md) | 16 | 앞에 벽이 있으면 뒤의 비싼 재질 계산도 하지 않을까? |
+| [CH06](Chapters/CH06_Overdraw.md) | 18 | 삼각형을 줄인 풀 카드가 왜 더 느릴 수 있을까? |
+| [CH07](Chapters/CH07_PBR.md) | 20 | 조명을 바꿔도 금속과 페인트가 재료답게 보이려면 무엇을 입력해야 할까? |
+| [CH08](Chapters/CH08_BRDF.md) | 22 | 같은 밝기의 재질인데 왜 하이라이트의 폭과 모양이 다를까? |
+| [CH09](Chapters/CH09_Fresnel.md) | 24 | 물이나 유리는 왜 비스듬히 볼 때 반사가 강해질까? |
+| [CH10](Chapters/CH10_ShadersWPO.md) | 26 | 재질에서 풀을 흔들면 왜 형상과 그림자가 함께 달라질까? |
+| [CH11](Chapters/CH11_Substrate.md) | 28 | 페인트 위 투명 코팅은 왜 두 재질의 색을 섞는 것만으로 충분하지 않을까? |
+| [CH12](Chapters/CH12_TranslucencyRefraction.md) | 30 | 유리판을 겹치면 왜 불투명 벽과 다른 오류가 생길까? |
+| [CH13](Chapters/CH13_SubsurfaceScattering.md) | 32 | 왁스는 왜 두께와 역광에 따라 색과 밝기가 달라질까? |
+| [CH14](Chapters/CH14_DrawCalls.md) | 34 | 소품 하나인데 왜 여러 번 그리는 명령이 생길까? |
+| [CH15](Chapters/CH15_Instancing.md) | 36 | 같은 기둥 수백 개를 왜 개별 Actor 대신 인스턴스로 관리할까? |
+| [CH16](Chapters/CH16_LOD.md) | 38 | 먼 난간의 나사는 왜 생략해도 되지만 윤곽은 남겨야 할까? |
+| [CH17](Chapters/CH17_Nanite.md) | 40 | Nanite는 원본의 수많은 삼각형을 매번 모두 그릴까? |
+| [CH18](Chapters/CH18_Culling.md) | 42 | 건물을 한 덩어리로 합치면 왜 벽 뒤 부분까지 처리할 수 있을까? |
+| [CH19](Chapters/CH19_Mipmaps.md) | 44 | 먼 바닥의 잔무늬는 왜 고해상도 원본만 쓰면 더 흔들릴까? |
+| [CH20](Chapters/CH20_TextureStreaming.md) | 46 | 텍스처 원본은 선명한데 게임에서는 왜 잠시 흐리게 보일까? |
+| [CH21](Chapters/CH21_Lumen.md) | 48 | 직접 빛이 닿지 않는 흰 벽은 왜 주변 벽의 색을 띨까? |
+| [CH22](Chapters/CH22_VirtualShadowMaps.md) | 50 | 바람 부는 풀밭은 왜 카메라가 멈춰도 그림자 작업이 생길까? |
+| [CH23](Chapters/CH23_TAA.md) | 52 | 철망의 깜빡임을 줄였는데 왜 움직일 때 잔상이 생길까? |
+| [CH24](Chapters/CH24_TSR.md) | 54 | 낮은 내부 해상도로 그려도 어떻게 높은 출력 해상도를 만들까? |
+| [CH25](Chapters/CH25_CPUGPUBottlenecks.md) | 56 | 폴리곤과 해상도를 줄였는데 왜 FPS가 그대로일까? |
+| [CH26](Chapters/CH26_GPUProfiling.md) | 58 | 무거운 GPU 패스를 찾은 다음 어떻게 수정 효과를 증명할까? |
 
-## 공통 보완
+## 범위 조정
 
-- 원리·작동 과정 바로 아래에 외부 진단 화면이나 비교 이미지를 배치했습니다.
-- 다음 쪽에 아트 실무·비용·실습·관찰과 판단·오판 방지·요약을 묶었습니다.
-- 단순 화살표나 반복 삼각형이 실제 차이를 대신하지 않도록 중복 그림을 정리했습니다.
-- 과거 버전의 UI·모델·수치와 현재 프로젝트의 검증을 구분했습니다.
-- 정지 이미지로 입증할 수 없는 이동 품질·캐시·시간 변화에는 별도 검증 절차를 명시했습니다.
+- CH01은 14쪽에서 6쪽으로 편집했습니다. 좌표·래스터화·표면과 조명·Bloom의 인과 흐름을 남기고 상세 캡처는 별도 기록으로 보존했습니다.
+- CH10은 정점 변형에 초점을 맞추고 순열·컴파일·쿠킹은 심화로 옮겼습니다.
+- CH11은 단일 혼합과 물질 적층, CH13은 내부 산란 경로, CH17은 화면 오차와 세부 선택을 설명하는 도식으로 교체했습니다.
+- CH21의 반사 모드 비교를 간접광 현상으로, CH23의 정지 AA 비교를 히스토리 대응 과정으로 교체했습니다.
+- GBuffer의 재질 진단과 해상도별 비용 실험을 분리했습니다. 본문은 입력과 조명 결과의 구분에 집중합니다.
+- 모든 실습에 예상 결과와 이유를 적고, 실제 제작의 선택과 예외를 뒤에 배치했습니다.
+- 이전 외부 그림의 원본과 출처는 삭제하지 않고 참고 자료로 보관합니다. 본문 삽입 수를 품질 목표로 삼지 않습니다.
 
-[이미지 출처와 편집 기록](Images/Sources.md)
+기존 PDF와 DOCX를 같은 이름으로 갱신했습니다. CH02–26의 실제 특화 예제 제작과 성능 측정은 별도 작업입니다.
