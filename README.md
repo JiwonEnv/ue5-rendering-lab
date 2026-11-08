@@ -39,8 +39,8 @@ Forward 전환이나 Adaptive GBuffer 실험은 프로젝트 설정 변경과 �
 | CH07 | [PBR과 재질 입력](Docs/Chapters/CH07_PBR.md) | 기본 레벨 준비 |
 | CH08 | [BRDF와 반사 분포](Docs/Chapters/CH08_BRDF.md) | 기본 레벨 준비 |
 | CH09 | [Fresnel과 시선 각도](Docs/Chapters/CH09_Fresnel.md) | 기본 레벨 준비 |
-| CH10 | [셰이더와 WPO](Docs/Chapters/CH10_ShadersWPO.md) | 기본 레벨 준비 |
-| CH11 | [Substrate와 물질 적층](Docs/Chapters/CH11_Substrate.md) | 기본 레벨 준비 |
+| CH10 | [셰이더와 머티리얼](Docs/Chapters/CH10_ShadersWPO.md) | 기본 레벨 준비 |
+| CH11 | [Substrate와 물질 구성](Docs/Chapters/CH11_Substrate.md) | 기본 레벨 준비 |
 | CH12 | [Translucency와 합성](Docs/Chapters/CH12_TranslucencyRefraction.md) | 기본 레벨 준비 |
 | CH13 | [SSS와 표면 아래 산란](Docs/Chapters/CH13_SubsurfaceScattering.md) | 기본 레벨 준비 |
 | CH14 | [Draw Call과 제출 작업](Docs/Chapters/CH14_DrawCalls.md) | 기본 레벨 준비 |
@@ -48,7 +48,7 @@ Forward 전환이나 Adaptive GBuffer 실험은 프로젝트 설정 변경과 �
 | CH16 | [LOD와 화면 크기](Docs/Chapters/CH16_LOD.md) | 기본 레벨 준비 |
 | CH17 | [Nanite와 가상화 지오메트리](Docs/Chapters/CH17_Nanite.md) | 기본 레벨 준비 |
 | CH18 | [Culling과 가시성](Docs/Chapters/CH18_Culling.md) | 기본 레벨 준비 |
-| CH19 | [Mipmap과 샘플링](Docs/Chapters/CH19_Mipmaps.md) | 기본 레벨 준비 |
+| CH19 | [Mipmap과 텍스처 샘플링](Docs/Chapters/CH19_Mipmaps.md) | 기본 레벨 준비 |
 | CH20 | [Texture Streaming](Docs/Chapters/CH20_TextureStreaming.md) | 기본 레벨 준비 |
 | CH21 | [Lumen과 간접광](Docs/Chapters/CH21_Lumen.md) | 기본 레벨 준비 |
 | CH22 | [Virtual Shadow Maps](Docs/Chapters/CH22_VirtualShadowMaps.md) | 기본 레벨 준비 |

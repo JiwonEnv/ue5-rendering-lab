@@ -92,7 +92,7 @@
   {
     "id": "CH10",
     "slug": "ShadersWPO",
-    "title": "셰이더와 WPO",
+    "title": "셰이더와 머티리얼",
     "part": "Part02_MaterialsAndLight",
     "folder": "CH10_ShadersWPO",
     "status": "starter",
@@ -102,7 +102,7 @@
   {
     "id": "CH11",
     "slug": "Substrate",
-    "title": "Substrate와 물질 적층",
+    "title": "Substrate와 물질 구성",
     "part": "Part02_MaterialsAndLight",
     "folder": "CH11_Substrate",
     "status": "starter",
@@ -182,7 +182,7 @@
   {
     "id": "CH19",
     "slug": "Mipmaps",
-    "title": "Mipmap과 샘플링",
+    "title": "Mipmap과 텍스처 샘플링",
     "part": "Part03_GeometryAndTextures",
     "folder": "CH19_Mipmaps",
     "status": "starter",
