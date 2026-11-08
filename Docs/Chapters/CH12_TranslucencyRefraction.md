@@ -51,9 +51,15 @@ Translucency는 뒤의 색이 비치는 표면을 표현합니다. 가장 단순
 
 ## 그림으로 연결하기
 
-![CH12 설명도](../Images/Concepts/explain-12.png)
+![외부 개념도 · 입사한 빛이 표면에서 반사되거나 내부로 들어가 산란·흡수될 수 있습니다.](../Images/External/translucency-print.png)
 
-반투명 결과에는 표면 자체의 반사와 뒤쪽 배경의 영향이 함께 들어갑니다. 굴절은 배경을 읽는 위치도 바꾸며 단순 알파 합성만으로 끝나지 않습니다.
+외부 개념도 · 입사한 빛이 표면에서 반사되거나 내부로 들어가 산란·흡수될 수 있습니다.
+
+읽을 곳  표면에서 되돌아가는 경로와 내부로 들어가는 경로를 구분합니다. 이 개념만으로 UE 반투명 구현이 물질 내부의 모든 광선을 추적한다고 해석하지 않습니다.
+
+[© Joey de Vries · LearnOpenGL · @JoeyDeVriez · 출처 41](https://learnopengl.com/PBR/Theory)
+
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) · 원본 전체를 유지하고 투명 배경을 흰색으로 표시했습니다.
 
 ## 공식 자료
 

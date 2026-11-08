@@ -51,9 +51,15 @@ Deferred는 화면 크기의 표면 데이터를 메모리에 쓰고 다시 읽�
 
 ## 그림으로 연결하기
 
-![CH02 설명도](../Images/Concepts/explain-2.png)
+![외부 참고 그림 · Geometry Pass에서 얻은 여러 표면 버퍼를 Lighting Pass에서 사용합니다.](../Images/External/deferred-print.png)
 
-Forward는 표면 계산에 조명을 반영하고, Deferred는 표면 정보를 저장한 뒤 조명을 계산합니다. 대표적인 불투명 경로의 비교이며 추가 패스는 생략했습니다.
+외부 참고 그림 · Geometry Pass에서 얻은 여러 표면 버퍼를 Lighting Pass에서 사용합니다.
+
+읽을 곳  가운데 버퍼의 위치·법선·색 정보가 오른쪽의 조명 결과에 어떻게 모이는지 봅니다. OpenGL 학습용 구현이므로 UE의 실제 GBuffer 배치와 동일하다고 해석하지 않습니다.
+
+[© Joey de Vries · LearnOpenGL · @JoeyDeVriez · 출처 39](https://learnopengl.com/Advanced-Lighting/Deferred-Shading)
+
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) · 원본 전체를 유지하고 투명 배경을 흰색으로 표시했습니다.
 
 ## 공식 자료
 

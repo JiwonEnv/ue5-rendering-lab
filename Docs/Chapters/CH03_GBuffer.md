@@ -51,9 +51,15 @@ Base Pass는 화면에 보이는 불투명 표면의 정보를 기록하는 대�
 
 ## 그림으로 연결하기
 
-![CH03 설명도](../Images/Concepts/explain-3.png)
+![외부 시각화 이미지 · 같은 장면의 위치·법선·Albedo·Specular를 분리해 표시한 GBuffer 예시입니다.](../Images/External/gbuffer-print.png)
 
-한 화면 위치에서 색·방향·거칠기 등의 정보를 따로 읽습니다. 도식의 칸은 실제 GBuffer 텍스처 수나 채널 배치를 뜻하지 않습니다.
+외부 시각화 이미지 · 같은 장면의 위치·법선·Albedo·Specular를 분리해 표시한 GBuffer 예시입니다.
+
+읽을 곳  왼쪽 위는 위치에 따라, 오른쪽 위는 표면 방향에 따라 색이 달라집니다. 아래쪽은 재질의 색과 반사 입력입니다. 진단용 색을 최종 외관이나 UE 채널 구성으로 읽지 않습니다.
+
+[© Joey de Vries · LearnOpenGL · @JoeyDeVriez · 출처 39](https://learnopengl.com/Advanced-Lighting/Deferred-Shading)
+
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) · 원본 전체를 유지하고 투명 배경을 흰색으로 표시했습니다.
 
 ## 공식 자료
 

@@ -51,9 +51,15 @@ Static Mesh Editor에서 각 LOD의 형상과 Screen Size를 확인합니다. Sc
 
 ## 그림으로 연결하기
 
-![CH16 설명도](../Images/Concepts/explain-16.png)
+![외부 비교 그림 · 비슷한 실루엣을 더 적은 변으로 근사한 세 가지 LOD입니다.](../Images/External/lod-print.png)
 
-화면에서 작게 보이는 메시에는 단순한 형상을 선택할 수 있습니다. 실제 전환 기준은 단순한 거리만이 아니라 화면상 크기와 설정에 의존합니다.
+외부 비교 그림 · 비슷한 실루엣을 더 적은 변으로 근사한 세 가지 LOD입니다.
+
+읽을 곳  오른쪽으로 갈수록 위쪽 윤곽이 각지게 바뀝니다. 원본의 LOD 1·2·3 표기는 해당 그림의 번호이며 UE에서 흔히 시작하는 LOD0 번호와 구별합니다.
+
+[Sirotk · Wikimedia Commons · 출처 42](https://commons.wikimedia.org/wiki/File:LOD_Example.png)
+
+[CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) · 원본 전체를 유지하고 투명 배경을 흰색으로 표시했습니다.
 
 ## 공식 자료
 

@@ -51,9 +51,15 @@ BRDF는 어느 방향에서 온 빛이 어느 방향으로 얼마나 반사되�
 
 ## 그림으로 연결하기
 
-![CH08 설명도](../Images/Concepts/explain-8.png)
+![외부 개념도 · 미세한 표면 방향의 차이가 반사광의 퍼짐에 영향을 주는 모습입니다.](../Images/External/brdf-print.png)
 
-같은 입사광도 표면과 관찰 방향에 따라 다르게 반사됩니다. 화살표는 방향의 개념이며 그 길이와 굵기를 실제 BRDF 수치로 읽지 않습니다.
+외부 개념도 · 미세한 표면 방향의 차이가 반사광의 퍼짐에 영향을 주는 모습입니다.
+
+읽을 곳  거친 표면에서는 여러 방향으로, 매끈한 표면에서는 더 모인 방향으로 반사하는 차이를 봅니다. 확대된 개념도이며 실제 메시의 모든 미세 면을 직접 만드는 뜻은 아닙니다.
+
+[© Joey de Vries · LearnOpenGL · @JoeyDeVriez · 출처 41](https://learnopengl.com/PBR/Theory)
+
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) · 원본 전체를 유지하고 투명 배경을 흰색으로 표시했습니다.
 
 ## 공식 자료
 

@@ -51,9 +51,15 @@ Fresnel은 빛이 두 물질의 경계를 만날 때 각도에 따라 반사 비
 
 ## 그림으로 연결하기
 
-![CH09 설명도](../Images/Concepts/explain-9.png)
+![외부 시각화 이미지 · 구의 중심과 실루엣 부근에서 Fresnel 반사 계수가 달라지는 예입니다.](../Images/External/fresnel-print.png)
 
-비금속에서도 표면을 비스듬히 보면 반사가 강해질 수 있습니다. 도식은 Fresnel 경향을 설명하며 굴절·흡수·거칠기의 영향을 모두 나타내지는 않습니다.
+외부 시각화 이미지 · 구의 중심과 실루엣 부근에서 Fresnel 반사 계수가 달라지는 예입니다.
+
+읽을 곳  중심보다 테두리가 밝습니다. 곡면의 테두리에서 시선이 표면에 더 비스듬하게 닿기 때문입니다. 물체의 완성 렌더가 아닌 반사 계수의 시각화입니다.
+
+[© Joey de Vries · LearnOpenGL · @JoeyDeVriez · 출처 41](https://learnopengl.com/PBR/Theory)
+
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) · 원본 전체를 유지하고 투명 배경을 흰색으로 표시했습니다.
 
 ## 공식 자료
 

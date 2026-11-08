@@ -51,9 +51,15 @@ flowchart LR
 
 ## 그림으로 연결하기
 
-![CH19 설명도](../Images/Concepts/explain-19.png)
+![외부 실제 렌더 비교 · 왼쪽 No MipMapping, 오른쪽 With MipMapping입니다.](../Images/External/mipmap-print.png)
 
-작은 화면 영역이 넓은 텍스처 영역을 대표할 때 낮은 밉을 읽어 깜빡임과 읽기 비용을 줄입니다. 필터링의 개념이며 실제 텍스처 실측이 아닙니다.
+외부 실제 렌더 비교 · 왼쪽 No MipMapping, 오른쪽 With MipMapping입니다.
+
+읽을 곳  수평선에 가까운 먼 바닥에서 왼쪽의 물결무늬와 오른쪽의 안정된 패턴을 비교합니다. 원본은 Blender 렌더이며 필터링도 관여할 수 있으므로 UE에서 밉만 바꾼 통제 실험으로 해석하지 않습니다.
+
+[BillyBob CornCob · Wikimedia Commons · 출처 43](https://commons.wikimedia.org/wiki/File:Mipmap_Aliasing_Comparison.png)
+
+[CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) · 원본 전체를 유지하고 투명 배경을 흰색으로 표시했습니다.
 
 ## 공식 자료
 

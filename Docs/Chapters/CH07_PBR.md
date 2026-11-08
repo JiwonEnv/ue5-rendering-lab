@@ -51,9 +51,15 @@ Material Instance는 원본 재질의 구조를 공유하면서 노출한 설정
 
 ## 그림으로 연결하기
 
-![CH07 설명도](../Images/Concepts/explain-7.png)
+![외부 렌더 이미지 · 금속성과 거칠기를 달리한 구들을 두 시점에서 비교합니다.](../Images/External/pbr-print.png)
 
-Base Color는 바탕색, Metallic은 금속성, Roughness는 반사 분포를 제어합니다. 세 입력을 같은 장면에서 한 번에 하나씩 비교합니다.
+외부 렌더 이미지 · 금속성과 거칠기를 달리한 구들을 두 시점에서 비교합니다.
+
+읽을 곳  오른쪽 배열의 가로 방향에서 거칠기가 변할 때 작은 반사점이 넓어지는 모습을 봅니다. 세로 방향의 금속성 변화도 함께 비교합니다. UE와 광원·톤매핑이 같은 비교 자료는 아닙니다.
+
+[© Joey de Vries · LearnOpenGL · @JoeyDeVriez · 출처 40](https://learnopengl.com/PBR/Lighting)
+
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) · 원본 전체를 유지하고 투명 배경을 흰색으로 표시했습니다.
 
 ## 공식 자료
 

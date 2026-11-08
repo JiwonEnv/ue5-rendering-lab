@@ -1,0 +1,72 @@
+[
+  {
+    "file": "coordinates.png",
+    "source_url": "https://learnopengl.com/img/getting-started/coordinate_systems.png",
+    "sha256": "431fbfb43d1f1fa79017654eaf9aa53b7ec6ef4933ffc00904024583033809b7"
+  },
+  {
+    "file": "projection.png",
+    "source_url": "https://learnopengl.com/img/getting-started/perspective_orthographic.png",
+    "sha256": "748700b4811c2abc6b65b9277b16a43632a25611588c21475db5fd8dd8fc395f"
+  },
+  {
+    "file": "raster-outline.png",
+    "source_url": "https://learnopengl.com/img/advanced/anti_aliasing_rasterization.png",
+    "sha256": "07aef068e45123563e2bc50ab31f153762b1957bbb48a155bfc344c4776c8c2c"
+  },
+  {
+    "file": "raster.png",
+    "source_url": "https://learnopengl.com/img/advanced/anti_aliasing_rasterization_filled.png",
+    "sha256": "6856d31268774977411d315481debf79c9d549ceb154ee916846b70d86ad918c"
+  },
+  {
+    "file": "deferred.png",
+    "source_url": "https://learnopengl.com/img/advanced-lighting/deferred_overview.png",
+    "sha256": "f4b1e28b89720231689bcd71d4b77f94525ed83aa6f1c30d761932b04d726ec6"
+  },
+  {
+    "file": "gbuffer.png",
+    "source_url": "https://learnopengl.com/img/advanced-lighting/deferred_g_buffer.png",
+    "sha256": "2d302f9a8b97221525fd550384f1e5701133919ed099a18fb61863b788592f67"
+  },
+  {
+    "file": "pbr.png",
+    "source_url": "https://learnopengl.com/img/pbr/lighting_result.png",
+    "sha256": "ec06de3bac3a0cc2de907a6db8acedf55b537a294e0f283db7616ef2ec8d051d"
+  },
+  {
+    "file": "brdf.png",
+    "source_url": "https://learnopengl.com/img/pbr/microfacets_light_rays.png",
+    "sha256": "78d273e3cb031d0e5b90504f9842ebcfa5b17d9802ed4379c7f032401f357bf9"
+  },
+  {
+    "file": "fresnel.png",
+    "source_url": "https://learnopengl.com/img/pbr/fresnel.png",
+    "sha256": "90ec915581ee0c9ed58daaedf3aa61499c9e70a7fa528cdd4bd98ef90d609288"
+  },
+  {
+    "file": "translucency.png",
+    "source_url": "https://learnopengl.com/img/pbr/surface_reaction.png",
+    "sha256": "e567a89133d9ed4ccaf1ec5283cdb4cbb5bb0c9bb8721d1118c28bfecf1e4597"
+  },
+  {
+    "file": "lod.png",
+    "source_url": "https://upload.wikimedia.org/wikipedia/commons/2/26/LOD_Example.png",
+    "sha256": "4004979f895afb3816124a50e1691a6d4e78c3a9d319ce3e437f2407bf03008e"
+  },
+  {
+    "file": "mipmap.png",
+    "source_url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Mipmap_Aliasing_Comparison.png",
+    "sha256": "443d20523152ddd86299e6b61c232a6935cfca407485327a8d446b657901cf16"
+  },
+  {
+    "file": "nanite-off.png",
+    "source_url": "https://d1iv7db44yhgxn.cloudfront.net/documentation/images/62955159-0c76-4b0a-a468-1e3c489adf3b/nanite-preservearea-disabled-clustervis.png",
+    "sha256": "ad751b536889067e3b4c294dca085353b808151aff2868efbb9ba5ff33fab4db"
+  },
+  {
+    "file": "nanite-on.png",
+    "source_url": "https://d1iv7db44yhgxn.cloudfront.net/documentation/images/1ed92757-cb3a-4e94-822d-f69162156991/nanite-preservearea-enabled-clustervis.png",
+    "sha256": "81e3d6d72d46bab0b33707d616cdb9256b307d36ed63d67f65028a0a13dba5d5"
+  }
+]

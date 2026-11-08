@@ -51,9 +51,17 @@ Nanite의 이점과 남아 있는 재질·겹침·스트리밍 비용을 함께 
 
 ## 그림으로 연결하기
 
-![CH17 설명도](../Images/Concepts/explain-17.png)
+![Epic 공식 비교 이미지 · Nanite Clusters 시각화에서 Preserve Area를 끈 상태와 켠 상태입니다.](../Images/External/nanite-print.png)
 
-Nanite는 화면에 필요한 세밀함에 맞춰 클러스터를 선택합니다. 클러스터의 크기·개수는 설명용이며 실제 시각화나 고정 삼각형 예산이 아닙니다.
+Epic 공식 비교 이미지 · Nanite Clusters 시각화에서 Preserve Area를 끈 상태와 켠 상태입니다.
+
+읽을 곳  왼쪽의 검게 비어 보이는 잎 사이 공간과 오른쪽의 더 조밀한 수관을 비교합니다. 삼각형을 줄일 때 소실되는 잎 면적을 보존하는 사례입니다. 색은 재질색이 아닌 클러스터 구분이며 UE 5.5 문서의 예시로, 이 프로젝트의 UE 5.8 실측이나 성능 비교가 아닙니다.
+
+[© Epic Games · UE 5.5 공식 문서 · 출처 45](https://dev.epicgames.com/documentation/en-us/unreal-engine/nanite-virtualized-geometry-in-unreal-engine?application_version=5.5)
+
+원저작권은 Epic Games에 귀속됩니다. 공식 문서의 교육용 참고 이미지입니다.
+
+원본 2점을 나란히 배치하고 상단 표제만 추가했습니다. 원본의 색상과 전체 구도를 유지했습니다.
 
 ## 공식 자료
 
