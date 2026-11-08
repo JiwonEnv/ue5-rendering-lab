@@ -68,5 +68,115 @@
     "file": "nanite-on.png",
     "source_url": "https://d1iv7db44yhgxn.cloudfront.net/documentation/images/1ed92757-cb3a-4e94-822d-f69162156991/nanite-preservearea-enabled-clustervis.png",
     "sha256": "81e3d6d72d46bab0b33707d616cdb9256b307d36ed63d67f65028a0a13dba5d5"
+  },
+  {
+    "file": "aa-none.png",
+    "source_url": "https://d1iv7db44yhgxn.cloudfront.net/documentation/images/ed34ddd2-e945-49a9-944e-fa3fc9ebf6f1/1-no-aa.png",
+    "sha256": "815433b9fcebbd514c5d7ce3d2b44afab4b7c1ee9dc00abd46c2f7e73b69c9a0"
+  },
+  {
+    "file": "aa-on.png",
+    "source_url": "https://d1iv7db44yhgxn.cloudfront.net/documentation/images/19118bd9-da10-4dcb-a4cb-0aa119687db4/2-with-aa.png",
+    "sha256": "d082f181c69f1f3b5e2947c11945a64379ee34008f33f76f866b9b0361011e5a"
+  },
+  {
+    "file": "culling-after.png",
+    "source_url": "https://d1iv7db44yhgxn.cloudfront.net/documentation/images/270e1d44-45a6-40b7-997e-6556059a53fc/sceneview_occludedobjectsremoved.png",
+    "sha256": "9aea44a6cd8804c10ecc0981e4a154153c047d461db79e12c444c1333627187b"
+  },
+  {
+    "file": "culling-before.png",
+    "source_url": "https://d1iv7db44yhgxn.cloudfront.net/documentation/images/3763eb52-9920-4cdb-aa94-227288e65480/sceneviewbase.png",
+    "sha256": "1076273dfbc7978aab1cf5614678ef222c6e73dc2aed9b279dbbe60451890fb8"
+  },
+  {
+    "file": "decal-wall.png",
+    "source_url": "https://d1iv7db44yhgxn.cloudfront.net/documentation/images/7201cb8b-6772-4ec5-adc1-a1262cf49025/decals-use-case.png",
+    "sha256": "59466e0c6da4be19aa6be7fae8d7d69459b85c5cd06371bfefc94a5827726ed1"
+  },
+  {
+    "file": "depth-always.png",
+    "source_url": "https://learnopengl.com/img/advanced/depth_testing_func_always.png",
+    "sha256": "c07aec4a63b436bb21bb9fdbbae4cd54fa538edcf6ce581ffb526f71d8373bf2"
+  },
+  {
+    "file": "depth-less.png",
+    "source_url": "https://learnopengl.com/img/advanced/depth_testing_func_less.png",
+    "sha256": "0fe3f220560664e65e4a39ec24f026c5d0e91126bef1d577b51298f8d8267567"
+  },
+  {
+    "file": "draw-pipeline.png",
+    "source_url": "https://d1iv7db44yhgxn.cloudfront.net/documentation/images/f99298ce-bd39-4558-ab52-aed1e0be288a/meshpipelineoverview_1.png",
+    "sha256": "f47bb627b05850b8617242cb6ddf997575755b29058ad037a61aae9300e3ca9f"
+  },
+  {
+    "file": "gpu-insights.png",
+    "source_url": "https://tomlooman.com/assets/images/ue56_insightsgpu.jpg",
+    "sha256": "aea9934f75d7239091ab8fa405bc6959a9b15c5763ec1825a6a7ce9d1db63228"
+  },
+  {
+    "file": "insights-frames.png",
+    "source_url": "https://www.unrealcode.net/assets/images/insights_004-ded61867cf6cdef242de2747a8f27eb9.png",
+    "sha256": "babc49d382323455a07d2a5746f39d34c2627e677eec51ac25d13617bd784dea"
+  },
+  {
+    "file": "instancing-grid.png",
+    "source_url": "https://learnopengl.com/img/advanced/instancing_quads_arrays.png",
+    "sha256": "5e03d336c7c1d2ed91026a4d085da94240d32f03d94402a4b43ae15e4c2281c4"
+  },
+  {
+    "file": "lumen-cache.png",
+    "source_url": "https://d1iv7db44yhgxn.cloudfront.net/documentation/images/b0694fa2-fcae-479a-b95a-8cfe086691f4/troubleshooting-topic-reflection-quality-1.png",
+    "sha256": "0ef9c8ad95c4a722a11385e9e5bd591571defc5c4cc9db43941dd695af3b0f27"
+  },
+  {
+    "file": "lumen-hit.png",
+    "source_url": "https://d1iv7db44yhgxn.cloudfront.net/documentation/images/a89846c3-f55d-42e9-bb31-06a6ef6aa58e/troubleshooting-topic-reflection-quality-2.png",
+    "sha256": "dda93ab588bace9e1143a0a60f1675985d9e15a39d6cb12b53932b5cc4f47fae"
+  },
+  {
+    "file": "overdraw.png",
+    "source_url": "https://developer.android.com/static/images/games/artbp/material/material_figure04.jpg",
+    "sha256": "3d76554d6ef5d13493f2603ff69fbda27436817e4b57bf5e5b56e12ec8681079"
+  },
+  {
+    "file": "shader-stats.png",
+    "source_url": "https://developer.android.com/static/images/games/artbp/material/material_figure07.jpg",
+    "sha256": "d906759c73a3437ed0a661cbd11122de31f2c11e210af123286035402deaab68"
+  },
+  {
+    "file": "sss.png",
+    "source_url": "https://d1iv7db44yhgxn.cloudfront.net/documentation/images/9923bc52-fad6-4dfd-9c52-ab693d8fc5ee/sss-opacity-comparison.png",
+    "sha256": "fe62fe48ea4d80196df7ab848ac2c220ee9f95b57af950217fde93f94b098b56"
+  },
+  {
+    "file": "streaming.png",
+    "source_url": "https://d1iv7db44yhgxn.cloudfront.net/documentation/images/37ccb94f-ccf2-470d-a91c-269777f1cd7a/statstreaming.png",
+    "sha256": "851e2880b9e6db82b0f0503fa6b7b746cfc70c3f0101e301f5fb866c12bdb9af"
+  },
+  {
+    "file": "substrate.png",
+    "source_url": "https://d1iv7db44yhgxn.cloudfront.net/documentation/images/18afef50-780b-4885-a084-74992298d456/substrate-rough-refractioin-thickness-example.png",
+    "sha256": "9a635446dfcaade5be8f04ecfaf672d58a538ff67ed55b13d5b8e8c6e472cbd1"
+  },
+  {
+    "file": "tsr-native.png",
+    "source_url": "https://d1iv7db44yhgxn.cloudfront.net/documentation/images/bdccd6c1-0bb5-46f4-83ac-737e1b6c93fc/7-tsr-1.png",
+    "sha256": "5cfbec761308519b791da4d42abe9628a5890d9fdb51a7177f21167b9338baa8"
+  },
+  {
+    "file": "tsr-upscaled.png",
+    "source_url": "https://d1iv7db44yhgxn.cloudfront.net/documentation/images/5cc31808-34a8-45c3-a7c0-f75f254dda06/7-tsr-2.png",
+    "sha256": "61b28c626ffc2ebfdeee82fcaa50b0617785f6bc3da6cf2d06b7937da8b4bb49"
+  },
+  {
+    "file": "vsm-bounds.png",
+    "source_url": "https://d1iv7db44yhgxn.cloudfront.net/documentation/images/dccd27c3-e5e6-474c-adc8-82e7ff0ceec2/vis-cached-pages-invalidated-bounds.png",
+    "sha256": "c4f02d4a6e8b5377bacbdf49823e6ca1fa89f167934551d70770589c94617733"
+  },
+  {
+    "file": "vsm-cache.png",
+    "source_url": "https://d1iv7db44yhgxn.cloudfront.net/documentation/images/09ad8f8a-6903-4698-ba6f-731bf42d896b/vis-cached-pages.png",
+    "sha256": "e787a7b5230a67cb4ac44c991339946bbd2e6806b66a747e320965903b9f13e4"
   }
 ]

@@ -33,6 +33,20 @@ SSS는 Subsurface Scattering의 약자로, 빛이 표면 아래에서 산란하�
 
 UE의 Subsurface Profile은 화면에 보이는 정보를 이용해 산란의 퍼짐을 근사하는 방식입니다. Profile은 퍼짐과 색 반응을 묶은 설정입니다. Substrate의 SSS MFP는 내부에서 빛이 상호작용하기까지의 평균 거리 스케일입니다. 같은 값이라도 물체의 두께와 크기, 사용하는 모델에 따라 결과가 달라집니다.
 
+## 그림으로 연결하기
+
+![Epic 공식 비교 · 레거시 Subsurface 모델에서 Opacity를 0·0.35·0.65·1로 바꾼 사례입니다.](../Images/External/sss-model-print.png)
+
+Epic 공식 비교 · 레거시 Subsurface 모델에서 Opacity를 0·0.35·0.65·1로 바꾼 사례입니다.
+
+읽을 곳  같은 역광에서 몸통과 얇은 부분의 색·빛 번짐이 어떻게 달라지는지 봅니다. 이 입력의 의미를 일반 투명도나 다른 SSS 모델에 그대로 적용하지 않습니다. UE 5.5 문서의 예시입니다.
+
+[© Epic Games · 공식 문서 · 출처 50](https://dev.epicgames.com/documentation/en-us/unreal-engine/using-subsurface-scattering-in-unreal-engine-materials?application_version=5.5)
+
+원저작권과 원문 출처 표시는 유지합니다
+
+원본 전체 유지 · 투명 배경은 흰색으로 표시
+
 ## 아트 실무
 
 촛농의 얇은 가장자리와 두꺼운 몸통을 역광에서 비교합니다. 작은 소품을 거대한 크기로 가져오면 거리 기반 산란 설정이 의도와 다르게 보일 수 있습니다. 잎 뒷면의 빛 표현에 쓰는 Two Sided Foliage와 왁스용 산란 설정은 표현 목적과 처리 방식에 맞춰 선택합니다.
@@ -45,15 +59,17 @@ UE의 Subsurface Profile은 화면에 보이는 정보를 이용해 산란의 �
 
 실제 크기에 맞춘 왁스 기둥과 얇은 판을 만듭니다. 기본 조명 반응 모델인 Default Lit와 Subsurface Profile 또는 Substrate SSS를 각각 적용합니다. 노출을 고정한 전면광·역광에서 두께에 따른 차이를 보고, 화면 면적을 맞춰 GPU 작업도 비교합니다.
 
+## 관찰과 판단
+
+소품의 실제 크기와 두께를 맞춘 뒤 전면광과 역광을 나눕니다. 산란 모델별로 같은 목표 외관을 만들고 얇은 모서리와 두꺼운 몸통을 비교합니다. 화면 면적을 맞춰 산란 관련 비용을 봅니다.
+
+## 오판을 피하려면
+
+공식 Opacity 비교는 레거시 Subsurface 예시입니다. Subsurface Profile과 Substrate MFP에 같은 숫자 의미를 그대로 적용하지 않습니다. 투명한 배경 합성과 내부 산란도 구분합니다.
+
 ## 핵심 요약
 
 산란 모델, 거리 스케일과 물체 두께를 함께 조정해 내부를 지난 빛의 외관을 만듭니다.
-
-## 그림으로 연결하기
-
-![CH13 설명도](../Images/Concepts/explain-13.png)
-
-빛이 표면 안으로 들어가 여러 방향으로 퍼져 나온 상황을 단면으로 표현했습니다. UE의 화면 기반 근사는 실제 내부 광선을 모두 추적하는 방식과 다릅니다.
 
 ## 공식 자료
 

@@ -33,6 +33,18 @@ Forward와 Deferred는 표면과 빛을 계산하는 순서가 다른 렌더링 
 
 한 벽을 여러 라이트가 비추더라도 모든 라이트를 항상 전부 계산할 필요는 없습니다. 엔진은 화면과 공간을 나누어 해당 위치에 영향을 주는 광원을 추립니다. UE의 Forward도 이런 선별을 사용합니다. 반사 환경을 미리 담아 두는 Reflection Capture 역시 영향을 주는 범위에 따라 선택됩니다.
 
+## 그림으로 연결하기
+
+![외부 참고 그림 · Geometry Pass에서 얻은 여러 표면 버퍼를 Lighting Pass에서 사용합니다.](../Images/External/deferred-print.png)
+
+외부 참고 그림 · Geometry Pass에서 얻은 여러 표면 버퍼를 Lighting Pass에서 사용합니다.
+
+읽을 곳  가운데 버퍼의 위치·법선·색 정보가 오른쪽의 조명 결과에 어떻게 모이는지 봅니다. OpenGL 학습용 구현이므로 UE의 실제 GBuffer 배치와 동일하다고 해석하지 않습니다.
+
+[© Joey de Vries · LearnOpenGL · @JoeyDeVriez · 출처 39](https://learnopengl.com/Advanced-Lighting/Deferred-Shading)
+
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
 ## 아트 실무
 
 VR에서는 머리 움직임에 따른 가장자리의 안정성이 중요합니다. 계단처럼 보이는 가장자리를 줄이는 처리를 안티앨리어싱 또는 AA라고 합니다. MSAA는 한 픽셀 안의 여러 위치에서 도형의 경계를 검사하는 방식입니다. 시간적 누적 방식인 TAA·TSR은 CH23·24에서 설명합니다. 렌더러를 정할 때 필요한 AA·조명·반사 기능이 함께 지원되는지 확인합니다.
@@ -45,21 +57,17 @@ Deferred는 화면 크기의 표면 데이터를 메모리에 쓰고 다시 읽�
 
 프로젝트 복사본에서 Project Settings → Rendering → Forward Shading을 바꾸고 재시작합니다. 두 방식이 공통 지원하는 조명·반사·AA를 맞춥니다. 같은 구도에서 겹치는 광원 수만 바꾸고 stat gpu의 Base Pass와 조명 관련 시간을 기록합니다. Base Pass는 주로 불투명 표면 정보를 준비하는 작업이며 CH03에서 이어 설명합니다.
 
+## 관찰과 판단
+
+두 프로젝트의 그림자·반사·AA와 출력 크기를 먼저 맞춥니다. 공통 지원 기능으로 외관을 비교한 뒤 라이트 겹침을 바꿉니다. Base Pass, 조명 작업과 전체 GPU 시간을 함께 남깁니다.
+
+## 오판을 피하려면
+
+Forward 전환 후 어떤 기능이 꺼졌는지 확인하지 않으면 서로 다른 화질을 비교하게 됩니다. 렌더러 선택은 특정 장면의 FPS 한 숫자로 일반화하지 않습니다.
+
 ## 핵심 요약
 
 계산 순서의 차이를 필요한 기능과 연결해 렌더러를 선택합니다. 비교할 때는 한쪽에서 빠진 기능 때문에 빨라진 것인지도 확인합니다.
-
-## 그림으로 연결하기
-
-![외부 참고 그림 · Geometry Pass에서 얻은 여러 표면 버퍼를 Lighting Pass에서 사용합니다.](../Images/External/deferred-print.png)
-
-외부 참고 그림 · Geometry Pass에서 얻은 여러 표면 버퍼를 Lighting Pass에서 사용합니다.
-
-읽을 곳  가운데 버퍼의 위치·법선·색 정보가 오른쪽의 조명 결과에 어떻게 모이는지 봅니다. OpenGL 학습용 구현이므로 UE의 실제 GBuffer 배치와 동일하다고 해석하지 않습니다.
-
-[© Joey de Vries · LearnOpenGL · @JoeyDeVriez · 출처 39](https://learnopengl.com/Advanced-Lighting/Deferred-Shading)
-
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) · 원본 전체를 유지하고 투명 배경을 흰색으로 표시했습니다.
 
 ## 공식 자료
 

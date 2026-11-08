@@ -33,6 +33,18 @@ flowchart LR
 
 Base Pass는 화면에 보이는 불투명 표면의 정보를 기록하는 대표 작업입니다. 조명 단계는 그 값을 읽어 표면에 빛이 어떻게 반사될지 계산합니다. 깊이를 저장한 별도 데이터인 Scene Depth와 카메라 정보를 이용해 표면 위치를 알아낼 수도 있습니다. 어떤 값을 몇 개의 채널에 담는지는 플랫폼과 저장 형식에 따라 달라집니다.
 
+## 그림으로 연결하기
+
+![외부 시각화 이미지 · 같은 장면의 위치·법선·Albedo·Specular를 분리해 표시한 GBuffer 예시입니다.](../Images/External/gbuffer-print.png)
+
+외부 시각화 이미지 · 같은 장면의 위치·법선·Albedo·Specular를 분리해 표시한 GBuffer 예시입니다.
+
+읽을 곳  왼쪽 위는 위치에 따라, 오른쪽 위는 표면 방향에 따라 색이 달라집니다. 아래쪽은 재질의 색과 반사 입력입니다. 진단용 색을 최종 외관이나 UE 채널 구성으로 읽지 않습니다.
+
+[© Joey de Vries · LearnOpenGL · @JoeyDeVriez · 출처 39](https://learnopengl.com/Advanced-Lighting/Deferred-Shading)
+
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
 ## 아트 실무
 
 벽이 유난히 번들거리면 Roughness 화면을 먼저 봅니다. 밝은 반사 부분의 방향이 이상하면 World Normal을 봅니다. 노멀 맵은 작은 표면 방향 변화를 텍스처로 표현하는 방법입니다. 노멀 맵에 쓰는 방향 기준이 메시와 맞지 않으면 반사가 어색해질 수 있습니다. 방향 기준의 세부 구현은 용어집의 탄젠트를 참고합니다.
@@ -45,21 +57,17 @@ Base Pass는 화면에 보이는 불투명 표면의 정보를 기록하는 대�
 
 같은 벽 재질의 설정값 변형인 Material Instance를 두 개 만들고 Roughness를 0.2와 0.8로 둡니다. View Mode → Buffer Visualization에서 Roughness와 Base Color를 비교합니다. 다음에는 내부 렌더링 해상도만 바꿔 Base Pass와 전체 GPU 시간을 확인합니다. 머티리얼 인스턴스의 제작 방식은 CH07에서 설명합니다.
 
+## 관찰과 판단
+
+같은 재질에서 Roughness만 바꾸고 Roughness와 Base Color 화면을 확인합니다. 다음에는 재질을 고정하고 광원만 옮깁니다. 재질 값의 문제와 조명 결과의 문제를 나눠 기록합니다.
+
+## 오판을 피하려면
+
+진단 시각화는 저장된 비트를 그대로 보여 주는 메모리 덤프가 아닙니다. 외부 예시의 Position 버퍼가 UE에서도 별도 텍스처로 존재한다고 가정하지 않습니다.
+
 ## 핵심 요약
 
 재질 입력이 잘못됐는지와 조명 이후에 문제가 생겼는지를 분리합니다. 노드가 늘어난다고 저장 바이트까지 항상 늘어나는 것은 아닙니다.
-
-## 그림으로 연결하기
-
-![외부 시각화 이미지 · 같은 장면의 위치·법선·Albedo·Specular를 분리해 표시한 GBuffer 예시입니다.](../Images/External/gbuffer-print.png)
-
-외부 시각화 이미지 · 같은 장면의 위치·법선·Albedo·Specular를 분리해 표시한 GBuffer 예시입니다.
-
-읽을 곳  왼쪽 위는 위치에 따라, 오른쪽 위는 표면 방향에 따라 색이 달라집니다. 아래쪽은 재질의 색과 반사 입력입니다. 진단용 색을 최종 외관이나 UE 채널 구성으로 읽지 않습니다.
-
-[© Joey de Vries · LearnOpenGL · @JoeyDeVriez · 출처 39](https://learnopengl.com/Advanced-Lighting/Deferred-Shading)
-
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) · 원본 전체를 유지하고 투명 배경을 흰색으로 표시했습니다.
 
 ## 공식 자료
 

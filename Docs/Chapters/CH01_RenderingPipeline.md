@@ -50,6 +50,14 @@ CPU는 게임 규칙, 오브젝트 상태와 여러 작업의 준비를 처리�
 
 셰이더는 GPU에서 실행하는 계산 프로그램입니다. 정점 셰이더는 꼭짓점의 위치 등을, 픽셀 셰이더는 화면에서 표면을 표현할 값 등을 처리합니다. 머티리얼 그래프는 이런 표면 반응을 노드로 제작하는 화면이며, 그래프 전체가 하나의 픽셀 셰이더와 항상 일대일로 대응하는 것은 아닙니다.
 
+### 관찰과 판단
+
+Lit에서 이상한 부분의 위치를 고정하고 Base Color·World Normal·Scene Depth 중 관련 화면을 고릅니다. 유리·데칼·Bloom 중 하나만 바꾼 뒤 원래 상태로 되돌려 결과가 재현되는지 봅니다.
+
+### 오판을 피하려면
+
+진단 화면 하나가 전체 파이프라인을 보여 주지는 않습니다. 반투명 유리는 불투명 GBuffer와 깊이 화면에 같은 방식으로 남지 않을 수 있습니다.
+
 ## 03 정점 위치와 표면 정보가 전달되는 방식
 
 ![외부 참고 그림 · 모델의 로컬 공간부터 월드·카메라·클립·화면 공간까지 이어지는 좌표 변환입니다.](../Images/External/coordinates-print.png)
@@ -60,7 +68,7 @@ CPU는 게임 규칙, 오브젝트 상태와 여러 작업의 준비를 처리�
 
 [© Joey de Vries · LearnOpenGL · @JoeyDeVriez · 출처 37](https://learnopengl.com/Getting-started/Coordinate-Systems)
 
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) · 원본 전체를 유지하고 투명 배경을 흰색으로 표시했습니다.
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
 ### 모델 좌표에서 월드 좌표로
 
@@ -84,7 +92,7 @@ CPU는 게임 규칙, 오브젝트 상태와 여러 작업의 준비를 처리�
 
 [© Joey de Vries · LearnOpenGL · @JoeyDeVriez · 출처 37](https://learnopengl.com/Getting-started/Coordinate-Systems)
 
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) · 원본 전체를 유지하고 투명 배경을 흰색으로 표시했습니다.
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
 ### 원근 투영은 깊이에 따른 크기를 보여 줍니다
 
@@ -137,7 +145,7 @@ flowchart LR
 
 [© Joey de Vries · LearnOpenGL · @JoeyDeVriez · 출처 38](https://learnopengl.com/Advanced-OpenGL/Anti-Aliasing)
 
-[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) · 원본 전체를 유지하고 투명 배경을 흰색으로 표시했습니다.
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
 
 원본 2점을 나란히 배치하고 상단 표제만 추가했습니다. 원본의 색상과 전체 구도를 유지했습니다.
 
